@@ -5,6 +5,18 @@
     <title>Collegiate Salsa Open</title>
 </head>
 <body>
-
+    <div id="menu_nav">
+        <ul>
+            <li>
+                <a href="/about/">About</a>
+                <ul><li><a href="/about/constitution/">Constitution</a></li></ul>
+            </li>
+            <li><a href="/dates/">Dates</a></li>
+            <li><a href="/colleges/">Colleges</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>
