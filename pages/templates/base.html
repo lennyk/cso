@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style type="text/css">
+        body {
+            padding-top: 70px;
+        }
+        @media (min-width: 768px) {
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+        }
+    </style>
+    <title>Collegiate Salsa Open</title>
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The CSO</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="{% block active_home %}{% endblock %}"><a href="/">Home</a></li>
+                <li class="{% block active_about %}{% endblock %} dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="{% block active_thecso %}{% endblock %}"><a href="/about/">The CSO</a></li>
+                        <li class="{% block active_constitution %}{% endblock %}"><a href="/about/constitution/">Constitution</a></li>
+                    </ul>
+                </li>
+                <li class="{% block active_colleges %}{% endblock %}"><a href="/colleges/">Colleges</a></li>
+                <li class="{% block active_dates %}{% endblock %}"><a href="/dates/">Dates</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
+</html>

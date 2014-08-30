@@ -5,8 +5,8 @@ def home_page(request):
     return render(request, 'home.html')
 
 
-def about_page(request):
-    return render(request, 'about.html')
+def thecso_page(request):
+    return render(request, 'thecso.html')
 
 
 def constitution_page(request):

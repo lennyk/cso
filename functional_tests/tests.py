@@ -25,14 +25,20 @@ class HomePageUp(LiveServerTestCase):
         self.assertIn('Collegiate Salsa Open', self.browser.title)
 
         # Juan sees there is plenty of information about CSO in a menu with various links.
-        pages = ['About', 'Constitution', 'Dates', 'Colleges']
-        menu = self.browser.find_element_by_id('menu_nav')
-        links = menu.find_elements_by_tag_name('a')
+        pages = ['Home', 'About', 'Dates', 'Colleges']
+        nav_links = self.browser.find_elements_by_css_selector('ul.nav > li > a')
         for page in pages:
-            self.assertIn(page.lower(), [link.text.lower() for link in links])
+            print(['a link: {}'.format(nav_link.text) for nav_link in nav_links])
+            self.assertIn(page.lower(), [nav_link.text.lower() for nav_link in nav_links])
 
-        # Juan clicks the link for the About page and is taken to a new page.
-        self.click_link_assert_new_page('About')
+        # Juan clicks the dropdown navigation labeled About
+        self.browser.find_element_by_link_text('About').click()
+
+        # Juan clicks the link for the The CSO page and is taken to a new page.
+        self.click_link_assert_new_page('The CSO')
+
+        # Juan clicks the dropdown navigation labeled About
+        self.browser.find_element_by_link_text('About').click()
 
         # Juan clicks the link for the Constitution page and is taken to a new page.
         self.click_link_assert_new_page('Constitution')

@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+
+class Date(models.Model):
+    date = models.DateField()
+    time = models.TimeField(null=True, blank=True)
+    title = models.CharField(max_length=30)
+    description = models.CharField(max_length=160)
+    information = models.TextField()
+    is_active = models.BooleanField(default=True)
