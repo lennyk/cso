@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from pages.models import Date
 
 
 def home_page(request):
@@ -14,7 +15,8 @@ def constitution_page(request):
 
 
 def dates_page(request):
-    return render(request, 'dates.html')
+    active_dates = Date.objects.filter(is_active=True)
+    return render(request, 'dates.html', {'active_dates': active_dates})
 
 
 def colleges_page(request):

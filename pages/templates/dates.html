@@ -3,5 +3,8 @@
 {% block active_dates %}active{% endblock %}
 
 {% block content %}
-On the day, we'll do cool stuff.
+{% for date in active_dates %}
+<h1>{{ date.title }} - {{ date.date|date:"F jS, Y" }}</h1>
+{{ date.information|linebreaks }}
+{% endfor %}
 {% endblock %}
