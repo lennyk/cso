@@ -15,7 +15,7 @@ def constitution_page(request):
 
 
 def dates_page(request):
-    active_dates = Date.objects.filter(is_active=True)
+    active_dates = Date.objects.filter(is_active=True).order_by('date')
     return render(request, 'dates.html', {'active_dates': active_dates})
 
 
