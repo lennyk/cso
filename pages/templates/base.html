@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html>{% load static from staticfiles %}
 <head lang="en">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" media="screen">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.min.css" %}" media="screen">
+{#    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">#}
+    <link rel="stylesheet" href="{% static "base.css" %}" media="screen">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <style type="text/css">
-        body {
-            padding-top: 70px;
-        }
-        @media (min-width: 768px) {
-            .dropdown:hover .dropdown-menu {
-                display: block;
-            }
-        }
-    </style>
+
     <title>Collegiate Salsa Open</title>
 </head>
 <body>
@@ -30,7 +23,7 @@
             </button>
             <a class="navbar-brand" href="/">The CSO</a>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse pull-right">
             <ul class="nav navbar-nav">
                 <li class="{% block active_home %}{% endblock %}"><a href="/">Home</a></li>
                 <li class="{% block active_about %}{% endblock %} dropdown">
@@ -49,6 +42,15 @@
 
 <div class="container">
     {% block content %}{% endblock %}
+</div>
+
+<div class="footer">
+    <div class="container">
+        <p class="text-muted pull-right">
+{#            <a class="btn btn-default" href="//facebook.com/breakon2"><i class="fa fa-facebook-square fa-lg"></i> Find us on Facebook!</a>#}
+            Find us on Facebook!
+        </p>
+    </div>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
