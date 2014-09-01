@@ -4,7 +4,7 @@
 
 {% block content %}
 {% for date in active_dates %}
-<h1>{{ date.title }} - {{ date.date|date:"F jS, Y" }}</h1>
+<h3>{{ date.title }} - {{ date.date|date:"F jS, Y" }}</h3>
 {{ date.information|linebreaks }}
 {% endfor %}
 {% endblock %}
