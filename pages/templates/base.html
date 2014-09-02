@@ -17,22 +17,23 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <a class="navbar-brand" href="/">The CSO</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">The CSO</a>
         </div>
-        <div class="navbar-collapse collapse pull-right">
-            <ul class="nav navbar-nav">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
                 <li class="{% block active_home %}{% endblock %}"><a href="/">Home</a></li>
                 <li class="{% block active_about %}{% endblock %} dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="{% block active_thecso %}{% endblock %}"><a href="/about/">The CSO</a></li>
-                        <li class="{% block active_constitution %}{% endblock %}"><a href="/about/constitution/">Constitution</a></li>
+                        <li class="{% block active_thecso %}{% endblock %}"><a href="/about/">The LDA</a></li>
+                        <li class="{% block active_constitution %}{% endblock %}"><a href="/about/constitution/">Constitution</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="{% block active_colleges %}{% endblock %}"><a href="/colleges/">Colleges</a></li>
@@ -49,7 +50,7 @@
 <div class="footer">
     <div class="container">
         <p class="text-muted pull-right">
-{#            <a class="btn btn-default" href="//facebook.com/breakon2"><i class="fa fa-facebook-square fa-lg"></i> Find us on Facebook!</a>#}
+            {#            <a class="btn btn-default" href="//facebook.com/breakon2"><i class="fa fa-facebook-square fa-lg"></i> Find us on Facebook!</a>#}
             Find us on Facebook!
         </p>
     </div>
