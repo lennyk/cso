@@ -1,8 +1,8 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerCase
 from selenium import webdriver
 
 
-class HomePageUp(LiveServerTestCase):
+class HomePageUp(StaticLiveServerCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -35,7 +35,7 @@ class HomePageUp(LiveServerTestCase):
         self.browser.find_element_by_link_text('About').click()
 
         # Juan clicks the link for the The CSO page and is taken to a new page.
-        self.click_link_assert_new_page('The CSO')
+        self.click_link_assert_new_page('The LDA')
 
         # Juan clicks the dropdown navigation labeled About
         self.browser.find_element_by_link_text('About').click()

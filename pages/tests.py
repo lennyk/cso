@@ -17,7 +17,7 @@ class HomePageTest(TestCase):
 class AboutPageTest(TestCase):
 
     def test_about_url_resolves_to_home_page_view(self):
-        self.assertEqual(resolve('/about/').func, pages.views.thecso_page)
+        self.assertEqual(resolve('/about/').func, pages.views.thelda_page)
 
     def test_uses_about_template(self):
         response = self.client.get('/about/')
