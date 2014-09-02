@@ -21,7 +21,7 @@ class AboutPageTest(TestCase):
 
     def test_uses_about_template(self):
         response = self.client.get('/about/')
-        self.assertTemplateUsed(response, 'thecso.html')
+        self.assertTemplateUsed(response, 'thelda.html')
 
 
 class ConstitutionPageTest(TestCase):

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "about.css" %}" media="screen">
+{% endblock %}
+
+{% block active_about %}active{% endblock %}
+{% block active_thecso %}active{% endblock %}
+
+{% block content %}
+    {#    <div class="row text-center">#}
+    {#        <img src="http://imgur.com/9nxfdJt.jpg" class="text-center"/>#}
+    {#    </div>#}
+    <h2>The Latin Dance Alliance</h2>
+    <p>The Latin Dance Alliance was formed in 2014 by leaders of the collegiate latin dance community. The LDA's core
+        goals are to:</p>
+    <ul class="fa-ul">
+        <li><i class="fa-li fa fa-heart"></i>Promote the spirit of community and love for dance</li>
+        <li><i class="fa-li fa fa-graduation-cap"></i>Support the collegiate latin dance community's health and growth
+        </li>
+    </ul>
+    <p>In regards to the collegiate latin dance community, the LDA seeks to accomplish this by:</p>
+    <ul class="fa-ul">
+        <li><i class="fa-li fa fa-group"></i>Unifying the collegiate latin dance community</li>
+        <li><i class="fa-li fa fa-cogs"></i>Providing support and training opportunities for social, performance, and
+            competitive collegiate clubs and teams
+        </li>
+        <li><i class="fa-li fa fa-chevron-right"></i>Building relationships and awareness between teams</li>
+        <li><i class="fa-li fa fa-calendar"></i>Assisting coordination between socials</li>
+        <li><i class="fa-li fa fa-chevron-right"></i>Helping leadership transition from generation to generation</li>
+        <li><i class="fa-li fa fa-trophy"></i>Creating a meaningful space (The CSO) for the collegiate latin dance
+            community to come together to compete, perform, and socialize
+        </li>
+    </ul>
+    <h3>LDA Financial Responsibility in the Collegiate Dance Community</h3>
+    <p>We believe that the. As such, fostering the.</p>
+    <p>We however do recognize the individuals and organizations that work with the collegiate dance community
+        (promoters, DJs, instructors, etc). The collegiate salsa community depends on and greatly benefits from their
+        hard work and recognizes that these business people should be rewarded for that work.</p>
+    <h4>Transparency</h4>
+    As described in the <a href="/about/constitution/">LDA Constitution</a>
+{% endblock %}
