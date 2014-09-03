@@ -1,8 +1,8 @@
-from django.contrib.staticfiles.testing import StaticLiveServerCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 
 
-class HomePageUp(StaticLiveServerCase):
+class HomePageUp(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
