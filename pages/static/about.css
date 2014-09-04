@@ -1,10 +1,10 @@
 ul.fa-ul > li {
-    line-height: 2.2em;
+    margin: 1em 0;
 }
 
 i.fa {
     font-size: 1.5em;
-    padding-top: 0.1em;
+    top: 0em;
 }
 
 ul.fa-ul {
