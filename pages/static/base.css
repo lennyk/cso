@@ -22,8 +22,8 @@ html {
     margin: 5px 0;
 }
 
-.container img {
-    max-width: 100%;
+.img-page-placeholder {
+    margin: 0 auto;
 }
 
 /* dropdown menus open on hover */
