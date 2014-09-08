@@ -7,10 +7,33 @@ from selenium.webdriver.support import expected_conditions as ec
 from unittest import skip
 
 
-FACEBOOK_EMAIL_RICHARD = 'efrujdt_alisonsen_1410143138@tfbnw.net'
-FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
-FACEBOOK_EMAIL_JAMES = 'pgtlnhq_qinstein_1410143134@tfbnw.net'
-FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
+# TODO: this code is scary. should have a more sane way of storing test users. regenerate users when you do that.
+import socket
+if socket.gethostname() == 'NOT IMPLEMENTED':
+    # PRD
+    FACEBOOK_EMAIL_RICHARD = 'efrujdt_alisonsen_1410143138@tfbnw.net'
+    FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
+    FACEBOOK_PASSWORD_RICHARD_FIRST_NAME = 'Richard'
+    FACEBOOK_EMAIL_JAMES = 'pgtlnhq_qinstein_1410143134@tfbnw.net'
+    FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
+    FACEBOOK_PASSWORD_JAMES_FIRST_NAME = 'James'
+elif socket.gethostname() == 'cso':
+    # SANDBOX
+    FACEBOOK_EMAIL_RICHARD = 'temhdjd_okelolasen_1410208049@tfbnw.net'
+    FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
+    FACEBOOK_PASSWORD_RICHARD_FIRST_NAME = 'Will'
+    FACEBOOK_EMAIL_JAMES = 'rpitute_mcdonaldstein_1410208046@tfbnw.net'
+    FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
+    FACEBOOK_PASSWORD_JAMES_FIRST_NAME = 'Betty'
+elif socket.gethostname() == 'lennyk-dnb-mbp.local':
+    # DEV
+    FACEBOOK_EMAIL_RICHARD = 'dkxdaoe_seligsteinwitz_1410208365@tfbnw.net'
+    FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
+    FACEBOOK_PASSWORD_RICHARD_FIRST_NAME = 'Will'
+    FACEBOOK_EMAIL_JAMES = 'qjtdvjj_baosen_1410208361@tfbnw.net'
+    FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
+    FACEBOOK_PASSWORD_JAMES_FIRST_NAME = 'Barbara'
+
 SUPERUSER_TEST_NAME = 'fernando-YCWiGnRd9tE8tj'
 SUPERUSER_TEST_PASSWORD = 'djJits6uT9vYvL'
 # User.objects.create_superuser(SUPERUSER_TEST_NAME, '', SUPERUSER_TEST_PASSWORD)
@@ -66,7 +89,7 @@ class HomePageUp(FunctionalTest):
         self.assertNotIn('Event Management', links)
 
         # Richard logs out
-        self.browser.find_element_by_link_text('Richard').click()
+        self.browser.find_element_by_link_text(FACEBOOK_PASSWORD_RICHARD_FIRST_NAME).click()
         self.browser.find_element_by_link_text('Logout').click()
 
         # Richard logs out of Facebook
@@ -87,7 +110,7 @@ class HomePageUp(FunctionalTest):
         self.assertIn('Django administration', self.browser.title)
 
         # Richard logs out
-        self.logout('Richard')
+        self.logout(FACEBOOK_PASSWORD_RICHARD_FIRST_NAME)
 
         # Richard logs out of Facebook
         self.logout_of_facebook(FACEBOOK_EMAIL_RICHARD)

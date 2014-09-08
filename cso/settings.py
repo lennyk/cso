@@ -110,8 +110,21 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1522387657973015'
-SOCIAL_AUTH_FACEBOOK_SECRET = '8d2a32053ea6d493b2c3130d20137178'
+# TODO: this code is scary. should have a more sane way of storing secrets. regenerate secrets when you do that.
+import socket
+if socket.gethostname() == 'NOT IMPLEMENTED':
+    # PRD
+    SOCIAL_AUTH_FACEBOOK_KEY = '1522387657973015'
+    SOCIAL_AUTH_FACEBOOK_SECRET = '8d2a32053ea6d493b2c3130d20137178'
+elif socket.gethostname() == 'cso':
+    # SANDBOX
+    SOCIAL_AUTH_FACEBOOK_KEY = '1522982181246896'
+    SOCIAL_AUTH_FACEBOOK_SECRET = 'cf50b5154294cda7bd6e1a43f8a4104f'
+elif socket.gethostname() == 'lennyk-dnb-mbp.local':
+    # DEV
+    SOCIAL_AUTH_FACEBOOK_KEY = '1522981811246933'
+    SOCIAL_AUTH_FACEBOOK_SECRET = 'aed08816076d87b3c0ce13d8f3906fd1'
+
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 SOCIAL_AUTH_PIPELINE = (
