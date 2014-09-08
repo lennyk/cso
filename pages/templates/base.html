@@ -5,7 +5,9 @@
         <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" media="screen">
         <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.min.css" %}" media="screen">
         <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" media="screen">
+        <link rel="stylesheet" href="{% static "bootstrap-social.css" %}" media="screen">
         <link rel="stylesheet" href="{% static "base.css" %}" media="screen">
+        <script type="text/javascript" src="{% static "base.js" %}" async></script>
     {% endblock %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -38,6 +40,37 @@
                 </li>
                 <li class="{% block active_colleges %}{% endblock %}"><a href="{% url 'colleges' %}">Colleges</a></li>
                 <li class="{% block active_dates %}{% endblock %}"><a href="{% url 'dates' %}">Dates</a></li>
+
+                {% if user and user.is_staff %}
+                    <li><a href="{% url 'admin:index' %}">Event Management</a></li>
+                {% endif %}
+
+                {% if user and not user.is_anonymous %}
+                    {% if user.registrant %}
+                        <li class="{% block active_user %}{% endblock %} dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                {% if user.registrant.avatar.image %}
+                                    <img style="height: 20px;" src="{{ user.registrant.avatar.image.url }}"/>
+                                {% endif %}
+                                {{ user.first_name }}<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="{% block active_registration %}{% endblock %}">
+                                    <a href="{% url 'registration.views.registration_home' %}">Registration</a>
+                                </li>
+                                <li><a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a></li>
+                        </li>
+                        </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a></li>
+                    {% endif %}
+                {% else %}
+                    <li class="{% block active_login %}{% endblock %}">
+                        <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+                    </li>
+                {% endif %}
+
             </ul>
         </div>
     </div>
@@ -56,6 +89,46 @@
         </p>
     </div>
 </div>
+
+<!-- login window -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="loginModalLabel">Login to CSO</h4>
+            </div>
+            <div class="modal-body">
+                <p>Logging in will allow you to register for the CSO, purchase a ticket, order a t-shirt, and probably anything else you need to do.</p>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><a class="btn btn-block btn-social btn-facebook"
+                              href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+                            <i class="fa fa-facebook"></i>
+                            Login with Facebook
+                        </a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><a class="btn btn-block btn-social btn-google-plus"
+                              href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
+                            <i class="fa fa-google-plus"></i>
+                            Login with Google
+                        </a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>

@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from pages.models import Date
+
+from registration.models import Date
 
 
 def home_page(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'user': request.user})
 
 
 def thelda_page(request):

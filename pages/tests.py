@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import resolve
 import pages
-from pages.models import Date
+from registration.models import Date
 
 
 class HomePageTest(TestCase):

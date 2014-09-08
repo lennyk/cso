@@ -3,5 +3,11 @@
 {% block active_home %}active{% endblock %}
 
 {% block content %}
-<img src="http://imgur.com/gSf3VBp.gif" class="img-responsive img-page-placeholder"/>
+<p>
+    {% if user and not user.is_anonymous %}
+        Hello {{ user.get_full_name|default:user.username }}!
+    {% else %}
+        I don’t think we’ve met before.
+    {% endif %}
+</p>
 {% endblock %}
