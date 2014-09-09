@@ -7,7 +7,7 @@ class HomePageUp(FunctionalTest):
     def test_all_static_pages_present(self):
         # Juan hears about a new salsa event: The Collegiate Salsa Open.
         # He goes to the website and sees "Collegiate Salsa Open" in the title.
-        self.browser.get(self.live_server_url)
+        self.browser.get(self.server_url)
         self.assertIn('Collegiate Salsa Open', self.browser.title)
 
         # Juan sees there is plenty of information about CSO in a menu with various links.

@@ -6,16 +6,17 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 import os
+import sys
 from unittest import skip
 
-if os.getenv('CSO_ENVIRONMENT') == 'live':
+if os.getenv('CSO_ENVIRONMENT') == 'live' or any('liveserver=cso.dance' in arg for arg in sys.argv):
     FACEBOOK_EMAIL_RICHARD = 'efrujdt_alisonsen_1410143138@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
     FACEBOOK_NAME_FIRST_RICHARD = 'Richard'
     FACEBOOK_EMAIL_JAMES = 'pgtlnhq_qinstein_1410143134@tfbnw.net'
     FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
     FACEBOOK_NAME_FIRST_JAMES = 'James'
-elif os.getenv('CSO_ENVIRONMENT') == 'sandbox':
+elif os.getenv('CSO_ENVIRONMENT') == 'sandbox' or any('liveserver=sandbox.cso.dance' in arg for arg in sys.argv):
     FACEBOOK_EMAIL_RICHARD = 'temhdjd_okelolasen_1410208049@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
     FACEBOOK_NAME_FIRST_RICHARD = 'Will'
@@ -31,7 +32,7 @@ elif os.getenv('CSO_ENVIRONMENT') == 'dev':
     FACEBOOK_NAME_FIRST_JAMES = 'Barbara'
 else:
     raise ImproperlyConfigured(
-        'You must configure the CSO_ENVIRONMENT envvar. Value: {}'.format(os.getenv('CSO_ENVIRONMENT')))
+        'You must properly configure the CSO_ENVIRONMENT envvar. Value: "{}"'.format(os.getenv('CSO_ENVIRONMENT')))
 
 SUPERUSER_TEST_NAME = 'fernando-YCWiGnRd9tE8tj'
 SUPERUSER_TEST_PASSWORD = 'djJits6uT9vYvL'
@@ -43,7 +44,7 @@ class HomePageUp(FunctionalTest):
 
     def login_with_facebook(self, email, password):
         # User goes to the CSO homepage
-        self.browser.get(self.live_server_url)
+        self.browser.get(self.server_url)
 
         # User sees a login link and clicks it
         self.click_link_assert_new_page('Login')
@@ -70,7 +71,7 @@ class HomePageUp(FunctionalTest):
     def logout_of_facebook(self, email):
         user = User.objects.filter(email=email)[0]
         social = user.social_auth.get(provider='facebook')
-        parameters = {'access_token': social.extra_data['access_token'], 'confirm': 1, 'next': self.live_server_url}
+        parameters = {'access_token': social.extra_data['access_token'], 'confirm': 1, 'next': self.server_url}
         logout_url = "https://www.facebook.com/logout.php?{}".format(urlencode(parameters))
         self.browser.get(logout_url)
 
