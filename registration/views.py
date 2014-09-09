@@ -14,6 +14,6 @@ def registration_home(request):
     return render(request, 'registration.html')
 
 
-def logout(request):
+def registration_logout(request):
     auth_logout(request)
     return redirect('/')

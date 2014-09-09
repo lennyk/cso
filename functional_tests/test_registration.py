@@ -13,26 +13,26 @@ if socket.gethostname() == 'NOT IMPLEMENTED':
     # PRD
     FACEBOOK_EMAIL_RICHARD = 'efrujdt_alisonsen_1410143138@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
-    FACEBOOK_PASSWORD_RICHARD_FIRST_NAME = 'Richard'
+    FACEBOOK_NAME_FIRST_RICHARD = 'Richard'
     FACEBOOK_EMAIL_JAMES = 'pgtlnhq_qinstein_1410143134@tfbnw.net'
     FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
-    FACEBOOK_PASSWORD_JAMES_FIRST_NAME = 'James'
+    FACEBOOK_NAME_FIRST_JAMES = 'James'
 elif socket.gethostname() == 'cso':
     # SANDBOX
     FACEBOOK_EMAIL_RICHARD = 'temhdjd_okelolasen_1410208049@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
-    FACEBOOK_PASSWORD_RICHARD_FIRST_NAME = 'Will'
+    FACEBOOK_NAME_FIRST_RICHARD = 'Will'
     FACEBOOK_EMAIL_JAMES = 'rpitute_mcdonaldstein_1410208046@tfbnw.net'
     FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
-    FACEBOOK_PASSWORD_JAMES_FIRST_NAME = 'Betty'
+    FACEBOOK_NAME_FIRST_JAMES = 'Betty'
 elif socket.gethostname() == 'lennyk-dnb-mbp.local':
     # DEV
     FACEBOOK_EMAIL_RICHARD = 'dkxdaoe_seligsteinwitz_1410208365@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
-    FACEBOOK_PASSWORD_RICHARD_FIRST_NAME = 'Will'
+    FACEBOOK_NAME_FIRST_RICHARD = 'Will'
     FACEBOOK_EMAIL_JAMES = 'qjtdvjj_baosen_1410208361@tfbnw.net'
     FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
-    FACEBOOK_PASSWORD_JAMES_FIRST_NAME = 'Barbara'
+    FACEBOOK_NAME_FIRST_JAMES = 'Barbara'
 
 SUPERUSER_TEST_NAME = 'fernando-YCWiGnRd9tE8tj'
 SUPERUSER_TEST_PASSWORD = 'djJits6uT9vYvL'
@@ -89,11 +89,14 @@ class HomePageUp(FunctionalTest):
         self.assertNotIn('Event Management', links)
 
         # Richard logs out
-        self.browser.find_element_by_link_text(FACEBOOK_PASSWORD_RICHARD_FIRST_NAME).click()
+        self.browser.find_element_by_link_text(FACEBOOK_NAME_FIRST_RICHARD).click()
         self.browser.find_element_by_link_text('Logout').click()
 
         # Richard logs out of Facebook
         self.logout_of_facebook(FACEBOOK_EMAIL_RICHARD)
+
+        # Richard is on the homepage
+        self.assertIn('The CSO', self.browser.find_element_by_tag_name('body').text)
 
         # Richard MAGICALLY becomes staff
         richard = User.objects.filter(email=FACEBOOK_EMAIL_RICHARD)[0]
@@ -110,7 +113,8 @@ class HomePageUp(FunctionalTest):
         self.assertIn('Django administration', self.browser.title)
 
         # Richard logs out
-        self.logout(FACEBOOK_PASSWORD_RICHARD_FIRST_NAME)
+        self.logout(FACEBOOK_NAME_FIRST_RICHARD)
+        # TODO: test this goes directly to the homepage, not the admin logout page
 
         # Richard logs out of Facebook
         self.logout_of_facebook(FACEBOOK_EMAIL_RICHARD)
