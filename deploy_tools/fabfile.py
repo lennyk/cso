@@ -7,20 +7,20 @@ REPO_NAME = 'cso'
 GIT_KEY = 'cso_rsa'
 
 
-def deploy():
+def deploy(target):
     site_folder = '/home/%s/sites/%s' % (env.user, env.host)
     source_folder = site_folder + '/source'
     ssh_key = '/home/%s/.ssh/%s' % (env.user, GIT_KEY)
     _create_directory_structure_if_necessary(site_folder)
     _get_latest_source(source_folder, ssh_key)
-    _update_settings(source_folder, env.host)
+    _update_settings(source_folder, env.host, target)
     _update_virtualenv(source_folder)
-    _update_static_files(source_folder)
-    _update_database(source_folder)
+    _update_static_files(source_folder, target)
+    _update_database(source_folder, target)
 
 
 def _create_directory_structure_if_necessary(site_folder):
-    for subfolder in ('database', 'static', 'virtualenv', 'source'):
+    for subfolder in ('database', 'static', 'virtualenv', 'source', 'media'):
         run('mkdir -p %s/%s' % (site_folder, subfolder))
 
 
@@ -35,13 +35,10 @@ def _get_latest_source(source_folder, ssh_key):
     run('cd %s && git reset --hard %s' % (source_folder, current_commit))
 
 
-def _update_settings(source_folder, site_name):
-    settings_path = source_folder + '/' + REPO_NAME + '/settings.py'
-    sed(settings_path, "DEBUG = True", "DEBUG = False")
-    sed(settings_path,
-        'ALLOWED_HOSTS =.+$',
-        'ALLOWED_HOSTS = ["%s"]' % (site_name,))
-    secret_key_file = source_folder + '/' + REPO_NAME + '/secret_key.py'
+def _update_settings(source_folder, site_name, target):
+    settings_path = source_folder + '/' + REPO_NAME + '/settings/' + target + '.py'
+    append(settings_path, '\nALLOWED_HOSTS = ["%s"]' % (site_name,))
+    secret_key_file = source_folder + '/' + REPO_NAME + '/settings/secret_key.py'
     if not exists(secret_key_file):
         chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
         key = ''.join(random.SystemRandom().choice(chars) for _ in range(50))
@@ -58,13 +55,13 @@ def _update_virtualenv(source_folder):
         ))
 
 
-def _update_static_files(source_folder):
-    run('cd %s && ../virtualenv/bin/python3 manage.py collectstatic --noinput' % (
-        source_folder,
+def _update_static_files(source_folder, target):
+    run('cd %s && ../virtualenv/bin/python3 manage.py collectstatic --noinput --settings=%s.settings.%s' % (
+        source_folder, REPO_NAME, target
         ))
 
 
-def _update_database(source_folder):
-    run('cd %s && ../virtualenv/bin/python3 manage.py migrate --noinput' % (
-        source_folder,
+def _update_database(source_folder, target):
+    run('cd %s && ../virtualenv/bin/python3 manage.py migrate --noinput --settings=%s.settings.%s' % (
+        source_folder, REPO_NAME, target
         ))
