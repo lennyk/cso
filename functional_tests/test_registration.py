@@ -1,38 +1,37 @@
+from django.core.exceptions import ImproperlyConfigured
 from .base import FunctionalTest
 from django.contrib.auth.models import User
 from django.utils.http import urlencode
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+import os
 from unittest import skip
 
-
-# TODO: this code is scary. should have a more sane way of storing test users. regenerate users when you do that.
-import socket
-if socket.gethostname() == 'NOT IMPLEMENTED':
-    # PRD
+if os.getenv('CSO_ENVIRONMENT') == 'live':
     FACEBOOK_EMAIL_RICHARD = 'efrujdt_alisonsen_1410143138@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
     FACEBOOK_NAME_FIRST_RICHARD = 'Richard'
     FACEBOOK_EMAIL_JAMES = 'pgtlnhq_qinstein_1410143134@tfbnw.net'
     FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
     FACEBOOK_NAME_FIRST_JAMES = 'James'
-elif socket.gethostname() == 'cso':
-    # SANDBOX
+elif os.getenv('CSO_ENVIRONMENT') == 'sandbox':
     FACEBOOK_EMAIL_RICHARD = 'temhdjd_okelolasen_1410208049@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
     FACEBOOK_NAME_FIRST_RICHARD = 'Will'
     FACEBOOK_EMAIL_JAMES = 'rpitute_mcdonaldstein_1410208046@tfbnw.net'
     FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
     FACEBOOK_NAME_FIRST_JAMES = 'Betty'
-elif socket.gethostname() == 'lennyk-dnb-mbp.local':
-    # DEV
+elif os.getenv('CSO_ENVIRONMENT') == 'dev':
     FACEBOOK_EMAIL_RICHARD = 'dkxdaoe_seligsteinwitz_1410208365@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
     FACEBOOK_NAME_FIRST_RICHARD = 'Will'
     FACEBOOK_EMAIL_JAMES = 'qjtdvjj_baosen_1410208361@tfbnw.net'
     FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
     FACEBOOK_NAME_FIRST_JAMES = 'Barbara'
+else:
+    raise ImproperlyConfigured(
+        'You must configure the CSO_ENVIRONMENT envvar. Value: {}'.format(os.getenv('CSO_ENVIRONMENT')))
 
 SUPERUSER_TEST_NAME = 'fernando-YCWiGnRd9tE8tj'
 SUPERUSER_TEST_PASSWORD = 'djJits6uT9vYvL'

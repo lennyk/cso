@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.realpath(os.path.dirname(__file__) + "/.."))
 
 
 # Quick-start development settings - unsuitable for production
@@ -19,15 +19,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ')7d1%c_xmmm2yf82(2=ar0dmmwf-=d9zbhae3w@w51t35m&b6n'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = (
     'django_admin_bootstrapped.bootstrap3',
@@ -69,19 +65,12 @@ ROOT_URLCONF = 'cso.urls'
 
 WSGI_APPLICATION = 'cso.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
     }
 }
-
-# Internationalization
-# https://docs.djangoproject.com/en/dev/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -92,10 +81,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
@@ -109,21 +94,6 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
-
-# TODO: this code is scary. should have a more sane way of storing secrets. regenerate secrets when you do that.
-import socket
-if socket.gethostname() == 'NOT IMPLEMENTED':
-    # PRD
-    SOCIAL_AUTH_FACEBOOK_KEY = '1522387657973015'
-    SOCIAL_AUTH_FACEBOOK_SECRET = '8d2a32053ea6d493b2c3130d20137178'
-elif socket.gethostname() == 'cso':
-    # SANDBOX
-    SOCIAL_AUTH_FACEBOOK_KEY = '1522982181246896'
-    SOCIAL_AUTH_FACEBOOK_SECRET = 'cf50b5154294cda7bd6e1a43f8a4104f'
-elif socket.gethostname() == 'lennyk-dnb-mbp.local':
-    # DEV
-    SOCIAL_AUTH_FACEBOOK_KEY = '1522981811246933'
-    SOCIAL_AUTH_FACEBOOK_SECRET = 'aed08816076d87b3c0ce13d8f3906fd1'
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
@@ -178,24 +148,3 @@ SOCIAL_AUTH_PIPELINE = (
 LOGIN_URL = '/registration/login/'
 LOGIN_REDIRECT_URL = '/registration/'
 LOGOUT_URL = '/'
-
-# Used to redirect the user once the auth process ended successfully. The value of ?next=/foo is used if it was present
-# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/logged-in/'
-
-# URL where the user will be redirected in case of an error
-# SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
-
-# Is used as a fallback for LOGIN_ERROR_URL
-# SOCIAL_AUTH_LOGIN_URL = '/login-url/'
-
-# Used to redirect new registered users, will be used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL if defined.
-# SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/new-users-redirect-url/'
-
-# Like SOCIAL_AUTH_NEW_USER_REDIRECT_URL but for new associated accounts (user is already logged in). Used in place of SOCIAL_AUTH_LOGIN_REDIRECT_URL
-# SOCIAL_AUTH_NEW_ASSOCIATION_REDIRECT_URL = '/new-association-redirect-url/'
-
-# The user will be redirected to this URL when a social account is disconnected
-# SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/account-disconnected-redirect-url/'
-
-# Inactive users can be redirected to this URL when trying to authenticate.
-# SOCIAL_AUTH_INACTIVE_USER_URL = '/inactive-user/'
