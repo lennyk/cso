@@ -9,6 +9,9 @@ class Date(models.Model):
     information = models.TextField()
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return '%s (%s)' % (self.title, self.date)
+
 
 class College(models.Model):
     city = models.CharField(max_length=30)
@@ -17,6 +20,9 @@ class College(models.Model):
     college_name = models.CharField(max_length=60)
     latin_dance_organization_name = models.CharField(max_length=60)
     description = models.TextField()
+
+    def __str__(self):
+        return '%s @ %s' % (self.latin_dance_organization_name, self.college_name)
 
 
 class CollegeURL(models.Model):
