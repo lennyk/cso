@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>{% load static from staticfiles %}
+{% load socialaccount %}
 <head lang="en">
     {% block css %}
         <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" media="screen">
@@ -42,29 +43,26 @@
                 <li class="{% block active_dates %}{% endblock %}"><a href="{% url 'dates' %}">Dates</a></li>
 
                 {% if user and user.is_staff %}
-                    <li><a href="{% url 'admin:index' %}">Event Management</a></li>
+                    <li><a href="{# {% url 'admin:index' %} #}">Event Management</a></li>
                 {% endif %}
 
                 {% if user and not user.is_anonymous %}
-                    {% if user.registrant %}
-                        <li class="{% block active_user %}{% endblock %} dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                {% if user.registrant.avatar.image %}
-                                    <img style="height: 20px;" src="{{ user.registrant.avatar.image.url }}"/>
+                    <li class="{% block active_user %}{% endblock %} dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {% with user.socialaccount_set.all.0.get_avatar_url as avatar %}
+                                {% if avatar %}
+                                    <img style="height: 20px; width: 20px;" src="{{ avatar }}"/>
                                 {% endif %}
-                                {{ user.first_name }}<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="{% block active_registration %}{% endblock %}">
-                                    <a href="{% url 'registration_home' %}">Registration</a>
-                                </li>
-                                <li><a href="{% url 'registration_logout' %}">Logout</a></li>
-                        </li>
+                            {% endwith %}
+                            <span>{{ user.first_name|default:user.username }}</span><span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="{% block active_registration %}{% endblock %}">
+                                <a href="{# {% url 'registration_home' %} #}">Registration</a>
+                            </li>
+                            <li><a href="{% url 'account_logout' %}">Logout</a></li>
                         </ul>
-                        </li>
-                    {% else %}
-                        <li><a href="{% url 'registration_logout' %}">Logout</a></li>
-                    {% endif %}
+                    </li>
                 {% else %}
                     <li class="{% block active_login %}{% endblock %}">
                         <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
@@ -77,6 +75,10 @@
 </div>
 
 <div class="container">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+
     {% block content %}{% endblock %}
 </div>
 
@@ -106,7 +108,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <p><a class="btn btn-block btn-social btn-facebook"
-                              href="{% url 'social:begin' 'facebook' %}">
+                              href="{% provider_login_url "facebook" method="js_sdk" %}">
                             <i class="fa fa-facebook"></i>
                             Login with Facebook
                         </a></p>
@@ -115,7 +117,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <p><a class="btn btn-block btn-social btn-google-plus"
-                              href="{% url 'social:begin' 'google-oauth2' %}">
+                              href="{% provider_login_url "google" %}">
                             <i class="fa fa-google-plus"></i>
                             Login with Google
                         </a></p>
@@ -131,5 +133,6 @@
 
 <script src="{% static "jquery-1.11.1.min.js" %}"></script>
 <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+{% providers_media_js %}
 </body>
 </html>
