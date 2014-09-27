@@ -11,3 +11,9 @@ if (window.location.hash == '#_=_') {
         window.location.hash = '';
     }
 }
+
+// replace login buttons with a spinner when clicked
+$('#login-buttons a').click(function() {
+    $('#login-buttons').hide();
+    $('#login-spinner').show();
+});
