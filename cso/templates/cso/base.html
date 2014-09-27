@@ -55,12 +55,15 @@
                             {% endwith %}
                             <span>{{ user.first_name|default:user.username }}</span><span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="{% block active_registration %}{% endblock %}">
-                                <a href="{# {% url 'registration_home' %} #}">Registration</a>
-                            </li>
-                            <li><a href="{% url 'account_logout' %}">Logout</a></li>
-                        </ul>
+                        <form method="post" action="{% url 'account_logout' %}">
+                            {% csrf_token %}
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="{% block active_registration %}{% endblock %}">
+                                    <a href="{# {% url 'registration_home' %} #}">Registration</a>
+                                </li>
+                                <li><a href="{% url 'account_logout' %}" id="logout-link">Logout</a></li>
+                            </ul>
+                        </form>
                     </li>
                 {% else %}
                     <li class="{% block active_login %}{% endblock %}">
