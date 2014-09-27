@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'cso',
     'events',
+    'registration',
     # The Django sites framework is required
     'django.contrib.sites',
     'allauth',
