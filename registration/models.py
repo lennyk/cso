@@ -23,7 +23,7 @@ class Registration(models.Model):
         return [
             ('Full Name', self.get_full_name()),
             (self._meta.get_field_by_name('partner_type')[0].verbose_name.title(), self.get_partner_type_display()),
-            ('School Affiliation', self.college_group if self.college_affiliated and self.college_group else 'No'),
+            ('School Affiliation', self.college_group if self.college_affiliated and self.college_group else 'None'),
         ]
 
     def get_full_name(self):
