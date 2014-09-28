@@ -62,7 +62,7 @@ SOCIALACCOUNT_EMAIL_VERIFICATION = None
 SOCIALACCOUNT_PROVIDERS = {'facebook': {'METHOD': 'js_sdk', 'VERIFIED_EMAIL': True}}
 SOCIALACCOUNT_ADAPTER = 'cso.adapter.CSOSocialAccountAdapter'
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/registration/"
 
 AUTH_USER_MODEL = 'cso.CSOUser'
 

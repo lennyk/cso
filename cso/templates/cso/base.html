@@ -27,6 +27,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
+        <form method="post" action="{% url 'account_logout' %}">{% csrf_token %}
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="{% block active_home %}{% endblock %}"><a href="{% url 'home' %}">Home</a></li>
@@ -55,15 +56,12 @@
                             {% endwith %}
                             <span>{{ user.first_name|default:user.username }}</span><span class="caret"></span>
                         </a>
-                        <form method="post" action="{% url 'account_logout' %}">
-                            {% csrf_token %}
                             <ul class="dropdown-menu" role="menu">
                                 <li class="{% block active_registration %}{% endblock %}">
-                                    <a href="{# {% url 'registration_home' %} #}">Registration</a>
+                                    <a href="{% url 'registration_home' %}">Registration</a>
                                 </li>
                                 <li><a href="{% url 'account_logout' %}" id="logout-link">Logout</a></li>
                             </ul>
-                        </form>
                     </li>
                 {% else %}
                     <li class="{% block active_login %}{% endblock %}">
@@ -73,6 +71,7 @@
 
             </ul>
         </div>
+        </form>
     </div>
 </div>
 

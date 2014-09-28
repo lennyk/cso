@@ -1,0 +1,11 @@
+{% extends "registration/base.html" %}
+
+{% block content %}
+    <h2>Welcome {{ user.get_full_name }}</h2>
+    <p>Yo homie now you need to fill out a registration form for the CSO.</p>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+    </form>
+{% endblock %}
