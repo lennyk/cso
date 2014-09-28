@@ -25,7 +25,7 @@
     <ul>
     {% with college_info.URLs as URLs %}
         {% for URL in URLs %}
-        <li><a href="{{ URL.url }}">{{ URL.get_url_type_display }}</a></li>
+        <li><a href="{{ URL.url }}" target="_blank">{{ URL.get_url_type_display }}</a></li>
         {% endfor %}
     {% endwith %}
     </ul>
