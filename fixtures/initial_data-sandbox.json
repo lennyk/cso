@@ -1,28 +1,28 @@
 [
     {
         "fields": {
-            "secret": "aed08816076d87b3c0ce13d8f3906fd1",
+            "secret": "cf50b5154294cda7bd6e1a43f8a4104f",
             "key": "",
             "provider": "facebook",
-            "name": "CSO Facebook DEV",
+            "name": "CSO Facebook SANDBOX",
             "sites": [
                 2
             ],
-            "client_id": "1522981811246933"
+            "client_id": "1522982181246896"
         },
         "pk": 1,
         "model": "socialaccount.socialapp"
     },
     {
         "fields": {
-            "secret": "cMmyDdxsUlvx-rY3UoKl8ozU",
+            "secret": "zngYdCqFudyZDVcqwrNzTGuV",
             "key": "",
             "provider": "google",
-            "name": "CSO Google DEV",
+            "name": "CSO Google SANDBOX",
             "sites": [
                 2
             ],
-            "client_id": "610062658541-4s235ct45phmcufbac2idc81sa8gte7e.apps.googleusercontent.com"
+            "client_id": "610062658541-0u8478mn1q0b9frjsibv8ccs3d812t56.apps.googleusercontent.com"
         },
         "pk": 2,
         "model": "socialaccount.socialapp"

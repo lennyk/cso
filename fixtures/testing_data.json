@@ -1,0 +1,137 @@
+[
+    {
+        "pk": 1,
+        "model": "events.date",
+        "fields": {
+            "time": null,
+            "information": "While the CSO is open to the public, the purpose of the event is to support the collegiate Latin dance community. Due to our limited venue size tickets will sell out. To ensure college clubs and teams are able to buy tickets we are having a student ticket pre-sale. Students and active members of clubs and teams will be able to purchase their tickets early during this presale.",
+            "is_active": true,
+            "date": "2014-10-18",
+            "title": "College Ticket Presale",
+            "description": "ticket sales open to students and active members of college clubs teams"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "events.date",
+        "fields": {
+            "time": null,
+            "information": "After the college ticket presale we will be opening ticket sales to the general public. Due to our limited venue size tickets will sell out so make sure to buy your ticket early!",
+            "is_active": true,
+            "date": "2015-01-15",
+            "title": "Public Ticket Sales Open",
+            "description": "ticket sales open to the general public"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "events.college",
+        "fields": {
+            "college_name": "University of Southern California",
+            "description": "Break On 2 is a Salsa performance team and a social dancing club at USC. Break On 2 puts on an annual dance showcase featuring many dance styles and special guests. They host monthly socials for the USC community and the general public at the USC campus.",
+            "state": "CA",
+            "city": "Los Angeles",
+            "latin_dance_organization_name": "Break On 2"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "events.college",
+        "fields": {
+            "college_name": "California Polytechnic State University",
+            "description": "CPSalsa has been at Cal Poly since 1920 hosting salsa nights every Friday \u2013 even through the summer! CPSalsa is also responsible for hosting many events throughout the year including SLOSX, a salsa exchange held for an entire weekend in San Luis Obispo.",
+            "state": "CA",
+            "city": "San Luis Obispo",
+            "latin_dance_organization_name": "CPSalsa"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "events.college",
+        "fields": {
+            "college_name": "El Camino College",
+            "description": "El Co Salseros Salsa Club is the salsa club at El Camino College. With a tradition of competition and social dance, the club offers salsa lessons, performance, and competition opportunities to students.",
+            "state": "CA",
+            "city": "Torrance",
+            "latin_dance_organization_name": "El Co Salseros"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "events.collegeurl",
+        "fields": {
+            "college": 1,
+            "url": "https://www.facebook.com/BreakOn2",
+            "url_type": "facebook"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "events.collegeurl",
+        "fields": {
+            "college": 1,
+            "url": "http://breakon2.com/",
+            "url_type": "website"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "events.collegeurl",
+        "fields": {
+            "college": 2,
+            "url": "http://www.cpsalsa.com/",
+            "url_type": "website"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "events.collegeurl",
+        "fields": {
+            "college": 2,
+            "url": "https://www.facebook.com/CPSalsa",
+            "url_type": "facebook"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "events.collegeurl",
+        "fields": {
+            "college": 3,
+            "url": "https://www.facebook.com/groups/ECCSALSA/",
+            "url_type": "facebook"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "events.collegecsoparticipation",
+        "fields": {
+            "college": 1,
+            "performing": true,
+            "cso_year": 2015,
+            "competing": true,
+            "attending": true
+        }
+    },
+    {
+        "pk": 2,
+        "model": "events.collegecsoparticipation",
+        "fields": {
+            "college": 2,
+            "performing": false,
+            "cso_year": 2015,
+            "competing": false,
+            "attending": true
+        }
+    },
+    {
+        "pk": 3,
+        "model": "events.collegecsoparticipation",
+        "fields": {
+            "college": 3,
+            "performing": false,
+            "cso_year": 2015,
+            "competing": true,
+            "attending": true
+        }
+    }
+]

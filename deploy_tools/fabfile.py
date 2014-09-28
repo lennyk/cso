@@ -17,6 +17,7 @@ def deploy(target):
     _update_virtualenv(source_folder)
     _update_static_files(source_folder, target)
     _update_database(source_folder, target)
+    _deploy_fixtures(source_folder, target)
 
 
 def _create_directory_structure_if_necessary(site_folder):
@@ -64,4 +65,10 @@ def _update_static_files(source_folder, target):
 def _update_database(source_folder, target):
     run('cd %s && ../virtualenv/bin/python3 manage.py migrate --noinput --settings=%s.settings.%s' % (
         source_folder, REPO_NAME, target
+        ))
+
+
+def _deploy_fixtures(source_folder, target):
+    run('cd %s && ../virtualenv/bin/python3 manage.py loaddata --settings=%s.settings.%s fixtures/initial_data-common.json fixtures/initial_data-%s.json' % (
+        source_folder, REPO_NAME, target, target
         ))

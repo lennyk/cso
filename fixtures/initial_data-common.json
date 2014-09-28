@@ -1,0 +1,18 @@
+[
+    {
+        "fields": {
+            "domain": "latindancealliance.com",
+            "name": "Latin Dance Alliance"
+        },
+        "pk": 1,
+        "model": "sites.site"
+    },
+    {
+        "fields": {
+            "domain": "dev.cso.dance",
+            "name": "Collegiate Salsa Open"
+        },
+        "pk": 2,
+        "model": "sites.site"
+    }
+]
