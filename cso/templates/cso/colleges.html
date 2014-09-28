@@ -3,59 +3,34 @@
 {% block active_colleges %}active{% endblock %}
 
 {% block content %}
-    <h3>Break On 2 – University of Southern California
+{% for college_info in colleges %}
+    <h3>{{ college_info.college.latin_dance_organization_name }} – {{ college_info.college.college_name }}
         <br class="hidden-md hidden-lg"/>
-        <small>Los Angeles, CA</small>
+        <small>{{ college_info.college.location }}</small>
     </h3>
     <ul class="list-inline">
-        <li><span class="label label-success"><i class="fa fa-check"></i> In the house</span></li>
-        <li><span class="label label-primary"><i class="fa fa-star"></i> Performing</span></li>
-        <li><span class="label label-warning"><i class="fa fa-trophy"></i> Competing</span></li>
+    {% with college_info.participation as participation %}
+        {% if participation.attending %}
+            <li><span class="label label-success"><i class="fa fa-check"></i> In the house</span></li>
+        {% endif %}
+        {% if participation.performing %}
+            <li><span class="label label-primary"><i class="fa fa-star"></i> Performing</span></li>
+        {% endif %}
+        {% if participation.competing %}
+            <li><span class="label label-warning"><i class="fa fa-trophy"></i> Competing</span></li>
+        {% endif %}
+    {% endwith %}
     </ul>
-    <p>
-        Break On 2 is a Salsa performance team and a social dancing club at USC. Break On 2 puts on an annual dance
-        showcase featuring many dance styles and special guests. They host monthly socials for the USC community and the
-        general public at the USC campus.
-    </p>
+    <p>{{ college_info.college.description }}</p>
     <ul>
-        <li><a href="#">Facebook page</a></li>
-        <li><a href="#">Website</a></li>
+    {% with college_info.URLs as URLs %}
+        {% for URL in URLs %}
+        <li><a href="{{ URL.url }}">{{ URL.get_url_type_display }}</a></li>
+        {% endfor %}
+    {% endwith %}
     </ul>
+{% endfor %}
 
-    <h3>CPSalsa – California Polytechnic State University
-        <br class="hidden-md hidden-lg"/>
-        <small>San Luis Obispo, CA</small>
-    </h3>
-    <ul class="list-inline">
-        <li><span class="label label-success"><i class="fa fa-check"></i> In the house</span></li>
-    </ul>
-    <p>
-        CPSalsa has been at Cal Poly since 1920 hosting salsa nights every Friday – even through the summer! CPSalsa is
-        also responsible for hosting many events throughout the year including SLOSX, a salsa exchange held for an
-        entire weekend in San Luis Obispo.
-    </p>
-    <ul>
-        <li><a href="#">Facebook page</a></li>
-        <li><a href="#">Website</a></li>
-        <li><a href="#">SLOSX Website</a></li>
-    </ul>
-
-    <h3>El Co Salseros Salsa Club – El Camino College
-        <br class="hidden-md hidden-lg"/>
-        <small>Torrance, CA</small>
-    </h3>
-    <ul class="list-inline">
-        <li><span class="label label-success"><i class="fa fa-check"></i> In the house</span></li>
-        <li><span class="label label-primary"><i class="fa fa-star"></i> Performing</span></li>
-        <li><span class="label label-warning"><i class="fa fa-trophy"></i> Competing</span></li>
-    </ul>
-    <p>
-        El Co Salseros Salsa Club is the salsa club at El Camino College. With a tradition of competition and social
-        dance, the club offers salsa lessons, performance, and competition opportunities to students.
-    </p>
-    <ul>
-        <li><a href="#">Facebook page</a></li>
-    </ul>
     <p class="text-center">
         <iframe class="" src="https://mapsengine.google.com/map/u/0/embed?mid=z5x4wQD2qiIA.kaT6c52JIseA" width="80%" height="480"></iframe>
     </p>
