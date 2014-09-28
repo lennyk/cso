@@ -1,5 +1,52 @@
 {% extends "registration/base.html" %}
+{% load bootstrap3 %}
 
 {% block content %}
-    <p>you're in registration home</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Registration Details</h3>
+                </div>
+                <div class="panel-body">
+                    {% for detail in user.registration.registration_details %}
+                        <div class="row">
+                            <div class="col-md-5"><strong>{{ detail.0 }}:</strong></div>
+                            <div class="col-md-7">{{ detail.1 }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="panel-footer text-right">
+                    {% url 'registration_update' as update_url %}
+                    {% bootstrap_button 'Update' button_type='button' button_class='btn-primary' size='sm' href=update_url %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Ticket Details</h3>
+                </div>
+                <div class="panel-body">
+                    You haven't purchased a ticket.
+                </div>
+                <div class="panel-footer text-right">
+                    {% bootstrap_button 'Refund Ticket' button_type='button' button_class='btn-default' size='sm' href='#' %}
+                    {% bootstrap_button 'Purchase Ticket' button_type='button' button_class='btn-primary' size='sm' href='#' %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Shirt Details</h3>
+                </div>
+                <div class="panel-body">
+                    You haven't ordered any shirts.
+                </div>
+                <div class="panel-footer text-right">
+                    {% bootstrap_button 'Refund Shirts' button_type='button' button_class='btn-default' size='sm' href='#' %}
+                    {% bootstrap_button 'Order Shirts' button_type='button' button_class='btn-primary' size='sm' href='#' %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

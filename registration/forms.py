@@ -5,4 +5,4 @@ from .models import Registration
 class RegistrationForm(ModelForm):
     class Meta:
         model = Registration
-        fields = ['partner_type']
+        fields = ['first_name', 'last_name', 'partner_type', 'college_affiliated', 'college_group']

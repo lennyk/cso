@@ -1,0 +1,9 @@
+{% extends "registration/register.html" %}
+{% load bootstrap3 %}
+
+{% block registration_form_title %}Update Event Registration Details{% endblock %}
+{% block form_buttons %}
+    {{ block.super }}
+    {% url 'registration_home' as home_url %}
+    {% bootstrap_button 'Cancel' button_type='button' button_class='btn-default' size='md' href=home_url %}
+{% endblock %}
