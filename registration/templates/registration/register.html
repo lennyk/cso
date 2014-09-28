@@ -10,8 +10,7 @@
             so enter your first and last name exactly as it appears on your ID card.
         {% endblock %}
     </p></div></div>
-    <div class="row">
-        <form method="post" class="form-horizontal">
+        <form method="post" class="form-horizontal" role="form">
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' %}
             {% buttons layout='horizontal' %}
@@ -20,5 +19,4 @@
                 {% endblock %}
             {% endbuttons %}
         </form>
-    </div>
 {% endblock %}
