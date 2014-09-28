@@ -6,7 +6,7 @@
 <p>
     {% if user and not user.is_anonymous %}
         Hello {{ user.get_full_name|default:user.username }}!<br />
-        <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" /><br />
+        <img class="img-responsive" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" /><br />
     {% else %}
         I don’t think we’ve met before.
     {% endif %}
