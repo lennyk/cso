@@ -134,23 +134,44 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
         'standard': {
-            'format': '[%(asctime)s] [%(levelname)s] %(name)s: %(message)s',
+            'format': '[%(asctime)s] [%(levelname)s] [%(name)s:%(lineno)s]: %(message)s',
             'datefmt': '%Y-%m-%d %H:%M:%S'
         },
     },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        }
+    },
     'handlers': {
-        'default': {
+        'cso': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '../logs/app.log',
+            'filename': '../logs/cso.log',
             'maxBytes': 1024 * 1024 * 5,  # 5 MB
             'backupCount': 5,
             'formatter': 'standard',
         },
-        'request_handler': {
+        'django': {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '../logs/django_request.log',
+            'filename': '../logs/django.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 5,
+            'formatter': 'standard',
+        },
+        'django_db': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '../logs/django_db.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 5,
+            'formatter': 'standard',
+        },
+        'others': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': '../logs/others.log',
             'maxBytes': 1024 * 1024 * 5,  # 5 MB
             'backupCount': 5,
             'formatter': 'standard',
@@ -159,18 +180,39 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'standard',
+            'filters': ['require_debug_false'],
         },
     },
     'loggers': {
-        '': {
-            'handlers': ['default', 'console'],
+        'cso': {
+            'handlers': ['cso', 'console'],
             'level': 'DEBUG',
-            'propagate': True
+            'propagate': False,
         },
-        'django.request': {
-            'handlers': ['request_handler', 'console'],
+        'events': {
+            'handlers': ['cso', 'console'],
             'level': 'DEBUG',
-            'propagate': False
+            'propagate': False,
+        },
+        'registration': {
+            'handlers': ['cso', 'console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['django', 'console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'django.db': {
+            'handlers': ['django_db', 'console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        '': {
+            'handlers': ['others', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
     }
 }
