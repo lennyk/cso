@@ -9,12 +9,12 @@
                     <h3 class="panel-title">Registration Details</h3>
                 </div>
                 <div class="panel-body">
+                    <dl class="dl-horizontal">
                     {% for detail in user.registration.registration_details %}
-                        <div class="row">
-                            <div class="col-md-5"><strong>{{ detail.0 }}:</strong></div>
-                            <div class="col-md-7">{{ detail.1 }}</div>
-                        </div>
+                        <dt>{{ detail.0 }}:</dt>
+                        <dd>{{ detail.1 }}</dd>
                     {% endfor %}
+                    </dl>
                 </div>
                 <div class="panel-footer text-right">
                     {% url 'registration_update' as update_url %}
