@@ -5,10 +5,14 @@
 {% block content %}
 <p>
     {% if user and not user.is_anonymous %}
-        Hello {{ user.get_full_name|default:user.username }}!<br />
-        <img class="img-responsive" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" /><br />
+        {# TODO: display something depending on ticket status #}
+        Give meaningful status about ticket here for the logged in user.
     {% else %}
-        I don’t think we’ve met before.
+        Register for the CSO now and buy your ticket!
     {% endif %}
+</p>
+<p>
+    Participating schools include
+    {% for college in colleges %}{% if forloop.first %}{% else %}, {% if forloop.last %}and {% endif %}{% endif %}<a href="{{ college.listing_url }}">{{ college.latin_dance_organization_name }}</a> ({{ college.college_name }}){% endfor %}.
 </p>
 {% endblock %}

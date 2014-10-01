@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify
+from django.core.urlresolvers import reverse
 
 
 class Date(models.Model):
@@ -25,6 +27,9 @@ class College(models.Model):
 
     def location(self):
         return '%s, %s' % (self.city, self.state)
+
+    def listing_url(self):
+        return reverse('colleges') + "#" + slugify(self.__str__())
 
 
 class CollegeURL(models.Model):
