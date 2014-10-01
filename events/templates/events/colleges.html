@@ -3,6 +3,9 @@
 {% block active_colleges %}active{% endblock %}
 
 {% block content %}
+    <h1>Participating Colleges</h1>
+    <p>Below is a list of all the participating colleges. If your college is attending but isn't listed, get in touch at
+        <a href="mailto:info@cso.dance" target="_blank">info@cso.dance</a>!</p>
 {% for college_info in colleges %}
     <h3 id="{{ college_info.college|slugify }}">{{ college_info.college.latin_dance_organization_name }} – {{ college_info.college.college_name }}
         <br class="hidden-md hidden-lg"/>
