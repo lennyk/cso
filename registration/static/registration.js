@@ -5,6 +5,7 @@ function setFormVisibility() {
         $('#id_college_group').closest('div.form-group').hide();
         $('#id_verification_message').closest('div.form-group').hide();
         $('#id_edu_email').closest('div.form-group').hide();
+        $('#existing-user-emails').hide();
     } else {
         // is college
         $('#id_college_verification_type').closest('div.form-group').show();
