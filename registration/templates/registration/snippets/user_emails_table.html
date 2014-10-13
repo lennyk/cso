@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>email address</th>
+        <th>verified</th>
+        <th>.edu email</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for email in user.registration.emails %}
+    <tr>
+        <td class="email">{{ email.email }}</td>
+        <td>
+        {% if email.verified %}
+            <i class="glyphicon glyphicon-ok-sign text-success"></i>
+        {% else %}
+            <i class="glyphicon glyphicon-ban-circle text-danger"></i>
+            <a href="{% url 'account_email' %}" class="email-resend-verification">resend verification</a>
+        {% endif %}
+        </td>
+        <td>
+        {% if email.is_academic %}
+            <i class="glyphicon glyphicon-ok-sign text-success"></i>
+        {% else %}
+            <i class="glyphicon glyphicon-ban-circle text-danger"></i>
+        {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

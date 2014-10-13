@@ -39,7 +39,7 @@ html {
 
 /* fix anchor tags */
 /* https://github.com/twbs/bootstrap/issues/1768#issuecomment-46519033 */
-*[id]:before {
+.anchor[id]:before {
   display: block;
   content: " ";
   margin-top: -75px;

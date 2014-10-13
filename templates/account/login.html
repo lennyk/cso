@@ -1,0 +1,22 @@
+{% extends "account/base.html" %}
+{% load socialaccount %}
+{% load bootstrap3 %}
+
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Log In" %}</h1>
+
+{% include "registration/login_social.html" %}
+
+{% endblock %}
+
+{% block javascript %}
+{{ block.super }}
+{% providers_media_js %}
+{% endblock %}

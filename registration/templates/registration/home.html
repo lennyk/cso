@@ -14,7 +14,20 @@
                         <dt>{{ detail.0 }}:</dt>
                         <dd>{{ detail.1 }}</dd>
                     {% endfor %}
+                    {% for boolean_detail in user.registration.registration_boolean_details %}
+                        <dt>{{ boolean_detail.0 }}:</dt>
+                        <dd>{% if boolean_detail.1 %}<i class="glyphicon glyphicon-ok-sign text-success"></i>{% else %}<i class="glyphicon glyphicon-ban-circle text-danger"></i>{% endif %}</dd>
+                    {% endfor %}
                     </dl>
+                </div>
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseEmails">Emails</a>
+                    </h3>
+                </div>
+                <div id="collapseEmails" class="panel-collapse collapse">
+                    {% include "registration/snippets/user_emails_table.html" %}
+                    {% include "registration/snippets/email_reverification_form.html" %}
                 </div>
                 <div class="panel-footer text-right">
                     {% url 'registration_update' as update_url %}

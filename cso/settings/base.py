@@ -59,7 +59,9 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
-SOCIALACCOUNT_AUTO_SIGNUP = True
+ACCOUNT_SIGNUP_FORM_CLASS = "registration.forms.RegistrationForm"
+ACCOUNT_USER_DISPLAY = lambda user: user.get_full_name()
+SOCIALACCOUNT_AUTO_SIGNUP = False
 SOCIALACCOUNT_EMAIL_VERIFICATION = None
 SOCIALACCOUNT_PROVIDERS = {'facebook': {'METHOD': 'oauth2', 'VERIFIED_EMAIL': True}}
 SOCIALACCOUNT_ADAPTER = 'cso.adapter.CSOSocialAccountAdapter'
@@ -118,6 +120,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+STATICFILES_DIRS = (
+    ('registration', 'registration/static')
+)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
