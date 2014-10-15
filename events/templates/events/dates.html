@@ -1,10 +1,5 @@
 {% extends "cso/base.html" %}
 
-{% block active_dates %}active{% endblock %}
-
 {% block content %}
-{% for date in active_dates %}
-<h3>{{ date.title }} - {{ date.date|date:"F jS, Y" }}</h3>
-{{ date.information|linebreaks }}
-{% endfor %}
+{% include "events/snippets/dates.html" %}
 {% endblock %}

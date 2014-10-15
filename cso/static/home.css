@@ -1,0 +1,69 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 0;
+}
+
+.well > * {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+section {
+    min-height: 100%;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+section#home {
+    background-image: url('concrete.jpg');
+}
+
+section#event {
+    background-image: url('woodfloor.jpg');
+}
+
+section#colleges {
+    background-color: #398439;
+}
+
+section#dates {
+    background-color: #720e9e;
+}
+
+section#about {
+    background-color: #005983;
+}
+
+section > .container:last-of-type {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 768px) {
+    section > .container:last-of-type {
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+    }
+}
+
+#about ul.fa-ul > li {
+    margin: 1em 0;
+}
+
+#about i.fa {
+    font-size: 1.5em;
+    top: 0em;
+}
+
+#about ul.fa-ul {
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+    margin-left: 4em;
+}

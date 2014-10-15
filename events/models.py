@@ -29,7 +29,7 @@ class College(models.Model):
         return '%s, %s' % (self.city, self.state)
 
     def listing_url(self):
-        return reverse('colleges') + "#" + slugify(self.__str__())
+        return reverse('home') + "#" + slugify(self.__str__())
 
 
 class CollegeURL(models.Model):

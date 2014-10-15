@@ -50,6 +50,12 @@ class RegistrationForm(forms.ModelForm):
             'college_verification_type': forms.RadioSelect,
         }
 
+    class Media:
+        css = {
+            'all': ('registration.css',)
+        }
+        js = ('registration.js',)
+
     def save(self, commit=True):
         # save the Registration
         super(RegistrationForm, self).save()
@@ -77,11 +83,15 @@ class RegistrationForm(forms.ModelForm):
         # reg.college_group = self.cleaned_data['college_group']
         # reg.save()
         # TODO: test this - used to signup new user through allauth
-        self.cleaned_data['user'] = user
+        # self.instance.user = user
+        # self.cleaned_data['user'] = user
+        # RegistrationForm(self).save()
+        # RegistrationForm(self).clean()
         super(RegistrationForm, self).save()
 
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
+        # cleaned_data = forms.ModelForm(self).clean()
         college_affiliated = cleaned_data.get('college_affiliated')
 
         # college_affiliated must be set

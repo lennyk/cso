@@ -8,8 +8,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
                        url(r'^$', 'cso.views.home_page', name='home'),
-                       url(r'^about/$', 'cso.views.thelda_page', name='thelda'),
-                       url(r'^about/constitution/$', 'cso.views.constitution_page', name='constitution'),
+                       url(r'^constitution/$', 'cso.views.constitution_page', name='constitution'),
                        url(r'^dates/$', 'events.views.dates_page', name='dates'),
                        url(r'^colleges/$', 'events.views.colleges_page', name='colleges'),
                        url(r'^accounts/', include('allauth.urls')),

@@ -1,21 +1,11 @@
 body {
     padding-top: 70px;
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    position: relative;
 }
 
 html {
     position: relative;
     min-height: 100%;
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    background-color: #f5f5f5;
 }
 
 .container .text-muted {
@@ -39,10 +29,17 @@ html {
 
 /* fix anchor tags */
 /* https://github.com/twbs/bootstrap/issues/1768#issuecomment-46519033 */
-.anchor[id]:before {
+.anchor:before {
   display: block;
-  content: " ";
-  margin-top: -75px;
-  height: 75px;
+  content: "#";
+  margin-top: -50px;
+  height: 50px;
   visibility: hidden;
+}
+
+@media (min-width: 992px) {
+    .vertical-align {
+        display: flex;
+        align-items: center;
+    }
 }

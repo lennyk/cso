@@ -1,40 +1,5 @@
 {% extends "cso/base.html" %}
 
-{% block active_colleges %}active{% endblock %}
-
 {% block content %}
-    <h1>Participating Colleges</h1>
-    <p>Below is a list of all the participating colleges. If your college is attending but isn't listed, get in touch at
-        <a href="mailto:info@cso.dance" target="_blank">info@cso.dance</a>!</p>
-{% for college_info in colleges %}
-    <h3 class="anchor" id="{{ college_info.college|slugify }}">{{ college_info.college.latin_dance_organization_name }} – {{ college_info.college.college_name }}
-        <br class="hidden-md hidden-lg"/>
-        <small>{{ college_info.college.location }}</small>
-    </h3>
-    <ul class="list-inline">
-    {% with college_info.participation as participation %}
-        {% if participation.attending %}
-            <li><span class="label label-success"><i class="fa fa-check"></i> In the house</span></li>
-        {% endif %}
-        {% if participation.performing %}
-            <li><span class="label label-primary"><i class="fa fa-star"></i> Performing</span></li>
-        {% endif %}
-        {% if participation.competing %}
-            <li><span class="label label-warning"><i class="fa fa-trophy"></i> Competing</span></li>
-        {% endif %}
-    {% endwith %}
-    </ul>
-    <p>{{ college_info.college.description }}</p>
-    <ul>
-    {% with college_info.URLs as URLs %}
-        {% for URL in URLs %}
-        <li><a href="{{ URL.url }}" target="_blank">{{ URL.get_url_type_display }}</a></li>
-        {% endfor %}
-    {% endwith %}
-    </ul>
-{% endfor %}
-
-    <p class="text-center">
-        <iframe class="" src="https://mapsengine.google.com/map/u/0/embed?mid=z5x4wQD2qiIA.kaT6c52JIseA" width="80%" height="480"></iframe>
-    </p>
+{% include "events/snippets/colleges.html" %}
 {% endblock %}

@@ -13,16 +13,6 @@ class HomePageTest(TestCase):
         self.assertTemplateUsed(response, 'cso/home.html')
 
 
-class AboutPageTest(TestCase):
-
-    def test_about_url_resolves_to_home_page_view(self):
-        self.assertEqual(resolve('/about/').func, cso.views.thelda_page)
-
-    def test_uses_about_template(self):
-        response = self.client.get('/about/')
-        self.assertTemplateUsed(response, 'cso/thelda.html')
-
-
 class ConstitutionPageTest(TestCase):
 
     def test_about_url_resolves_to_home_page_view(self):

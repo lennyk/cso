@@ -1,22 +1,46 @@
 {% extends "cso/base.html" %}
+{% load static from staticfiles %}
 
-{% block active_home %}active{% endblock %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "home.css" %}" media="screen">
+{% endblock %}
 
-{% block content %}
-<p>
-    The Collegiate Salsa Open is the annual salsa event which brings together salsa dancers from colleges all over
-    California to celebrate the collegiate salsa scene through competition, performance, and an all-night dance social.
-</p>
-<p>
-    {% if user and not user.is_anonymous %}
-        {# TODO: display something depending on ticket status #}
-        Give meaningful status about ticket here for the logged in user.
-    {% else %}
-        Register for the CSO now and buy your ticket!
-    {% endif %}
-</p>
-<p>
-    Participating schools include
-    {% for college in colleges %}{% if forloop.first %}{% else %}, {% if forloop.last %}and {% endif %}{% endif %}<a href="{{ college.listing_url }}">{{ college.latin_dance_organization_name }}</a> ({{ college.college_name }}){% endfor %}.
-</p>
+{% block javascript %}
+{{ block.super }}
+{#<script type="text/javascript" src="//rawgit.com/Prinzhorn/skrollr/b8cc5a0eacb76bc506eb7cd9ec8baecbbc01d8c2/dist/skrollr.min.js"></script>#}
+{% endblock %}
+
+{% block super_content %}
+<section id="home">
+{{ block.super }}
+<div class="container">
+{% include "cso/snippets/landing.html" %}
+</div>
+</section>
+
+<section id="event">
+<div class="container">
+<h2>Event Details</h2>
+<div class="text-center"><i class="fa fa-question-circle fa-5x"></i></div>
+</div>
+</section>
+
+<section id="colleges">
+<div class="container">
+{% include "events/snippets/colleges.html" %}
+</div>
+</section>
+
+<section id="dates">
+<div class="container">
+{% include "events/snippets/dates.html" %}
+</div>
+</section>
+
+<section id="about">
+<div class="container">
+{% include "cso/snippets/about.html" %}
+</div>
+</section>
 {% endblock %}
