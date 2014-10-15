@@ -75,19 +75,19 @@ class RegistrationForm(forms.ModelForm):
             CollegeVerificationMessage.objects.filter(registration=self.instance).delete()
 
     def signup(self, request, user):
-        # reg = Registration(user=user)
-        # reg.first_name = self.cleaned_data['first_name']
-        # reg.last_name = self.cleaned_data['last_name']
-        # reg.partner_type = self.cleaned_data['partner_type']
-        # reg.college_affiliated = self.cleaned_data['college_affiliated']
-        # reg.college_group = self.cleaned_data['college_group']
-        # reg.save()
-        # TODO: test this - used to signup new user through allauth
+        reg = Registration(user=user)
+        reg.first_name = self.cleaned_data['first_name']
+        reg.last_name = self.cleaned_data['last_name']
+        reg.partner_type = self.cleaned_data['partner_type']
+        reg.college_affiliated = self.cleaned_data['college_affiliated']
+        reg.college_group = self.cleaned_data['college_group']
+        reg.save()
+        # TODO: make something smarter like this work
         # self.instance.user = user
         # self.cleaned_data['user'] = user
         # RegistrationForm(self).save()
         # RegistrationForm(self).clean()
-        super(RegistrationForm, self).save()
+        # super(RegistrationForm, self).save()
 
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
