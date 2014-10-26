@@ -19,6 +19,7 @@ section {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    background-position: center center;
 }
 
 section#home {
@@ -26,15 +27,15 @@ section#home {
 }
 
 section#event {
-    background-image: url('woodfloor.jpg');
+    background-image: url('rusty_gears.jpg');
 }
 
 section#colleges {
-    background-color: #398439;
+    background-image: url('social_dance_1.jpg');
 }
 
 section#dates {
-    background-color: #720e9e;
+    background-image: url('woodfloor.jpg');
 }
 
 section#about {
@@ -42,7 +43,7 @@ section#about {
 }
 
 section > .container:last-of-type {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.55);
 }
 
 @media (min-width: 768px) {
