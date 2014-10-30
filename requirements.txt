@@ -1,7 +1,5 @@
-Django==1.7
-gunicorn==19.1.1
+Django==1.7.1
+django-configurations==0.8
 django-allauth==0.18.0
-django-stripe-payments==2.0.0
-django-admin-bootstrapped==2.0.4
+django-admin-bootstrapped==2.1.0
 django-bootstrap3==4.11.0
-selenium==2.43.0
