@@ -8,11 +8,15 @@ Provisioning a new site
 * Git
 * pip
 * virtualenv
+* npm
+* rubygems
+* sass
 
 eg, on Ubuntu:
 
-    sudo apt-get install nginx git python3 python3-pip
+    sudo apt-get install nginx git python3 python3-pip npm rubygems
     sudo pip3 install virtualenv
+    sudo gem install sass
 
 ## Nginx Virtual Host config
 

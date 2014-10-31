@@ -116,7 +116,7 @@ class Base(Configuration):
     STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
     PIPELINE_COMPILERS = (
-        'pipeline_compass.compiler.CompassCompiler',
+        'pipeline.compilers.sass.SASSCompiler',
     )
 
     PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
@@ -154,9 +154,9 @@ class Base(Configuration):
     PIPELINE_CSS = {
         'vendor': {
             'source_filenames': (
-                'bootstrap-sass-official/assets/stylesheets/_bootstrap.css',
-                'font-awesome/scss/font-awesome.css',
-                'bootstrap-social/bootstrap-social.css',
+                'bootstrap_custom.sass',
+                'font-awesome/scss/font-awesome.scss',
+                'bootstrap-social/bootstrap-social.scss',
             ),
             'output_filename': 'css/vendor.css',
         },
