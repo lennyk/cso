@@ -55,6 +55,10 @@ def _update_virtualenv(source_folder):
         ))
 
 
+def _install_yuglify(site_folder):
+    run('cd %s && npm install yuglify' % site_folder)
+
+
 def _update_static_files(source_folder, target):
     run('cd %s && ../virtualenv/bin/python3 manage.py collectstatic --noinput --settings=%s.settings --configuration=%s'
         % (source_folder, REPO_NAME, target.capitalize()))

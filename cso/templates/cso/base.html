@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html>{% load static from staticfiles %}
+<html>
+{% load compressed %}
+{% load static from staticfiles %}
 {% load socialaccount %}
 {% load bootstrap3 %}
 <head lang="en">
-    {% block css %}
-        <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" media="screen">
-{#        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css" media="screen">#}
-        <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" media="screen">
-        <link rel="stylesheet" href="{% static "bootstrap-social.css" %}" media="screen">
-        <link rel="stylesheet" href="{% static "base.css" %}" media="screen">
-        {{ form.media.css }}
-    {% endblock %}
+{% block css %}
+{% compressed_css 'vendor' %}
+{% compressed_css 'cso' %}
+{{ form.media.css }}
+{% endblock %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -68,9 +67,8 @@
 {% endblock %}
 
 {% block javascript %}
-<script type="text/javascript" src="{% static "jquery-1.11.1.min.js" %}"></script>
-<script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-<script type="text/javascript" src="{% static "base.js" %}"></script>
+{% compressed_js 'vendor' %}
+{% compressed_js 'cso' %}
 {{ form.media.js }}
 {% endblock %}
 </body>

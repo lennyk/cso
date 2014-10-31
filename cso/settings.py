@@ -26,10 +26,10 @@ class Base(Configuration):
     )
 
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../cso/static'))
-    STATICFILES_DIRS = (
-        ('registration', 'registration/static')
-    )
+    STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '/static'))
+    # STATICFILES_DIRS = (
+    #     ('registration', 'registration/static')
+    # )
 
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
@@ -92,6 +92,83 @@ class Base(Configuration):
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
         }
+    }
+
+    # --------------------------------------------------
+    # pipeline
+    # --------------------------------------------------
+
+    INSTALLED_APPS += (
+        'pipeline',
+    )
+
+    STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+    PIPELINE_COMPILERS = (
+        'pipeline.compilers.coffee.CoffeeScriptCompiler',
+        'pipeline.compilers.stylus.StylusCompiler',
+        'pipeline_compass.compiler.CompassCompiler',
+    )
+
+    PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
+    PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
+    PIPELINE_YUGLIFY_BINARY = os.path.abspath(os.path.join(BASE_DIR, '../node_modules/yuglify/bin/yuglify'))
+
+    PIPELINE_JS = {
+        'vendor': {
+            'source_filenames': (
+                'vendor/jquery-1.11.1.js',
+                'vendor/bootstrap-sass-3.2.0/javascripts/bootstrap.js',  # TODO: use individual components instead
+            ),
+            'output_filename': 'js/vendor.js',
+        },
+        'cso': {
+            'source_filenames': (
+                'base.js',
+            ),
+            'output_filename': 'js/cso.js',
+        },
+        'home': {
+            'source_filenames': (
+                'home.js',
+            ),
+            'output_filename': 'js/home.js',
+        },
+        'registration': {
+            'source_filenames': (
+                'registration.js',
+            ),
+            'output_filename': 'js/registration.js',
+        },
+    }
+
+    PIPELINE_CSS = {
+        'vendor': {
+            'source_filenames': (
+                'vendor/bootstrap-sass-3.2.0/stylesheets/bootstrap/bootstrap.scss',
+                'vendor/font-awesome/scss/font-awesome.scss',
+                'vendor/bootstrap-social.css',
+            ),
+            'output_filename': 'css/vendor.css',
+        },
+        'cso': {
+            'source_filenames': {
+                'base.css',
+            },
+            'output_filename': 'css/cso.css',
+        },
+        'home': {
+            'source_filenames': {
+                'home.css',
+            },
+            'output_filename': 'css/home.css',
+        },
+        'registration': {
+            'source_filenames': {
+                'registration.css',
+            },
+            'output_filename': 'css/registration.css',
+        },
     }
 
     # --------------------------------------------------
@@ -249,10 +326,10 @@ class Dev(Base):
 class Sandbox(Base):
     SOCIAL_AUTH_FACEBOOK_KEY = '1522982181246896'
     SOCIAL_AUTH_FACEBOOK_SECRET = 'cf50b5154294cda7bd6e1a43f8a4104f'
-    from instance_settings import ALLOWED_HOSTS, SECRET_KEY
+    # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
 
 
 class Live(Base):
     SOCIAL_AUTH_FACEBOOK_KEY = '1522387657973015'
     SOCIAL_AUTH_FACEBOOK_SECRET = '8d2a32053ea6d493b2c3130d20137178'
-    from instance_settings import ALLOWED_HOSTS, SECRET_KEY
+    # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
