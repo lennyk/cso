@@ -58,7 +58,7 @@ def _update_virtualenv(source_folder):
 
 
 def _install_node_tools(site_folder):
-    run('cd %s && npm install bower yuglify' % site_folder)
+    run('cd %s && npm upgrade bower yuglify' % site_folder)
 
 
 def _install_bower_components(source_folder):
