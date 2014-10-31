@@ -1,9 +1,0 @@
-{
-    "name": "cso",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "bower": "^1.3.12",
-        "yuglify": "^0.1.4"
-    }
-}
