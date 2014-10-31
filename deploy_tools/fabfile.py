@@ -15,6 +15,7 @@ def deploy(target):
     _get_latest_source(source_folder, ssh_key)
     _update_settings(source_folder, env.host, target)
     _update_virtualenv(source_folder)
+    _install_yuglify(site_folder)
     _update_static_files(source_folder, target)
     _update_database(source_folder, target)
     _deploy_fixtures(source_folder, target)
