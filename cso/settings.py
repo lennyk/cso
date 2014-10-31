@@ -27,9 +27,6 @@ class Base(Configuration):
 
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
-    # STATICFILES_DIRS = (
-    #     ('registration', 'registration/static'),
-    # )
 
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
@@ -100,6 +97,17 @@ class Base(Configuration):
 
     INSTALLED_APPS += (
         'pipeline',
+    )
+
+    MIDDLEWARE_CLASSES += (
+        'pipeline.middleware.MinifyHTMLMiddleware',
+    )
+
+    STATICFILES_FINDERS = (
+        'pipeline.finders.FileSystemFinder',
+        'pipeline.finders.AppDirectoriesFinder',
+        'pipeline.finders.PipelineFinder',
+        'pipeline.finders.CachedFileFinder',
     )
 
     STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'

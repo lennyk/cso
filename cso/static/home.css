@@ -23,19 +23,19 @@ section {
 }
 
 section#home {
-    background-image: url('concrete.jpg');
+    background-image: url('../static/concrete.jpg');
 }
 
 section#event {
-    background-image: url('rusty_gears.jpg');
+    background-image: url('../static/rusty_gears.jpg');
 }
 
 section#colleges {
-    background-image: url('social_dance_1.jpg');
+    background-image: url('../static/social_dance_1.jpg');
 }
 
 section#dates {
-    background-image: url('woodfloor.jpg');
+    background-image: url('../static/woodfloor.jpg');
 }
 
 section#about {
