@@ -60,18 +60,16 @@ def _update_virtualenv(source_folder):
 
 
 def _update_static_files(source_folder, target):
-    run('cd %s && ../virtualenv/bin/python3 manage.py collectstatic --noinput --settings=%s.settings.%s' % (
-        source_folder, REPO_NAME, target
-        ))
+    run('cd %s && ../virtualenv/bin/python3 manage.py collectstatic --noinput --settings=%s.settings --configuration=%s'
+        % (source_folder, REPO_NAME, target.capitalize()))
 
 
 def _update_database(source_folder, target):
-    run('cd %s && ../virtualenv/bin/python3 manage.py migrate --noinput --settings=%s.settings.%s' % (
-        source_folder, REPO_NAME, target
-        ))
+    run('cd %s && ../virtualenv/bin/python3 manage.py migrate --noinput --settings=%s.settings --configuration=%s'
+        % (source_folder, REPO_NAME, target.capitalize()))
 
 
 def _deploy_fixtures(source_folder, target):
-    run('cd %s && ../virtualenv/bin/python3 manage.py loaddata --settings=%s.settings.%s fixtures/initial_data-common.json fixtures/initial_data-%s.json' % (
-        source_folder, REPO_NAME, target, target
+    run('cd %s && ../virtualenv/bin/python3 manage.py loaddata --settings=%s.settings --configuration=%s fixtures/initial_data-common.json fixtures/initial_data-%s.json' % (
+        source_folder, REPO_NAME, target.capitalize(), target
         ))
