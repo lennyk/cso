@@ -27,6 +27,9 @@ class Base(Configuration):
 
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+    STATICFILES_DIRS = (
+        os.path.abspath(os.path.join(BASE_DIR, '../bower_components')),
+    )
 
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
@@ -113,8 +116,6 @@ class Base(Configuration):
     STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
     PIPELINE_COMPILERS = (
-        'pipeline.compilers.coffee.CoffeeScriptCompiler',
-        'pipeline.compilers.stylus.StylusCompiler',
         'pipeline_compass.compiler.CompassCompiler',
     )
 
@@ -125,8 +126,8 @@ class Base(Configuration):
     PIPELINE_JS = {
         'vendor': {
             'source_filenames': (
-                'vendor/jquery-1.11.1.js',
-                'vendor/bootstrap-sass-3.2.0/javascripts/bootstrap.js',  # TODO: use individual components instead
+                'jquery/dist/jquery.js',
+                'bootstrap-sass-official/assets/javascripts/bootstrap.js',  # TODO: use individual components instead
             ),
             'output_filename': 'js/vendor.js',
         },
@@ -153,9 +154,9 @@ class Base(Configuration):
     PIPELINE_CSS = {
         'vendor': {
             'source_filenames': (
-                'vendor/bootstrap-sass-3.2.0/stylesheets/bootstrap/bootstrap.scss',
-                'vendor/font-awesome/scss/font-awesome.scss',
-                'vendor/bootstrap-social.css',
+                'bootstrap-sass-official/assets/stylesheets/_bootstrap.css',
+                'font-awesome/scss/font-awesome.css',
+                'bootstrap-social/bootstrap-social.css',
             ),
             'output_filename': 'css/vendor.css',
         },

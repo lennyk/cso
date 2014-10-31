@@ -1,0 +1,17 @@
+{
+    "name": "cso",
+    "version": "0.1.0",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap-sass-official": "~3.3.0",
+        "font-awesome": "~4.2.0",
+        "bootstrap-social": "~4.8.0"
+    }
+}
