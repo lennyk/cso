@@ -1,4 +1,4 @@
-from fabric.contrib.files import append, exists, sed
+from fabric.contrib.files import append, exists, uncomment
 from fabric.api import env, local, run
 import random
 
@@ -39,13 +39,18 @@ def _get_latest_source(source_folder, ssh_key):
 
 
 def _update_settings(source_folder, site_name, target):
+    settings_file = source_folder + '/%s/settings.py' % REPO_NAME
     instance_settings_file = source_folder + '/instance_settings.py'
 
-    if not exists(instance_settings_file):
-        append(instance_settings_file, '\nALLOWED_HOSTS = ["%s"]' % (site_name,))
-        chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
-        key = ''.join(random.SystemRandom().choice(chars) for _ in range(50))
-        append(instance_settings_file, "\nSECRET_KEY = '%s'" % (key,))
+    if exists(instance_settings_file):
+        run('rm %s' % instance_settings_file)
+
+    append(instance_settings_file, '\nALLOWED_HOSTS = ["%s"]' % (site_name,))
+    chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+    key = ''.join(random.SystemRandom().choice(chars) for _ in range(50))
+    append(instance_settings_file, "\nSECRET_KEY = '%s'" % (key,))
+
+    uncomment(settings_file, 'from instance_settings import')
 
 
 def _update_virtualenv(source_folder):
