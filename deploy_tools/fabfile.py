@@ -38,13 +38,12 @@ def _get_latest_source(source_folder, ssh_key):
 
 def _update_settings(source_folder, site_name, target):
     instance_settings_file = source_folder + '/instance_settings.py'
-    secret_key_file = source_folder + '/secret_key.py'
 
     if not exists(instance_settings_file):
         append(instance_settings_file, '\nALLOWED_HOSTS = ["%s"]' % (site_name,))
         chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
         key = ''.join(random.SystemRandom().choice(chars) for _ in range(50))
-        append(secret_key_file, "\nSECRET_KEY = '%s'" % (key,))
+        append(instance_settings_file, "\nSECRET_KEY = '%s'" % (key,))
 
 
 def _update_virtualenv(source_folder):
