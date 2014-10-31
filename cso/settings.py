@@ -28,7 +28,10 @@ class Base(Configuration):
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
     STATICFILES_DIRS = (
-        os.path.abspath(os.path.join(BASE_DIR, '../bower_components')),
+        os.path.abspath(os.path.join(BASE_DIR, '../bower_components/bootstrap-sass-official/assets')),
+        os.path.abspath(os.path.join(BASE_DIR, '../bower_components/bootstrap-social')),
+        os.path.abspath(os.path.join(BASE_DIR, '../bower_components/font-awesome')),
+        os.path.abspath(os.path.join(BASE_DIR, '../bower_components/jquery/dist')),
     )
 
     MEDIA_URL = '/media/'
@@ -120,14 +123,17 @@ class Base(Configuration):
     )
 
     PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
-    PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
     PIPELINE_YUGLIFY_BINARY = os.path.abspath(os.path.join(BASE_DIR, '../node_modules/yuglify/bin/yuglify'))
+
+    PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
+    PIPELINE_UGLIFYJS_BINARY = os.path.abspath(os.path.join(BASE_DIR, '../node_modules/uglify-js/bin/uglifyjs'))
+    PIPELINE_UGLIFYJS_ARGUMENTS = ''
 
     PIPELINE_JS = {
         'vendor': {
             'source_filenames': (
-                'jquery/dist/jquery.js',
-                'bootstrap-sass-official/assets/javascripts/bootstrap.js',  # TODO: use individual components instead
+                'jquery.js',
+                'javascripts/bootstrap.js',  # TODO: use individual components instead
             ),
             'output_filename': 'js/vendor.js',
         },
@@ -155,8 +161,8 @@ class Base(Configuration):
         'vendor': {
             'source_filenames': (
                 'bootstrap_custom.sass',
-                'font-awesome/scss/font-awesome.scss',
-                'bootstrap-social/bootstrap-social.scss',
+                'scss/font-awesome.scss',
+                'bootstrap-social.scss',
             ),
             'output_filename': 'css/vendor.css',
         },
