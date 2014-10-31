@@ -27,9 +27,9 @@ class Base(Configuration):
 
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '/cso/static'))
-    # STATICFILES_DIRS = (
-    #     ('registration', 'registration/static')
-    # )
+    STATICFILES_DIRS = (
+        ('registration', 'registration/static'),
+    )
 
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
