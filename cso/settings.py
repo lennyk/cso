@@ -168,19 +168,19 @@ class Base(Configuration):
         },
         'cso': {
             'source_filenames': {
-                'base.css',
+                'base.sass',
             },
             'output_filename': 'css/cso.css',
         },
         'home': {
             'source_filenames': {
-                'home.css',
+                'home.sass',
             },
             'output_filename': 'css/home.css',
         },
         'registration': {
             'source_filenames': {
-                'registration.css',
+                'registration.sass',
             },
             'output_filename': 'css/registration.css',
         },

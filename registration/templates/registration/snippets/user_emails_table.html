@@ -12,17 +12,17 @@
         <td class="email">{{ email.email }}</td>
         <td>
         {% if email.verified %}
-            <i class="glyphicon glyphicon-ok-sign text-success"></i>
+            <i class="fa fa-check-circle text-success"></i>
         {% else %}
-            <i class="glyphicon glyphicon-ban-circle text-danger"></i>
+            <i class="fa fa-ban text-danger"></i>
             <a href="{% url 'account_email' %}" class="email-resend-verification">resend verification</a>
         {% endif %}
         </td>
         <td>
         {% if email.is_academic %}
-            <i class="glyphicon glyphicon-ok-sign text-success"></i>
+            <i class="fa fa-check-circle text-success"></i>
         {% else %}
-            <i class="glyphicon glyphicon-ban-circle text-danger"></i>
+            <i class="fa fa-ban text-danger"></i>
         {% endif %}
         </td>
     </tr>

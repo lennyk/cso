@@ -1,0 +1,55 @@
+@import "cso-variables"
+
+html, body
+  height: 100%
+
+body
+  padding-top: 0
+
+.well > *
+  margin-top: 10px
+  margin-bottom: 10px
+
+section
+  min-height: 100%
+  padding-top: $full-navbar-height
+  padding-bottom: $full-navbar-height
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+  background-position: center center
+
+  > .container:last-of-type
+    background: rgba(255, 255, 255, 0.55)
+    @media (min-width: 768px)
+      -webkit-border-radius: 12px
+      -moz-border-radius: 12px
+      border-radius: 12px
+
+  &#home
+    background-image: url('../static/concrete.jpg')
+
+  &#event
+    background-image: url('../static/rusty_gears.jpg')
+
+  &#colleges
+    background-image: url('../static/social_dance_1.jpg')
+
+  &#dates
+    background-image: url('../static/woodfloor.jpg')
+
+  &#about
+    background-color: #005983
+
+    ul.fa-ul > li
+      margin: 1em 0
+
+    i.fa
+      font-size: 1.5em
+      top: 0em
+
+    ul.fa-ul
+      margin-top: 1.2em
+      margin-bottom: 1.2em
+      margin-left: 4em
