@@ -1,10 +1,18 @@
 @import "cso-variables"
 
-html, body
+html, body, .parallax
   height: 100%
+  margin: 0
+  padding: 0
 
-body
-  padding-top: 0
+html, body
+  overflow: hidden
+
+.parallax
+  overflow-y: scroll
+  overflow-x: hidden
+  perspective: 1px
+  transform-style: preserve-3d
 
 .well > *
   margin-top: 10px
@@ -12,14 +20,29 @@ body
 
 section
   min-height: 100%
+  position: relative
+  transform-style: inherit
   padding-top: $full-navbar-height
   padding-bottom: $full-navbar-height
-  -webkit-background-size: cover
-  -moz-background-size: cover
-  -o-background-size: cover
-  background-size: cover
-  background-position: center center
+  overflow: hidden
 
+  &:before
+    content: ""
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    transform: translateZ(-1px) scale(2)
+    z-index: -1
+
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+    background-position: center center
+
+  // set the opaque background of each container in each section
   > .container:last-of-type
     background: rgba(255, 255, 255, 0.55)
     @media (min-width: 768px)
@@ -27,20 +50,21 @@ section
       -moz-border-radius: 12px
       border-radius: 12px
 
-  &#home
+  &#home:before
     background-image: url('../static/concrete.jpg')
 
-  &#event
+  &#event:before
     background-image: url('../static/rusty_gears.jpg')
 
-  &#colleges
+  &#colleges:before
     background-image: url('../static/social_dance_1.jpg')
 
-  &#dates
+  &#dates:before
     background-image: url('../static/woodfloor.jpg')
 
   &#about
-    background-color: #005983
+    &:before
+      background-color: #005983
 
     ul.fa-ul > li
       margin: 1em 0

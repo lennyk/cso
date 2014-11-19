@@ -20,37 +20,6 @@ $('.navbar a').on('click', function () {
     }
 });
 
-var homeHash = '#home';
-
-// smooth scrolling
-$("a[href*='#']").on('click', function (e) {
-
-    if (this.href.split('#')[0] == window.location.href.split('#')[0]) {
-
-        // prevent default anchor click behavior
-        e.preventDefault();
-
-        // store hash
-        var hash = this.hash;
-
-//        var offset = $('.navbar').outerHeight();
-
-        // animate
-        $('html, body').animate({
-            scrollTop: $(this.hash).offset().top
-        }, 500, function () {
-
-            // when done, add hash to url
-            // (default click behaviour)
-            if (hash == homeHash) {
-                removeHash();
-            } else {
-                window.location.hash = hash;
-            }
-        });
-    }
-});
-
 function removeHash() {
     var scrollV, scrollH, loc = window.location;
     if ("pushState" in history)

@@ -1,11 +1,29 @@
-$(document).ready(function(){
-	//.parallax(xPosition, speedFactor, outerHeight) options:
-	//xPosition - Horizontal position of the element
-	//inertia - speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling
-	//outerHeight (true/false) - Whether or not jQuery should use it's outerHeight option to determine when a section is in the viewport
-	$('#home').parallax("50%", -0.6, true);
-	$('#event').parallax("50%", -0.4, true);
-	$('#colleges').parallax("50%", -0.8, true);
-//	$('#dates').parallax("50%", -0.4);
-//	$('#about').parallax("50%", -0.6);
+var homeHash = '#home';
+
+// smooth scrolling
+$("a[href*='#']").on('click', function (e) {
+
+    if (this.href.split('#')[0] == window.location.href.split('#')[0]) {
+
+        // prevent default anchor click behavior
+        e.preventDefault();
+
+        // store hash
+        var hash = this.hash;
+
+        // animate
+        $('.parallax').animate({
+            scrollTop: $(this.hash).offset().top - $('.parallax :first-child').offset().top
+        }, 500, function () {
+
+            if (hash == homeHash) {
+                removeHash();
+            } else {
+                // when done, add hash to url
+                // (default click behaviour)
+                // TODO: disabling because parallax backgrounds get weird when jumping to colleges
+                //window.location.hash = hash;
+            }
+        });
+    }
 });

@@ -145,7 +145,6 @@ class Base(Configuration):
         },
         'home': {
             'source_filenames': (
-                'jquery.parallax-1.1.3.js',
                 'home.js',
             ),
             'output_filename': 'js/home.js',
