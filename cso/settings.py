@@ -116,11 +116,7 @@ class Base(Configuration):
         'pipeline.finders.CachedFileFinder',
     )
 
-    STATICFILES_STORAGE = (
-        'pipeline.storage.PipelineCachedStorage',
-        'django.contrib.staticfiles.finders.FileSystemFinder',
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    )
+    STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
     PIPELINE_COMPILERS = (
         'pipeline.compilers.sass.SASSCompiler',
