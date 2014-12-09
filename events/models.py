@@ -17,10 +17,10 @@ class Date(models.Model):
 
 class College(models.Model):
     city = models.CharField(max_length=60)
-    state = models.CharField(max_length=2)
+    state = models.CharField(max_length=2, default='CA')
     college_name = models.CharField(max_length=80)
     latin_dance_organization_name = models.CharField(max_length=80)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return '%s @ %s' % (self.latin_dance_organization_name, self.college_name)
@@ -35,8 +35,9 @@ class College(models.Model):
 class CollegeURL(models.Model):
     college = models.ForeignKey(College)
     URL_TYPE_CHOICES = (
-        ("facebook", "Facebook Page"),
+        ("facebook", "Facebook"),
         ("website", "Website"),
+        ("youtube", "YouTube"),
     )
     # TODO: url cleanup (remove after &)
     url_type = models.CharField(choices=URL_TYPE_CHOICES, max_length=255)
@@ -49,13 +50,14 @@ class CollegeURL(models.Model):
         unique_together = (
             ("college", "url_type"),
         )
+        ordering = ['url_type']
 
 
 class CollegeCSOParticipation(models.Model):
     CSO_YEAR_CHOICES = (
         (2015, '2015'),
     )
-    cso_year = models.IntegerField(choices=CSO_YEAR_CHOICES)
+    cso_year = models.IntegerField(choices=CSO_YEAR_CHOICES, default=CSO_YEAR_CHOICES[0][1])  # default='2015'
     college = models.ForeignKey(College)
     attending = models.BooleanField(default=False)
     performing = models.BooleanField(default=False)

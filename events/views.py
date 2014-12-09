@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from events.models import College, CollegeCSOParticipation, CollegeURL
+from events.models import CollegeCSOParticipation
 from events.models import Date
 
 
@@ -9,12 +9,6 @@ def dates_page(request):
 
 
 def colleges_page(request):
-    # TODO: intelligently filter the colleges
-    colleges = []
-    for college in College.objects.all():
-        colleges.append({
-            'college': college,
-            'participation': CollegeCSOParticipation.objects.get(college=college),
-            'URLs': CollegeURL.objects.filter(college=college),
-        })
-    return render(request, 'events/colleges.html', {'colleges': colleges})
+    participations = CollegeCSOParticipation.objects.filter(cso_year='2015', attending=True).order_by('college')
+    participations = sorted(participations, key=lambda p: p.college.latin_dance_organization_name.lower())
+    return render(request, 'events/colleges.html', {'participations': participations})
