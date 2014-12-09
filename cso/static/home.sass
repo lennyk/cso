@@ -1,18 +1,21 @@
 @import "cso-variables"
+@import "../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables"
 
 html, body, .parallax
   height: 100%
   margin: 0
   padding: 0
 
-html, body
-  overflow: hidden
+@media (min-width: $screen-md-min)
+  html, body
+    overflow: hidden
 
 .parallax
   overflow-y: scroll
   overflow-x: hidden
-  perspective: 1px
-  transform-style: preserve-3d
+  @media (min-width: $screen-md-min)
+    perspective: 1px
+    transform-style: preserve-3d
 
 .well > *
   margin-top: 10px
@@ -21,10 +24,11 @@ html, body
 section
   min-height: 100%
   position: relative
-  transform-style: inherit
   padding-top: $full-navbar-height
   padding-bottom: $full-navbar-height
-  overflow: hidden
+  @media (min-width: $screen-md-min)
+    overflow: hidden
+    transform-style: inherit
 
   &:before
     content: ""
@@ -33,8 +37,9 @@ section
     bottom: 0
     left: 0
     right: 0
-    transform: translateZ(-1px) scale(2)
     z-index: -1
+    @media (min-width: $screen-md-min)
+      transform: translateZ(-1px) scale(2)
 
     -webkit-background-size: cover
     -moz-background-size: cover
@@ -45,7 +50,7 @@ section
   // set the opaque background of each container in each section
   > .container:last-of-type
     background: rgba(255, 255, 255, 0.55)
-    @media (min-width: 768px)
+    @media (min-width: $screen-sm-min)
       -webkit-border-radius: 12px
       -moz-border-radius: 12px
       border-radius: 12px
@@ -64,7 +69,7 @@ section
 
   &#about
     &:before
-      background-color: #005983
+      background-color: $cso-secondary
 
     ul.fa-ul > li
       margin: 1em 0
