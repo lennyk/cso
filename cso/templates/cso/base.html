@@ -2,7 +2,8 @@
 <html>
 {% load compress %}
 {% load static from staticfiles %}
-{% load socialaccount %}
+{# TODO: registration #}
+{#{% load socialaccount %}#}
 {% load bootstrap3 %}
 <head lang="en">
 {% block css %}
@@ -30,22 +31,26 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <form method="post" action="{% url 'account_logout' %}">{% csrf_token %}
+{# TODO: registration#}
+{#        <form method="post" action="{% url 'account_logout' %}">{% csrf_token %}#}
         <div id="cso-navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'home' %}#home" data-target="#home">Home</a></li>
                 <li><a href="{% url 'home' %}#event" data-target="#event">Event Details</a></li>
                 <li><a href="{% url 'home' %}#colleges" data-target="#colleges">Colleges</a></li>
                 <li><a href="{% url 'home' %}#dates" data-target="#dates">Dates</a></li>
-                <li><a href="{% url 'registration_home' %}">Registration</a></li>
+{# TODO: registration#}
+{#                <li><a href="{% url 'registration_home' %}">Registration</a></li>#}
                 <li><a href="{% url 'home' %}#about" data-target="#about">About</a></li>
                 {% if user and not user.is_anonymous %}
-                <li><a href="{% url 'account_logout' %}" id="logout-link">Logout</a></li>
+{# TODO: registration#}
+{#                <li><a href="{% url 'account_logout' %}" id="logout-link">Logout</a></li>#}
                 {% endif %}
 
             </ul>
         </div>
-        </form>
+{# TODO: registration#}
+{#        </form>#}
     </div>
 </div>
 

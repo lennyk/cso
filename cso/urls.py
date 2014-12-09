@@ -11,8 +11,9 @@ urlpatterns = patterns('',
                        url(r'^constitution/$', 'cso.views.constitution_page', name='constitution'),
                        url(r'^dates/$', 'events.views.dates_page', name='dates'),
                        url(r'^colleges/$', 'events.views.colleges_page', name='colleges'),
-                       url(r'^accounts/', include('allauth.urls')),
-                       url(r'^registration/', include('registration.urls')),
+                       # TODO: registration
+                       # url(r'^accounts/', include('allauth.urls')),
+                       # url(r'^registration/', include('registration.urls')),
                        url(r'^admin/', include(admin.site.urls)),
                        url('', include('django.contrib.auth.urls', namespace='auth')),
                        )
