@@ -261,12 +261,16 @@ class Dev(Base):
 
 
 class Sandbox(Base):
+    COMPRESS_OFFLINE = True
+
     SOCIAL_AUTH_FACEBOOK_KEY = '1522982181246896'
     SOCIAL_AUTH_FACEBOOK_SECRET = 'cf50b5154294cda7bd6e1a43f8a4104f'
     # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
 
 
 class Live(Base):
+    COMPRESS_OFFLINE = True
+
     SOCIAL_AUTH_FACEBOOK_KEY = '1522387657973015'
     SOCIAL_AUTH_FACEBOOK_SECRET = '8d2a32053ea6d493b2c3130d20137178'
     # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
