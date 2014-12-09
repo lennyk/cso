@@ -38,7 +38,7 @@ function removeHash() {
 }
 
 $(document).ready(function () {
-    if (window.location.hash == homeHash) {
+    if (window.location.hash == "#home") {
         removeHash();
     }
 });
