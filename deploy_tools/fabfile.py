@@ -74,6 +74,8 @@ def _install_bower_components(source_folder):
 def _update_static_files(source_folder, target):
     run('cd %s && ../virtualenv/bin/python3 manage.py collectstatic --noinput --settings=%s.settings --configuration=%s'
         % (source_folder, REPO_NAME, target.capitalize()))
+    run('cd %s && ../virtualenv/bin/python3 manage.py compress --noinput --settings=%s.settings --configuration=%s'
+        % (source_folder, REPO_NAME, target.capitalize()))
 
 
 def _update_database(source_folder, target):
