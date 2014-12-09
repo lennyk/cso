@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-4 text-left">
             <ul class="list-unstyled">
-                <li><h3>{{ participations.count }} Participating Colleges:</h3></li>
+                <li><h3>{{ participations|length }} Participating Colleges:</h3></li>
                 {% for participation in participations %}
                 <li><a href="{{ participation.college.listing_url }}">{{ participation.college.latin_dance_organization_name }}</a> ({{ participation.college.college_name }})</li>
                 {% endfor %}
