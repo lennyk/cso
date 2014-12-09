@@ -1,0 +1,26 @@
+[
+  {
+    "model": "events.date",
+    "fields": {
+      "is_active": true,
+      "date": "2014-10-18",
+      "information": "While the CSO is open to the public, the purpose of the event is to support the collegiate Latin dance community. Due to our limited venue size tickets will sell out. To ensure college clubs and teams are able to buy tickets we are having a student ticket pre-sale. Students and active members of clubs and teams will be able to purchase their tickets early during this presale.",
+      "title": "College Ticket Presale",
+      "time": null,
+      "description": "ticket sales open to students and active members of college clubs teams"
+    },
+    "pk": 1
+  },
+  {
+    "model": "events.date",
+    "fields": {
+      "is_active": true,
+      "date": "2015-01-15",
+      "information": "After the college ticket presale we will be opening ticket sales to the general public. Due to our limited venue size tickets will sell out so make sure to buy your ticket early!",
+      "title": "Public Ticket Sales Open",
+      "time": null,
+      "description": "ticket sales open to the general public"
+    },
+    "pk": 2
+  }
+]

@@ -84,6 +84,6 @@ def _update_database(source_folder, target):
 
 
 def _deploy_fixtures(source_folder, target):
-    run('cd %s && ../virtualenv/bin/python3 manage.py loaddata --settings=%s.settings --configuration=%s fixtures/initial_data-common.json fixtures/initial_data-%s.json' % (
+    run('cd %s && ../virtualenv/bin/python3 manage.py loaddata --settings=%s.settings --configuration=%s fixtures/common/*.json fixtures/initial_data-%s.json' % (
         source_folder, REPO_NAME, target.capitalize(), target
         ))
