@@ -11,7 +11,9 @@
 
 {% block javascript %}
 {{ block.super }}
-
+{% compress js %}
+<script src="{% static 'home.js' %}" type="text/javascript" charset="utf-8"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block super_content %}
