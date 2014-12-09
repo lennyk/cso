@@ -34,6 +34,12 @@ class Base(Configuration):
         os.path.abspath(os.path.join(BASE_DIR, '../bower_components/jquery/dist')),
     )
 
+    STATICFILES_FINDERS = (
+        'django.contrib.staticfiles.finders.FileSystemFinder',
+        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+        'compressor.finders.CompressorFinder',
+    )
+
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
 
@@ -94,95 +100,6 @@ class Base(Configuration):
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
         }
-    }
-
-    # --------------------------------------------------
-    # pipeline
-    # --------------------------------------------------
-
-    INSTALLED_APPS += (
-        'pipeline',
-    )
-
-    MIDDLEWARE_CLASSES += (
-        'pipeline.middleware.MinifyHTMLMiddleware',
-    )
-
-    STATICFILES_FINDERS = (
-        'django.contrib.staticfiles.finders.FileSystemFinder',
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        'pipeline.finders.PipelineFinder',
-        'pipeline.finders.CachedFileFinder',
-    )
-
-    STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-
-    PIPELINE_COMPILERS = (
-        'pipeline.compilers.sass.SASSCompiler',
-    )
-
-    PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
-    PIPELINE_YUGLIFY_BINARY = os.path.abspath(os.path.join(BASE_DIR, '../node_modules/yuglify/bin/yuglify'))
-
-    PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
-    PIPELINE_UGLIFYJS_BINARY = os.path.abspath(os.path.join(BASE_DIR, '../node_modules/uglify-js/bin/uglifyjs'))
-    PIPELINE_UGLIFYJS_ARGUMENTS = ''
-
-    PIPELINE_JS = {
-        'vendor': {
-            'source_filenames': (
-                'jquery.js',
-                'javascripts/bootstrap.js',  # TODO: use individual components instead
-            ),
-            'output_filename': 'js/vendor.js',
-        },
-        'cso': {
-            'source_filenames': (
-                'base.js',
-            ),
-            'output_filename': 'js/cso.js',
-        },
-        'home': {
-            'source_filenames': (
-                'home.js',
-            ),
-            'output_filename': 'js/home.js',
-        },
-        'registration': {
-            'source_filenames': (
-                'registration.js',
-            ),
-            'output_filename': 'js/registration.js',
-        },
-    }
-
-    PIPELINE_CSS = {
-        'vendor': {
-            'source_filenames': (
-                'bootstrap_custom.sass',
-                'scss/font-awesome.scss',
-                'bootstrap-social.scss',
-            ),
-            'output_filename': 'css/vendor.css',
-        },
-        'cso': {
-            'source_filenames': {
-                'base.sass',
-            },
-            'output_filename': 'css/cso.css',
-        },
-        'home': {
-            'source_filenames': {
-                'home.sass',
-            },
-            'output_filename': 'css/home.css',
-        },
-        'registration': {
-            'source_filenames': {
-                'registration.sass',
-            },
-            'output_filename': 'css/registration.css',
-        },
     }
 
     # --------------------------------------------------
@@ -317,7 +234,13 @@ class Base(Configuration):
     # --------------------------------------------------
 
     INSTALLED_APPS += (
+        'compressor',
         'bootstrap3',
+    )
+
+    COMPRESS_PRECOMPILERS = (
+        ('text/x-sass', 'sass {infile} {outfile}'),
+        ('text/x-scss', 'sass --scss {infile} {outfile}'),
     )
 
     # django messages w/ bootstrap

@@ -1,9 +1,12 @@
 {% extends "cso/base.html" %}
-{% load compressed %}
+{% load static %}
+{% load compress %}
 
 {% block css %}
 {{ block.super }}
-{#{% compressed_css 'registration' %}#}
+{% compress css %}
+<link rel="stylesheet" type="text/x-sass" href="{% static 'registration.sass' %}" />
+{% endcompress %}
 {% endblock %}
 
 {% block javascript %}

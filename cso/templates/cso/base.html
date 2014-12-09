@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
-{% load compressed %}
+{% load compress %}
 {% load static from staticfiles %}
 {% load socialaccount %}
 {% load bootstrap3 %}
 <head lang="en">
 {% block css %}
-{% compressed_css 'vendor' %}
-{% compressed_css 'cso' %}
+{% compress css %}
+<link rel="stylesheet" type="text/x-sass" href="{% static 'vendor.sass' %}" />
+<link rel="stylesheet" type="text/x-sass" href="{% static 'base.sass' %}" />
+{% endcompress %}
 {{ form.media.css }}
 {% endblock %}
     <meta charset="UTF-8">
@@ -67,8 +69,7 @@
 {% endblock %}
 
 {% block javascript %}
-{% compressed_js 'vendor' %}
-{% compressed_js 'cso' %}
+
 {{ form.media.js }}
 {% endblock %}
 </body>

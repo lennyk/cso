@@ -1,15 +1,17 @@
 {% extends "cso/base.html" %}
-{% load compressed %}
+{% load compress %}
 {% load static from staticfiles %}
 
 {% block css %}
 {{ block.super }}
-{% compressed_css 'home' %}
+{% compress css %}
+<link rel="stylesheet" type="text/x-sass" href="{% static 'home.sass' %}" />
+{% endcompress %}
 {% endblock %}
 
 {% block javascript %}
 {{ block.super }}
-{% compressed_js 'home' %}
+
 {% endblock %}
 
 {% block super_content %}
