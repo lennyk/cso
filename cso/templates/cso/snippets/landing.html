@@ -1,37 +1,47 @@
 {% load static from staticfiles %}
+{% load columns %}
 <div class="text-center">
     <h1 class="text-uppercase">The Collegiate Salsa Open</h1>
     <div class="row vertical-align">
-        <div class="col-md-4 col-md-push-4">
-            <p><img class="img-responsive center-block" src="{% static "cso.svg" %}" /></p>
+{#        <div class="col-md-6">#}
+{#            <p class="cso-logo-landing"><img class="img-responsive center-block" src="{% static "cso.svg" %}" /></p>#}
+{#        </div>#}
+{#        <div class="col-sm-8 col-sm-push-2 col-md-6 col-md-push-0 col-lg-4 col-lg-push-1">#}
+{#            <div class="well">#}
+{#                {% include "cso/snippets/ticket_status.html" %}#}
+{#            </div>#}
+{#        </div>#}
+        <div class="col-md-5">
+            <p class="cso-logo-landing"><img class="img-responsive center-block" src="{% static "cso.svg" %}" /></p>
         </div>
-        <div class="col-md-4 col-md-pull-4">
+        <div class="col-md-7">
+            <p class="lead">
+                Organized by students in the college dance community for the college dance community, the Collegiate Salsa Open is the
+                annual salsa summit where salsa dancers from colleges and the salsa community all over California will come
+                together to celebrate the collegiate salsa scene through competition, performance, and all-night social dancing.
+            </p>
+            <p class="lead">
+                The first annual CSO will be held on <strong>April 25th, 2015</strong>.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-push-3">
             <div class="well">
-            {% if user and not user.is_anonymous %}
-                {# TODO: display something depending on ticket status #}
-                <p><h3>Only <span class="text-danger">120</span> tickets left!</h3></p>
-                <p><a href="{% url "registration_home" %}" class="btn btn-primary">Register Now</a></p>
-            {% else %}
-                <p><h3>Only <span class="text-danger">120</span> tickets left!</h3></p>
-                <p><a href="{% url "registration_home" %}" class="btn btn-primary">Register Now</a></p>
-            {% endif %}
+                {% include "cso/snippets/ticket_status.html" %}
             </div>
         </div>
-        <div class="col-md-4 text-left">
-            <ul class="list-unstyled">
-                <li><h3>{{ participations|length }} Participating Colleges:</h3></li>
-                {% for participation in participations %}
+    </div>
+    <h3>{{ participations|length }} Participating Colleges:</h3>
+    <div class="row">
+        {% for participation_col in participations|columns:2 %}
+        <div class="col-md-6 text-left">
+            <ul class="list-unstyled small{% if not forloop.last %} list-nomargin-md{% endif %}">
+                {% for participation in participation_col %}
                 <li><a href="{{ participation.college.listing_url }}">{{ participation.college.latin_dance_organization_name }}</a> ({{ participation.college.college_name }})</li>
                 {% endfor %}
             </ul>
         </div>
+        {% endfor %}
     </div>
-    <p class="lead">
-        Organized by students in the college dance community for the college dance community, the Collegiate Salsa Open is the
-        annual salsa summit where salsa dancers from colleges and the salsa community all over California will come
-        together to celebrate the collegiate salsa scene through competition, performance, and all-night social dancing.
-    </p>
-    <p class="lead">
-        The first annual CSO will be held on <strong>April 25th, 2015</strong>.
-    </p>
 </div>

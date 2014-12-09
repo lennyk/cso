@@ -1,0 +1,53 @@
+{#{% if user and not user.is_anonymous %}#}
+    {# TODO: display something depending on ticket status #}
+{#    <p><h3>Only <span class="text-danger">120</span> tickets left!</h3></p>#}
+{#    <p><a href="{% url "registration_home" %}" class="btn btn-primary">Register Now</a></p>#}
+{#{% else %}#}
+{#    <p><h3>Only <span class="text-danger">120</span> tickets left!</h3></p>#}
+{#    <p><a href="{% url "registration_home" %}" class="btn btn-primary">Register Now</a></p>#}
+{#{% endif %}#}
+
+
+<h3>
+{% if  ticket_college_presale.date > now %}
+    <a href="#dates">College ticket presales</a><br />
+    begin
+    {% if ticket_college_presale.days_until == 1 %}
+        tomorrow at {{ ticket_college_presale.date|time:"g:i A"}}<br />
+        in {{ ticket_college_presale.date|timeuntil}}
+    {% elif ticket_college_presale.days_until == 0 %}
+        today at {{ ticket_college_presale.date|time:"g:i A"}}<br />
+        in {{ ticket_college_presale.date|timeuntil}}
+    {% else %}
+        in {{ ticket_college_presale.date|timeuntil}}<br />
+        on {{ ticket_college_presale.date|date:"F jS, Y"}}<br />
+    {% endif %}
+{% elif ticket_public_sale.date > now %}
+    <a href="#dates">College ticket presales</a><br />
+    are open now!<br />
+{% endif %}
+</h3>
+
+<h3>
+{% if ticket_public_sale.date > now %}
+    <a href="#dates">Public ticket sales</a><br />
+    begin
+    {% if ticket_public_sale.days_until == 1 %}
+        tomorrow at {{ ticket_public_sale.date|time:"g:i A"}}<br />
+        in {{ ticket_public_sale.date|timeuntil}}
+    {% elif ticket_public_sale.days_until == 0 %}
+        today at {{ ticket_public_sale.date|time:"g:i A"}}<br />
+        in {{ ticket_public_sale.date|timeuntil}}
+    {% else %}
+        in {{ ticket_public_sale.date|timeuntil}}<br />
+        on {{ ticket_public_sale.date|date:"F jS, Y"}}<br />
+    {% endif %}
+{% else %}
+    <a href="#dates">Public ticket sales</a><br />
+    are open now!<br />
+{% endif %}
+</h3>
+
+{% if  ticket_college_presale.date < now or ticket_public_sale.date < now%}
+    <a href="{% url "registration_home" %}" class="btn btn-primary">Register Now</a><br />
+{% endif %}

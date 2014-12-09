@@ -235,6 +235,7 @@ class Base(Configuration):
 
     INSTALLED_APPS += (
         'compressor',
+        'columns',
         'bootstrap3',
     )
 
