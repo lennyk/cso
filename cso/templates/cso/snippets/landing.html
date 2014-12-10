@@ -28,16 +28,18 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-md-push-3">
-            <div class="well">
+              <div class="panel panel-default">
+                <div class="panel-body">
                 {% include "cso/snippets/ticket_status.html" %}
+                </div>
             </div>
         </div>
     </div>
-    <h3>{{ participations|length }} Participating Colleges:</h3>
+    <h2>{{ participations|length }} Participating Colleges:</h2>
     <div class="row">
         {% for participation_col in participations|columns:2 %}
         <div class="col-md-6 text-left">
-            <ul class="list-unstyled small{% if not forloop.last %} list-nomargin-md{% endif %}">
+            <ul class="list-unstyled{% if not forloop.last %} list-nomargin-md{% endif %}">
                 {% for participation in participation_col %}
                 <li><a href="{{ participation.college.listing_url }}">{{ participation.college.college_name  }}</a> ({{ participation.college.latin_dance_organization_name}})</li>
                 {% endfor %}

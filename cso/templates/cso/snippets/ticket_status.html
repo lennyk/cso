@@ -8,9 +8,9 @@
 {#{% endif %}#}
 
 
-<h3>
+<p class="lead">
 {% if  ticket_college_presale.date > now %}
-    <a href="#dates">College ticket presales</a><br />
+    <strong><a href="#dates">College ticket presales</a></strong><br />
     begin
     {% if ticket_college_presale.days_until == 1 %}
         tomorrow at {{ ticket_college_presale.date|time:"g:i A"}}<br />
@@ -26,11 +26,11 @@
     <a href="#dates">College ticket presales</a><br />
     are open now!<br />
 {% endif %}
-</h3>
+</p>
 
-<h3>
+<p class="lead">
 {% if ticket_public_sale.date > now %}
-    <a href="#dates">Public ticket sales</a><br />
+    <strong><a href="#dates">Public ticket sales</a></strong><br />
     begin
     {% if ticket_public_sale.days_until == 1 %}
         tomorrow at {{ ticket_public_sale.date|time:"g:i A"}}<br />
@@ -46,7 +46,7 @@
     <a href="#dates">Public ticket sales</a><br />
     are open now!<br />
 {% endif %}
-</h3>
+</p>
 
 {% if  ticket_college_presale.date < now or ticket_public_sale.date < now%}
     <a href="{% url "registration_home" %}" class="btn btn-primary">Register Now</a><br />
