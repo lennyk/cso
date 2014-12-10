@@ -1,8 +1,12 @@
+{% load columns %}
 <h2>Participating Colleges</h2>
 <p>
     Here is a list of all the colleges participating in the 2015 CSO!
 </p>
-{% for participation in participations %}
+<div class="row">
+{% for participation_col in participations|columns:2 %}
+<div class="col-md-6">
+{% for participation in participation_col %}
     <h3 class="anchor" id="{{ participation.college|slugify }}">
         {{ participation.college.latin_dance_organization_name }} – {{ participation.college.college_name }}
         <br class="hidden-md hidden-lg"/>
@@ -26,6 +30,9 @@
     {% endfor %}
     </ul>
 {% endfor %}
+</div>
+{% endfor %}
+</div>
 
 {#<p class="text-center">#}
 {#    <iframe class="" src="https://mapsengine.google.com/map/u/0/embed?mid=z5x4wQD2qiIA.kaT6c52JIseA" width="80%" height="480"></iframe>#}
