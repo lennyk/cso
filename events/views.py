@@ -9,6 +9,6 @@ def dates_page(request):
 
 
 def colleges_page(request):
-    participations = CollegeCSOParticipation.objects.filter(cso_year='2015', attending=True).order_by('college')
-    participations = sorted(participations, key=lambda p: p.college.latin_dance_organization_name.lower())
+    participations = CollegeCSOParticipation.objects.filter(cso_year='2015', attending=True)
+    participations = sorted(participations, key=lambda p: p.college.college_name.lower())
     return render(request, 'events/colleges.html', {'participations': participations})

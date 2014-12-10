@@ -8,10 +8,10 @@
 <div class="col-md-6">
 {% for participation in participation_col %}
     <h3 class="anchor" id="{{ participation.college|slugify }}">
-        {{ participation.college.latin_dance_organization_name }} – {{ participation.college.college_name }}
-        <br class="hidden-md hidden-lg"/>
-        <small>{{ participation.college.location }}</small>
+        {{ participation.college.college_name }}<br />
     </h3>
+    <h4>{{ participation.college.latin_dance_organization_name }}</h4>
+    <p><em>{{ participation.college.location }}</em></p>
     <ul class="list-inline">
     {% if participation.attending %}
         <li><span class="label label-success"><i class="fa fa-check"></i> In the house</span></li>

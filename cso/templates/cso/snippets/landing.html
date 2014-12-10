@@ -39,7 +39,7 @@
         <div class="col-md-6 text-left">
             <ul class="list-unstyled small{% if not forloop.last %} list-nomargin-md{% endif %}">
                 {% for participation in participation_col %}
-                <li><a href="{{ participation.college.listing_url }}">{{ participation.college.latin_dance_organization_name }}</a> ({{ participation.college.college_name }})</li>
+                <li><a href="{{ participation.college.listing_url }}">{{ participation.college.college_name  }}</a> ({{ participation.college.latin_dance_organization_name}})</li>
                 {% endfor %}
             </ul>
         </div>

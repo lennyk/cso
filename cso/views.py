@@ -4,8 +4,8 @@ from datetime import datetime
 
 
 def home_page(request):
-    participations = CollegeCSOParticipation.objects.filter(cso_year='2015', attending=True).order_by('college')
-    participations = sorted(participations, key=lambda p: p.college.latin_dance_organization_name.lower())
+    participations = CollegeCSOParticipation.objects.filter(cso_year='2015', attending=True)
+    participations = sorted(participations, key=lambda p: p.college.college_name.lower())
     active_dates = Date.objects.filter(is_active=True).order_by('date')
 
     now = datetime.now()
