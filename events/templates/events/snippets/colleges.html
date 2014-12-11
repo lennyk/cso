@@ -3,10 +3,9 @@
 <p>
     Here is a list of all the colleges participating in the 2015 CSO!
 </p>
-<div class="row">
-{% for participation_col in participations|columns:2 %}
-<div class="col-md-6">
-{% for participation in participation_col %}
+{% for participation in participations %}
+    {% if not forloop.counter|divisibleby:2 %}<div class="row">{% endif %}
+    <div class="col-md-6">
     <h3 class="anchor" id="{{ participation.college|slugify }}">
         {{ participation.college.college_name }}<br />
     </h3>
@@ -29,10 +28,9 @@
     <li><a href="{{ URL.url }}" target="_blank">{{ URL.get_url_type_display }}</a></li>
     {% endfor %}
     </ul>
+    </div>
+    {% if forloop.counter|divisibleby:2 or forloop.last %}</div>{% endif %}
 {% endfor %}
-</div>
-{% endfor %}
-</div>
 
 {#<p class="text-center">#}
 {#    <iframe class="" src="https://mapsengine.google.com/map/u/0/embed?mid=z5x4wQD2qiIA.kaT6c52JIseA" width="80%" height="480"></iframe>#}
