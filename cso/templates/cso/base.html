@@ -5,6 +5,7 @@
 {# TODO: registration #}
 {#{% load socialaccount %}#}
 {% load bootstrap3 %}
+{% load analytics %}
 <head lang="en">
 {% block css %}
 {% compress css %}
@@ -82,5 +83,6 @@
 {% endcompress %}
 {{ form.media.js }}
 {% endblock %}
+{% piwik_javascript %}
 </body>
 </html>

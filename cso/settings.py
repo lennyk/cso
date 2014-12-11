@@ -253,6 +253,12 @@ class Base(Configuration):
 
     MESSAGE_TAGS = {messages.ERROR: 'danger'}
 
+    # --------------------------------------------------
+    # analytics
+    # --------------------------------------------------
+
+    PIWIK_DOMAIN_PATH = 'analytics.latindancealliance.com/piwik'
+
 
 class Dev(Base):
     DEBUG = True
@@ -266,6 +272,8 @@ class Dev(Base):
 
 
 class Sandbox(Base):
+    PIWIK_SITE_ID = '4'
+
     COMPRESS_OFFLINE = True
 
     SOCIAL_AUTH_FACEBOOK_KEY = '1522982181246896'
@@ -274,6 +282,8 @@ class Sandbox(Base):
 
 
 class Live(Base):
+    PIWIK_SITE_ID = '2'
+
     COMPRESS_OFFLINE = True
 
     SOCIAL_AUTH_FACEBOOK_KEY = '1522387657973015'
