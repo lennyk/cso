@@ -9,11 +9,15 @@ $("a[href*='#']").on('click', function (e) {
         // store hash
         var hash = this.hash;
 
+        var distance = $(this.hash).offset().top - $('.parallax :first-child').offset().top;
+        var scrollTime = Math.abs($(this.hash).offset().top) / 2;
+
         // animate
         $('.parallax').animate({
-            scrollTop: $(this.hash).offset().top - $('.parallax :first-child').offset().top
-        }, 500, function () {
-            window.location.hash = hash;
+            scrollTop: distance
+        }, scrollTime, function () {
+            // TODO: re-implement this in a way that doesn't break parallax scrolling
+            //window.location.hash = hash;
         });
     }
 });
