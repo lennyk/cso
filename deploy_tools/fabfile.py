@@ -15,7 +15,8 @@ def deploy(target):
     _get_latest_source(source_folder, ssh_key)
     _update_settings(source_folder, env.host, target)
     _update_virtualenv(source_folder)
-    _install_node_tools(site_folder)
+    # TODO: this only installs bower. disabling because it reinstalls all node stuff every time and takes forever.
+    # _install_node_tools(site_folder)
     _install_bower_components(source_folder)
     _update_static_files(source_folder, target)
     _update_database(source_folder, target)
