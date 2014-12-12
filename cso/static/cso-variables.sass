@@ -1,4 +1,15 @@
 @import "../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets"
 @import "bootstrap-variables"
+@import "../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables"
 
 $full-navbar-height: $navbar-height + $navbar-margin-bottom
+
+// fix anchors using a :before for scroll adjustment
+// https://github.com/twbs/bootstrap/issues/1768#issuecomment-46519033
+@mixin anchor-below-navbar($spacing: $navbar-height)
+  &:before
+    display: block
+    content: "#"
+    visibility: hidden
+    margin-top: -$spacing
+    height: $spacing

@@ -22,14 +22,8 @@ html
 #login-spinner
   display: none
 
-// fix anchor tags
-// https://github.com/twbs/bootstrap/issues/1768#issuecomment-46519033
-.anchor:before
-  display: block
-  content: "#"
-  margin-top: -$full-navbar-height
-  height: $full-navbar-height
-  visibility: hidden
+.anchor
+  @include anchor-below-navbar
 
 @media (min-width: 992px)
   .vertical-align

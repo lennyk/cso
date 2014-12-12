@@ -1,11 +1,11 @@
 @import "cso-variables"
-@import "../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables"
 
 html, body, .parallax
   height: 100%
   margin: 0
   padding: 0
 
+// enable css parallax effect on medium size and up
 @media (min-width: $screen-md-min)
   html, body
     overflow: hidden
@@ -13,6 +13,8 @@ html, body, .parallax
 .parallax
   overflow-y: scroll
   overflow-x: hidden
+
+  // enable css parallax effect on medium size and up
   @media (min-width: $screen-md-min)
     perspective: 1px
     transform-style: preserve-3d
@@ -36,16 +38,32 @@ html, body, .parallax
 #event .schedule-heading
   margin-top: 0
 
+// add extra padding to top section
+@media (max-width: $screen-sm-min - 1)
+  section:first-of-type
+    padding-top: $navbar-height
+
 section
   min-height: 100%
   position: relative
-  padding-top: $full-navbar-height
-  padding-bottom: $full-navbar-height
+
+  // enable css parallax effect on medium size and up
   @media (min-width: $screen-md-min)
     overflow: hidden
     transform-style: inherit
 
-  &:before
+  @media (min-width: $screen-sm-min)
+    // vertical padding to complement the horizontal margin around containers on small size and up
+    padding-top: $full-navbar-height
+    padding-bottom: $full-navbar-height
+
+    > .container:last-of-type
+      -webkit-border-radius: 12px
+      -moz-border-radius: 12px
+      border-radius: 12px
+
+  // :after is used to display the background
+  &:after
     content: ""
     position: absolute
     top: 0
@@ -53,6 +71,8 @@ section
     left: 0
     right: 0
     z-index: -1
+
+    // enable css parallax effect on medium size and up
     @media (min-width: $screen-md-min)
       transform: translateZ(-1px) scale(2)
 
@@ -62,15 +82,13 @@ section
     background-size: cover
     background-position: center center
 
-  // set the opaque background of each container in each section
-  > .container:last-of-type
-    @media (min-width: $screen-sm-min)
-      -webkit-border-radius: 12px
-      -moz-border-radius: 12px
-      border-radius: 12px
+  @media (max-width: $screen-sm-min - 1)
+    @include anchor-below-navbar
+    &:after
+      top: $navbar-height
 
   @mixin section-background($image, $opacity)
-    &:before
+    &:after
       background-image: url($image)
     > .container:last-of-type
       background-color: rgba(255, 255, 255, $opacity)
