@@ -38,11 +38,6 @@ html, body, .parallax
 #event .schedule-heading
   margin-top: 0
 
-// add extra padding to top section
-@media (max-width: $screen-sm-min - 1)
-  section:first-of-type
-    padding-top: $navbar-height
-
 section
   min-height: 100%
   position: relative
@@ -82,8 +77,14 @@ section
     background-size: cover
     background-position: center center
 
+  // layout adjustments for when padding in all sections around containers goes away
   @media (max-width: $screen-sm-min - 1)
+    // add extra padding to top section
+    &:first-of-type
+      padding-top: $navbar-height
+    // adjust all section anchor position
     @include anchor-below-navbar
+    // shift background to compensate for extra padding
     &:after
       top: $navbar-height
 
