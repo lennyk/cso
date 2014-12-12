@@ -25,6 +25,9 @@ html, body, .parallax
   ul.list-nomargin-md
     margin-bottom: 0
 
+.site-title
+  font-size: floor(($font-size-base * 3.6))
+
 .cso-logo-landing
   max-width: 500px
   margin-left: auto
@@ -61,24 +64,28 @@ section
 
   // set the opaque background of each container in each section
   > .container:last-of-type
-    background: rgba(255, 255, 255, 0.55)
     @media (min-width: $screen-sm-min)
       -webkit-border-radius: 12px
       -moz-border-radius: 12px
       border-radius: 12px
 
-  &#home:before
-    background-image: url('/static/concrete.jpg')
+  @mixin section-background($image, $opacity)
+    &:before
+      background-image: url($image)
+    > .container:last-of-type
+      background-color: rgba(255, 255, 255, $opacity)
 
-  &#event:before
-    background-image: url('/static/social_dance_1.jpg')
+  &#home
+    @include section-background('/static/concrete.jpg', 0.5)
 
-  &#colleges:before
-    background-image: url('/static/woodfloor.jpg')
+  &#event
+    @include section-background('/static/social_dance_1.jpg', 0.8)
+
+  &#colleges
+    @include section-background('/static/woodfloor.jpg', 0.5)
 
   &#about
-    &:before
-      background-image: url('/static/rusty_gears.jpg')
+    @include section-background('/static/rusty_gears.jpg', 0.8)
 
     ul.fa-ul > li
       margin: 1em 0
