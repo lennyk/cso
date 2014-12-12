@@ -14,7 +14,7 @@ $('#logout-link').click(function () {
 $('.navbar a').on('click', function () {
     if ($(this).attr('href') !== '#') {
         var toggle = $('.navbar-toggle');
-        if (toggle.is(':visible')) {
+        if (toggle.is(':visible') && $('.navbar-collapse').is(':visible')) {
             toggle.click();
         }
     }
