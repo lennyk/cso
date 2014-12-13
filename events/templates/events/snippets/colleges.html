@@ -7,7 +7,7 @@
     {% if not forloop.counter|divisibleby:2 %}<div class="row">{% endif %}
     <div class="col-md-6">
     <h3 class="anchor" id="{{ participation.college|slugify }}">
-        {{ participation.college.college_name }}<br />
+        {{ participation.college.college_name }}
     </h3>
     <h4>{{ participation.college.latin_dance_organization_name }}</h4>
     <p><em>{{ participation.college.location }}</em></p>
