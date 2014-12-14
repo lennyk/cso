@@ -253,12 +253,6 @@ class Base(Configuration):
 
     MESSAGE_TAGS = {messages.ERROR: 'danger'}
 
-    # --------------------------------------------------
-    # analytics
-    # --------------------------------------------------
-
-    PIWIK_DOMAIN_PATH = 'analytics.latindancealliance.com/piwik'
-
 
 class Dev(Base):
     DEBUG = True
@@ -273,6 +267,7 @@ class Dev(Base):
 
 class Sandbox(Base):
     PIWIK_SITE_ID = '4'
+    PIWIK_DOMAIN_PATH = 'sandbox.cso.dance/analytics/piwik'
 
     COMPRESS_OFFLINE = True
 
@@ -283,6 +278,7 @@ class Sandbox(Base):
 
 class Live(Base):
     PIWIK_SITE_ID = '2'
+    PIWIK_DOMAIN_PATH = 'cso.dance/analytics/piwik'
 
     COMPRESS_OFFLINE = True
 

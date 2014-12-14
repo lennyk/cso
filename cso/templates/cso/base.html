@@ -79,9 +79,9 @@
 <script src="{% static 'jquery.js' %}" type="text/javascript" charset="utf-8"></script>
 <script src="{% static 'javascripts/bootstrap.js' %}" type="text/javascript" charset="utf-8"></script>
 <script src="{% static 'base.js' %}" type="text/javascript" charset="utf-8"></script>
+{% piwik_javascript %}
 {% endcompress %}
 {{ form.media.js }}
 {% endblock %}
-{% piwik_javascript %}
 </body>
 </html>
