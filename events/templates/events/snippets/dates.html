@@ -1,5 +1,10 @@
 <h2 id="dates" class="anchor">Dates</h2>
+<dl class="dl-horizontal">
 {% for date in active_dates %}
-<h3>{{ date.title }} - {{ date.date|date:"F jS, Y" }}</h3>
-{{ date.information|linebreaks }}
+<dt>{{ date.date|date:"F jS, Y" }}</dt>
+<dd>
+    <h4 class="schedule-heading">{{ date.title }}</h4>
+    {{ date.information|linebreaks }}
+</dd>
 {% endfor %}
+</dl>
