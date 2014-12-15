@@ -2,25 +2,51 @@
   {
     "model": "events.date",
     "fields": {
+      "date": "2015-01-15",
+      "title": "College Ticket Presales Open",
       "is_active": true,
-      "date": "2014-10-18",
-      "information": "While the CSO is open to the public, the purpose of the event is to support the collegiate Latin dance community. Due to our limited venue size tickets will sell out. To ensure college clubs and teams are able to buy tickets we are having a student ticket pre-sale. Students and active members of clubs and teams will be able to purchase their tickets early during this presale.",
-      "title": "College Ticket Presale",
-      "time": null,
-      "description": "ticket sales open to students and active members of college clubs teams"
+      "time": "10:00:00"
     },
     "pk": 1
   },
   {
     "model": "events.date",
     "fields": {
-      "is_active": true,
-      "date": "2015-01-15",
-      "information": "After the college ticket presale we will be opening ticket sales to the general public. Due to our limited venue size tickets will sell out so make sure to buy your ticket early!",
+      "date": "2015-02-01",
       "title": "Public Ticket Sales Open",
-      "time": null,
-      "description": "ticket sales open to the general public"
+      "is_active": true,
+      "time": "10:00:00"
     },
     "pk": 2
+  },
+  {
+    "model": "events.date",
+    "fields": {
+      "date": "2015-03-15",
+      "title": "Team Registrations Due",
+      "is_active": true,
+      "time": null
+    },
+    "pk": 3
+  },
+  {
+    "model": "events.date",
+    "fields": {
+      "date": "2015-04-18",
+      "title": "Last Day to Refund Tickets",
+      "is_active": true,
+      "time": null
+    },
+    "pk": 4
+  },
+  {
+    "model": "events.date",
+    "fields": {
+      "date": "2015-04-25",
+      "title": "The CSO",
+      "is_active": true,
+      "time": null
+    },
+    "pk": 5
   }
 ]
