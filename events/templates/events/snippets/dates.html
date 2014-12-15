@@ -2,9 +2,6 @@
 <dl class="dl-horizontal">
 {% for date in active_dates %}
 <dt>{{ date.date|date:"F jS, Y" }}</dt>
-<dd>
-    <h4 class="schedule-heading">{{ date.title }}</h4>
-    {{ date.information|linebreaks }}
-</dd>
+<dd>{{ date.title }}</dd>
 {% endfor %}
 </dl>
