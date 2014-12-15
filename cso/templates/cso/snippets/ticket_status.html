@@ -15,11 +15,11 @@
         in {{ ticket_college_presale.date|timeuntil}}
     {% else %}
         in {{ ticket_college_presale.date|timeuntil}}<br />
-        on {{ ticket_college_presale.date|date:"F jS, Y"}}<br />
+        on {{ ticket_college_presale.date|date:"F jS, Y"}}
     {% endif %}
 {% elif ticket_public_sale.date > now %}
     <a href="#tickets">College ticket presales</a><br />
-    are open now!<br />
+    are open now!
 {% endif %}
 </p>
 
@@ -35,11 +35,11 @@
         in {{ ticket_public_sale.date|timeuntil}}
     {% else %}
         in {{ ticket_public_sale.date|timeuntil}}<br />
-        on {{ ticket_public_sale.date|date:"F jS, Y"}}<br />
+        on {{ ticket_public_sale.date|date:"F jS, Y"}}
     {% endif %}
 {% else %}
     <a href="#tickets">Public ticket sales</a><br />
-    are open now!<br />
+    are open now!
 {% endif %}
 </p>
 
