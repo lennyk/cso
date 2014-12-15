@@ -5,7 +5,7 @@
 
 <p class="lead">
 {% if  ticket_college_presale.date > now %}
-    <strong><a href="#dates">College ticket presales</a></strong><br />
+    <strong><a href="#tickets">College ticket presales</a></strong><br />
     begin
     {% if ticket_college_presale.days_until == 1 %}
         tomorrow at {{ ticket_college_presale.date|time:"g:i A"}}<br />
@@ -18,14 +18,14 @@
         on {{ ticket_college_presale.date|date:"F jS, Y"}}<br />
     {% endif %}
 {% elif ticket_public_sale.date > now %}
-    <a href="#dates">College ticket presales</a><br />
+    <a href="#tickets">College ticket presales</a><br />
     are open now!<br />
 {% endif %}
 </p>
 
 <p class="lead">
 {% if ticket_public_sale.date > now %}
-    <strong><a href="#dates">Public ticket sales</a></strong><br />
+    <strong><a href="#tickets">Public ticket sales</a></strong><br />
     begin
     {% if ticket_public_sale.days_until == 1 %}
         tomorrow at {{ ticket_public_sale.date|time:"g:i A"}}<br />
@@ -38,7 +38,7 @@
         on {{ ticket_public_sale.date|date:"F jS, Y"}}<br />
     {% endif %}
 {% else %}
-    <a href="#dates">Public ticket sales</a><br />
+    <a href="#tickets">Public ticket sales</a><br />
     are open now!<br />
 {% endif %}
 </p>
