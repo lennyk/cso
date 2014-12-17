@@ -10,7 +10,7 @@ $("a[href*='#']").on('click', function (e) {
         var hash = this.hash;
 
         var distance = $(this.hash).offset().top - $('.parallax :first-child').offset().top;
-        var scrollTime = Math.abs($(this.hash).offset().top) / 2;
+        var scrollTime = Math.min(Math.abs($(this.hash).offset().top) / 2, 1200);
 
         // animate
         $('.parallax').animate({
