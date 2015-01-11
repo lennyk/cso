@@ -68,8 +68,7 @@ class Base(Configuration):
     INSTALLED_APPS += (
         'cso',
         'events',
-        # TODO: registration
-        # 'registration',
+        'registration',
     )
 
     AUTHENTICATION_BACKENDS = (
@@ -199,8 +198,6 @@ class Base(Configuration):
     # allauth
     # --------------------------------------------------
 
-    # TODO: registration
-    """
     INSTALLED_APPS += (
         'allauth',
         'allauth.account',
@@ -231,7 +228,6 @@ class Base(Configuration):
     SOCIALACCOUNT_EMAIL_VERIFICATION = None
     SOCIALACCOUNT_PROVIDERS = {'facebook': {'METHOD': 'oauth2', 'VERIFIED_EMAIL': True}}
     SOCIALACCOUNT_ADAPTER = 'cso.adapter.CSOSocialAccountAdapter'
-    """
 
     # --------------------------------------------------
     # front end
