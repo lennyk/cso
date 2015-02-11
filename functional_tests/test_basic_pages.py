@@ -11,26 +11,32 @@ class HomePageUp(FunctionalTest):
         self.assertIn('Collegiate Salsa Open', self.browser.title)
 
         # Juan sees there is plenty of information about CSO in a menu with various links.
-        pages = ['Home', 'About', 'Dates', 'Colleges']
+        pages = ['Home', 'Event Information', 'Colleges', 'About']
         nav_links = self.browser.find_elements_by_css_selector('ul.nav > li > a')
         for page in pages:
             print(['a link: {}'.format(nav_link.text) for nav_link in nav_links])
             self.assertIn(page.lower(), [nav_link.text.lower() for nav_link in nav_links])
 
-        # Juan clicks the dropdown navigation labeled About
+        # Juan can click the navigation link labeled Event Information
+        self.browser.find_element_by_link_text('Event Information').click()
+
+        # Juan can click the navigation link labeled Colleges
+        self.browser.find_element_by_link_text('Colleges').click()
+
+        # Juan can click the navigation link labeled About
         self.browser.find_element_by_link_text('About').click()
 
-        # Juan clicks the link for the The LDA page and is taken to a new page.
-        self.click_link_assert_new_page('The LDA')
+        # Juan can click the navigation link labeled Home
+        self.browser.find_element_by_link_text('Home').click()
 
-        # Juan clicks the dropdown navigation labeled About
-        self.browser.find_element_by_link_text('About').click()
+        # Juan sees the Home section
+        self.assertTrue(self.browser.find_element_by_id('home').is_displayed())
 
-        # Juan clicks the link for the Constitution page and is taken to a new page.
-        self.click_link_assert_new_page('Constitution')
+        # Juan sees the Event Information section
+        self.assertTrue(self.browser.find_element_by_id('event').is_displayed())
 
-        # Juan clicks the link for the Dates page and is taken to a new page.
-        self.click_link_assert_new_page('Dates')
+        # Juan sees the Colleges section
+        self.assertTrue(self.browser.find_element_by_id('colleges').is_displayed())
 
-        # Juan clicks the link for the Colleges page and is taken to a new page.
-        self.click_link_assert_new_page('Colleges')
+        # Juan sees the About section
+        self.assertTrue(self.browser.find_element_by_id('about').is_displayed())
