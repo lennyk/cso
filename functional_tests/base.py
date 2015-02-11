@@ -37,3 +37,6 @@ class FunctionalTest(StaticLiveServerTestCase):
         new_page = self.browser.page_source
         self.assertHTMLNotEqual(old_page, new_page,
                                 'Clicking the {} link has not sent the user to a new page.'.format(link))
+
+    def switch_to_newest_window(self):
+        self.browser.switch_to.window(self.browser.window_handles[-1])

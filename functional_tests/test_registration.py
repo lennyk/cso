@@ -1,13 +1,13 @@
-from django.core.exceptions import ImproperlyConfigured
-from .base import FunctionalTest
-from django.contrib.auth.models import User
-from django.utils.http import urlencode
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
 import os
 import sys
-from unittest import skip
+
+from django.core.exceptions import ImproperlyConfigured
+from django.utils.http import urlencode
+from selenium.webdriver.support.ui import Select
+
+from .base import FunctionalTest
+from cso.models import CSOUser
+
 
 if os.getenv('DJANGO_CONFIGURATION') == 'Live' or any('liveserver=cso.dance' in arg for arg in sys.argv):
     FACEBOOK_EMAIL_RICHARD = 'efrujdt_alisonsen_1410143138@tfbnw.net'
@@ -41,46 +41,47 @@ SUPERUSER_TEST_PASSWORD = 'djJits6uT9vYvL'
 
 
 class HomePageUp(FunctionalTest):
-
     def login_with_facebook(self, email, password):
         # User goes to the CSO homepage
         self.browser.get(self.server_url)
 
-        # User sees a login link and clicks it
-        self.click_link_assert_new_page('Login')
-
-        # User sees a login popup open
-        self.see_login_popup_open()
+        # User sees a Registration link and clicks it
+        self.click_link_assert_new_page('Registration')
 
         # User selects the Facebook option
-        self.browser.find_element_by_css_selector('#loginModal a.btn-facebook').click()
+        self.browser.find_element_by_css_selector('#login-buttons a.btn-facebook').click()
+
+        # Selenium switches to the newest window
+        self.switch_to_newest_window()
 
         # User logs in with Facebook
         self.browser.find_element_by_id('email').send_keys(email)
         self.browser.find_element_by_id('pass').send_keys(password)
         self.browser.find_element_by_css_selector('label#loginbutton > input[type="submit"]').click()
 
-        # User is on registration portal
-        # TODO: check for registration panel
+        # Selenium switches to the newest window
+        self.switch_to_newest_window()
 
-    def logout(self, name):
-        self.browser.find_element_by_partial_link_text(name).click()
-        # TODO: unify "Logout" / "Log out"
-        self.browser.find_element_by_xpath('//a[text()="Logout"] | //a[text()="Log out"]').click()
+        body_text = self.browser.find_element_by_tag_name('body').text
+        self.assertTrue('Sign Up' in body_text)
+
+    def register_new_login(self, dance_orientation='Lead'):
+        Select(self.browser.find_element_by_id('id_partner_type')).select_by_visible_text(dance_orientation)
+        self.browser.find_element_by_css_selector('form#signup_form button[type="submit"]').click()
+
+    def logout(self):
+        self.browser.find_element_by_link_text('Logout').click()
+        self.assertNotIn('Logout', self.browser.find_element_by_id('cso-navbar').text)
+        self.assertIn('You have signed out.', self.browser.find_element_by_tag_name('body').text)
 
     def logout_of_facebook(self, email):
-        user = User.objects.filter(email=email)[0]
+        user = CSOUser.objects.filter(email=email)[0]
         social = user.social_auth.get(provider='facebook')
         parameters = {'access_token': social.extra_data['access_token'], 'confirm': 1, 'next': self.server_url}
         logout_url = "https://www.facebook.com/logout.php?{}".format(urlencode(parameters))
         self.browser.get(logout_url)
 
-    def see_login_popup_open(self):
-        WebDriverWait(self.browser, 10).until(ec.visibility_of_element_located((By.ID, 'loginModal')))
-        login_popup_header = self.browser.find_element_by_css_selector('#loginModalLabel').text
-        self.assertIn('Login', login_popup_header)
-
-    def test_event_management_login_functionality(self):
+    def test_user_registration_and_login(self):
         # Richard logs in with Facebook
         self.login_with_facebook(FACEBOOK_EMAIL_RICHARD, FACEBOOK_PASSWORD_RICHARD)
 
@@ -88,33 +89,29 @@ class HomePageUp(FunctionalTest):
         links = self.browser.find_elements_by_name('a')
         self.assertNotIn('Event Management', links)
 
-        # Richard logs out
-        self.browser.find_element_by_link_text(FACEBOOK_NAME_FIRST_RICHARD).click()
-        self.browser.find_element_by_link_text('Logout').click()
+        # Richard completes his registration
+        self.register_new_login()
 
-        # Richard logs out of Facebook
-        self.logout_of_facebook(FACEBOOK_EMAIL_RICHARD)
+        # Richard is on the Registration page
+        self.assertIn('Registration Details', self.browser.find_element_by_tag_name('body').text)
+
+        # Richard logs out
+        self.logout()
 
         # Richard is on the homepage
-        self.assertIn('The CSO', self.browser.find_element_by_tag_name('body').text)
+        self.assertIn('The Collegiate Salsa Open', self.browser.find_element_by_tag_name('body').text)
 
-        # Richard MAGICALLY becomes staff
-        richard = User.objects.filter(email=FACEBOOK_EMAIL_RICHARD)[0]
-        richard.is_staff = True
-        richard.save()
-
-        # Richard logs in with Facebook
-        self.login_with_facebook(FACEBOOK_EMAIL_RICHARD, FACEBOOK_PASSWORD_RICHARD)
-
-        # Richard clicks the Event Management link
-        self.browser.find_element_by_link_text('Event Management').click()
-
-        # Richard sees the Event Management index
-        self.assertIn('Django administration', self.browser.title)
-
-        # Richard logs out
-        self.logout(FACEBOOK_NAME_FIRST_RICHARD)
-        # TODO: test this goes directly to the homepage, not the admin logout page
-
-        # Richard logs out of Facebook
-        self.logout_of_facebook(FACEBOOK_EMAIL_RICHARD)
+        # TODO: either re-implement the admin link for staff or remove this commented out block
+        # # Richard MAGICALLY becomes staff
+        # richard = CSOUser.objects.filter(email=FACEBOOK_EMAIL_RICHARD)[0]
+        # richard.is_staff = True
+        # richard.save()
+        #
+        # # Richard logs in with Facebook
+        # self.login_with_facebook(FACEBOOK_EMAIL_RICHARD, FACEBOOK_PASSWORD_RICHARD)
+        #
+        # # Richard clicks the Event Management link
+        # self.browser.find_element_by_link_text('Event Management').click()
+        #
+        # # Richard sees the Event Management index
+        # self.assertIn('Django administration', self.browser.title)
