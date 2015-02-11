@@ -9,21 +9,21 @@ import os
 import sys
 from unittest import skip
 
-if os.getenv('CSO_ENVIRONMENT') == 'live' or any('liveserver=cso.dance' in arg for arg in sys.argv):
+if os.getenv('DJANGO_CONFIGURATION') == 'Live' or any('liveserver=cso.dance' in arg for arg in sys.argv):
     FACEBOOK_EMAIL_RICHARD = 'efrujdt_alisonsen_1410143138@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
     FACEBOOK_NAME_FIRST_RICHARD = 'Richard'
     FACEBOOK_EMAIL_JAMES = 'pgtlnhq_qinstein_1410143134@tfbnw.net'
     FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
     FACEBOOK_NAME_FIRST_JAMES = 'James'
-elif os.getenv('CSO_ENVIRONMENT') == 'sandbox' or any('liveserver=sandbox.cso.dance' in arg for arg in sys.argv):
+elif os.getenv('DJANGO_CONFIGURATION') == 'Sandbox' or any('liveserver=sandbox.cso.dance' in arg for arg in sys.argv):
     FACEBOOK_EMAIL_RICHARD = 'temhdjd_okelolasen_1410208049@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
     FACEBOOK_NAME_FIRST_RICHARD = 'Will'
     FACEBOOK_EMAIL_JAMES = 'rpitute_mcdonaldstein_1410208046@tfbnw.net'
     FACEBOOK_PASSWORD_JAMES = 'Dcwg96XAiwZyPq'
     FACEBOOK_NAME_FIRST_JAMES = 'Betty'
-elif os.getenv('CSO_ENVIRONMENT') == 'dev':
+elif os.getenv('DJANGO_CONFIGURATION') == 'Dev':
     FACEBOOK_EMAIL_RICHARD = 'dkxdaoe_seligsteinwitz_1410208365@tfbnw.net'
     FACEBOOK_PASSWORD_RICHARD = 'HkAyTG9oi6XWii'
     FACEBOOK_NAME_FIRST_RICHARD = 'Will'
@@ -32,7 +32,7 @@ elif os.getenv('CSO_ENVIRONMENT') == 'dev':
     FACEBOOK_NAME_FIRST_JAMES = 'Barbara'
 else:
     raise ImproperlyConfigured(
-        'You must properly configure the CSO_ENVIRONMENT envvar. Value: "{}"'.format(os.getenv('CSO_ENVIRONMENT')))
+        'You must properly configure the DJANGO_CONFIGURATION envvar. Value: "{}"'.format(os.getenv('DJANGO_CONFIGURATION')))
 
 SUPERUSER_TEST_NAME = 'fernando-YCWiGnRd9tE8tj'
 SUPERUSER_TEST_PASSWORD = 'djJits6uT9vYvL'
