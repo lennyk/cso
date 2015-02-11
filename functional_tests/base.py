@@ -1,6 +1,8 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import sys
+import os
 from selenium import webdriver
+from django.core import management
 
 
 class FunctionalTest(StaticLiveServerTestCase):
@@ -12,6 +14,10 @@ class FunctionalTest(StaticLiveServerTestCase):
                 return
         super().setUpClass()
         cls.server_url = cls.live_server_url
+        management.call_command('loaddata', 'fixtures/common/sites.json')
+        management.call_command('loaddata', 'fixtures/initial_data-{}.json'.format(os.getenv('DJANGO_CONFIGURATION').lower()))
+        management.call_command('loaddata', 'fixtures/extras/colleges.json')
+        management.call_command('loaddata', 'fixtures/extras/dates.json')
 
     @classmethod
     def tearDownClass(cls):
