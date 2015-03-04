@@ -44,7 +44,7 @@ class Base(Configuration):
     )
 
     MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
+    MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, './media'))
 
     ROOT_URLCONF = 'cso.urls'
 
