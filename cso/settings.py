@@ -29,7 +29,7 @@ class Base(Configuration):
     )
 
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+    STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, './static'))
     STATICFILES_DIRS = (
         os.path.abspath(os.path.join(BASE_DIR, './bower_components/bootstrap-sass-official/assets')),
         os.path.abspath(os.path.join(BASE_DIR, './bower_components/bootstrap-social')),
