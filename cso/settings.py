@@ -2,6 +2,8 @@ import os
 
 from configurations import Configuration
 
+import dj_database_url
+
 
 class Base(Configuration):
     # --------------------------------------------------
@@ -263,6 +265,8 @@ class Dev(Base):
 
 
 class Live(Base):
+    DATABASES = {'default': dj_database_url.config()}
+
     PIWIK_SITE_ID = '2'
     PIWIK_DOMAIN_PATH = 'cso.dance/analytics/piwik'
 
