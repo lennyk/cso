@@ -272,6 +272,8 @@ class Sandbox(Base):
     SOCIAL_AUTH_FACEBOOK_SECRET = 'cf50b5154294cda7bd6e1a43f8a4104f'
     # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
 
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+
     LOGGING = Base.LOGGING
     LOGGING['handlers'] = {
         'console': {
