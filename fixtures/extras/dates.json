@@ -2,20 +2,20 @@
   {
     "model": "events.date",
     "fields": {
-      "date": "2015-01-15",
+      "date": "2015-03-05",
       "title": "College Ticket Presales Open",
       "is_active": true,
-      "time": "10:00:00"
+      "time": "22:00:00"
     },
     "pk": 1
   },
   {
     "model": "events.date",
     "fields": {
-      "date": "2015-02-01",
+      "date": "2015-03-12",
       "title": "Public Ticket Sales Open",
       "is_active": true,
-      "time": "10:00:00"
+      "time": "22:00:00"
     },
     "pk": 2
   },
