@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+indent() {
+    RE="s/^/       /"
+    [ $(uname) == "Darwin" ] && sed -l "$RE" || sed -u "$RE"
+}
+
+MANAGE_FILE=$(find . -maxdepth 3 -type f -name 'manage.py' | head -1)
+MANAGE_FILE=${MANAGE_FILE:2}
+DJANGO_ENV=$(echo $DJANGO_CONFIGURATION | tr '[:upper:]' '[:lower:]')
+
+echo "-----> Loading Fixtures"
+python $MANAGE_FILE loaddata fixtures/common/*.json fixtures/initial_data-${DJANGO_ENV}.json  2>&1 | indent
+
+
+echo

@@ -21,6 +21,12 @@ if [ -f bin/install_nodejs ]; then
     fi
 fi
 
+if [ -f bin/run_fixtures ]; then
+    echo "-----> Running run_fixtures"
+    chmod +x bin/run_fixtures
+    bin/run_fixtures
+fi
+
 if [ -f bin/run_collectstatic ]; then
     echo "-----> Running run_collectstatic"
     chmod +x bin/run_collectstatic
