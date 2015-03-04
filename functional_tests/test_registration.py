@@ -1,6 +1,7 @@
 import os
 import sys
 
+from allauth.socialaccount.models import SocialToken
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.http import urlencode
 from selenium.webdriver.support.ui import Select
@@ -34,13 +35,16 @@ else:
     raise ImproperlyConfigured(
         'You must properly configure the DJANGO_CONFIGURATION envvar. Value: "{}"'.format(os.getenv('DJANGO_CONFIGURATION')))
 
+EDU_EMAIL_RICHARD = 'richard@usc.edu'
+EDU_EMAIL_JAMES = 'james@usc.edu'
+
 SUPERUSER_TEST_NAME = 'fernando-YCWiGnRd9tE8tj'
 SUPERUSER_TEST_PASSWORD = 'djJits6uT9vYvL'
 # User.objects.create_superuser(SUPERUSER_TEST_NAME, '', SUPERUSER_TEST_PASSWORD)
 # User.objects.filter(username=SUPERUSER_TEST_NAME).delete()
 
 
-class HomePageUp(FunctionalTest):
+class UserRegistration(FunctionalTest):
     def login_with_facebook(self, email, password):
         # User goes to the CSO homepage
         self.browser.get(self.server_url)
@@ -76,8 +80,8 @@ class HomePageUp(FunctionalTest):
 
     def logout_of_facebook(self, email):
         user = CSOUser.objects.filter(email=email)[0]
-        social = user.social_auth.get(provider='facebook')
-        parameters = {'access_token': social.extra_data['access_token'], 'confirm': 1, 'next': self.server_url}
+        token = SocialToken.objects.filter(account__user=user, account__provider='facebook')[0].token
+        parameters = {'access_token': token, 'confirm': 1, 'next': self.server_url}
         logout_url = "https://www.facebook.com/logout.php?{}".format(urlencode(parameters))
         self.browser.get(logout_url)
 
@@ -100,6 +104,76 @@ class HomePageUp(FunctionalTest):
 
         # Richard is on the homepage
         self.assertIn('The Collegiate Salsa Open', self.browser.find_element_by_tag_name('body').text)
+
+    def test_registration_form_validates_input(self):
+        # Richard logs in with Facebook
+        self.login_with_facebook(FACEBOOK_EMAIL_RICHARD, FACEBOOK_PASSWORD_RICHARD)
+
+        # Richard tries to submit the form without selecting anything
+        self.browser.find_element_by_css_selector('form#signup_form button[type="submit"]').click()
+
+        # Richard sees the form did not submit and he is still on the Sign Up page
+        body_text = self.browser.find_element_by_tag_name('body').text
+        self.assertTrue('Sign Up' in body_text)
+
+        # Richard indicates he is a lead & college affiliated and tries to submit the form
+        Select(self.browser.find_element_by_id('id_partner_type')).select_by_visible_text('Lead')
+        self.browser.find_element_by_id('id_college_affiliated_1').click()
+        self.browser.find_element_by_css_selector('form#signup_form button[type="submit"]').click()
+
+        # Richard sees the form did not submit and he is still on the Sign Up page
+        body_text = self.browser.find_element_by_tag_name('body').text
+        self.assertTrue('Sign Up' in body_text)
+
+        # Richard selects a college and submits the form
+        Select(self.browser.find_element_by_id('id_college_group')).select_by_visible_text(
+            'CPSalsa @ Cal Poly San Luis Obispo')
+        self.browser.find_element_by_css_selector('form#signup_form button[type="submit"]').click()
+
+        # Richard sees the form did not submit and he is still on the Sign Up page
+        body_text = self.browser.find_element_by_tag_name('body').text
+        self.assertTrue('Sign Up' in body_text)
+
+        # Richard enters a non-edu email to the college email input and submits the form
+        self.browser.find_element_by_id('id_edu_email').send_keys(FACEBOOK_EMAIL_RICHARD)
+
+        # Richard sees the form did not submit and he is still on the Sign Up page
+        body_text = self.browser.find_element_by_tag_name('body').text
+        self.assertTrue('Sign Up' in body_text)
+
+        # Richard realizes his mistake and clears the college email input
+        self.browser.find_element_by_id('id_edu_email').clear()
+
+        # Richard enters an edu email to the college email input and submits the form
+        self.browser.find_element_by_id('id_edu_email').send_keys(EDU_EMAIL_RICHARD)
+        self.browser.find_element_by_css_selector('form#signup_form button[type="submit"]').click()
+
+        # Richard sees the form submitted and he is now on the Registration page
+        body_text = self.browser.find_element_by_tag_name('body').text
+        self.assertTrue('Registration Details' in body_text)
+
+        # Richard logs out of the CSO and Facebook
+        self.logout()
+        self.logout_of_facebook(FACEBOOK_EMAIL_RICHARD)
+
+        # James logs in with Facebook
+        self.login_with_facebook(FACEBOOK_EMAIL_JAMES, FACEBOOK_PASSWORD_JAMES)
+
+        # James tries to submit the form without selecting anything
+        self.browser.find_element_by_css_selector('form#signup_form button[type="submit"]').click()
+
+        # James sees the form did not submit and he is still on the Sign Up page
+        body_text = self.browser.find_element_by_tag_name('body').text
+        self.assertTrue('Sign Up' in body_text)
+
+        # James indicates he is a lead & not college affiliated and submits the form
+        Select(self.browser.find_element_by_id('id_partner_type')).select_by_visible_text('Lead')
+        self.browser.find_element_by_id('id_college_affiliated_0').click()
+        self.browser.find_element_by_css_selector('form#signup_form button[type="submit"]').click()
+
+        # James sees the form submitted and he is now on the Registration page
+        body_text = self.browser.find_element_by_tag_name('body').text
+        self.assertTrue('Registration Details' in body_text)
 
         # TODO: either re-implement the admin link for staff or remove this commented out block
         # # Richard MAGICALLY becomes staff

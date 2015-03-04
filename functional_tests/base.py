@@ -14,10 +14,6 @@ class FunctionalTest(StaticLiveServerTestCase):
                 return
         super().setUpClass()
         cls.server_url = cls.live_server_url
-        management.call_command('loaddata', 'fixtures/common/sites.json')
-        management.call_command('loaddata', 'fixtures/initial_data-{}.json'.format(os.getenv('DJANGO_CONFIGURATION').lower()))
-        management.call_command('loaddata', 'fixtures/extras/colleges.json')
-        management.call_command('loaddata', 'fixtures/extras/dates.json')
 
     @classmethod
     def tearDownClass(cls):
@@ -25,6 +21,10 @@ class FunctionalTest(StaticLiveServerTestCase):
             super().tearDownClass()
 
     def setUp(self):
+        management.call_command('loaddata', 'fixtures/common/sites.json')
+        management.call_command('loaddata', 'fixtures/initial_data-{}.json'.format(os.getenv('DJANGO_CONFIGURATION').lower()))
+        management.call_command('loaddata', 'fixtures/extras/colleges.json')
+        management.call_command('loaddata', 'fixtures/extras/dates.json')
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
 
