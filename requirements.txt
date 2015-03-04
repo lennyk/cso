@@ -10,4 +10,3 @@ django-bootstrap3==5.0.3
 django-columns==0.1.0
 gunicorn==19.2.1
 psycopg2
-whitenoise==1.0.6

@@ -43,8 +43,6 @@ class Base(Configuration):
         'compressor.finders.CompressorFinder',
     )
 
-    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, './media'))
 
