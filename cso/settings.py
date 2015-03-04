@@ -302,3 +302,5 @@ class Sandbox(Live):
     PIWIK_DOMAIN_PATH = 'sandbox.cso.dance/analytics/piwik'
 
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+
+    COMPRESS_ENABLED = False
