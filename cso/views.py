@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from events.models import CollegeCSOParticipation, Date
 from datetime import datetime
+
+from django.shortcuts import render
+
+from events.models import CollegeCSOParticipation, Date
 
 
 def home_page(request):
@@ -10,21 +12,23 @@ def home_page(request):
 
     now = datetime.now()
     ticket_college_presale = {
-        'date': datetime(2015, 1, 15, 10, 0, 0),
+        # hardcoded id from fixture
+        'date': Date.objects.get(id=1).date
     }
-    ticket_college_presale['days_until'] = (ticket_college_presale.get('date').date() - now.date()).days
+    ticket_college_presale['days_until'] = (ticket_college_presale.get('date') - now.date()).days
 
     ticket_public_sale = {
-        'date': datetime(2015, 2, 1, 10, 0, 0),
+        # hardcoded id from fixture
+        'date': Date.objects.get(id=2).date
     }
-    ticket_public_sale['days_until'] = (ticket_public_sale.get('date').date() - now.date()).days
+    ticket_public_sale['days_until'] = (ticket_public_sale.get('date') - now.date()).days
 
     return render(request, 'cso/home.html', {'user': request.user,
                                              'participations': participations,
                                              'active_dates': active_dates,
                                              'ticket_college_presale': ticket_college_presale,
                                              'ticket_public_sale': ticket_public_sale,
-                                             'now': now
+                                             'now': now.date()
                                              })
 
 
