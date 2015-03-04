@@ -262,17 +262,19 @@ class Dev(Base):
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-class Sandbox(Base):
-    PIWIK_SITE_ID = '4'
-    PIWIK_DOMAIN_PATH = 'sandbox.cso.dance/analytics/piwik'
+class Live(Base):
+    PIWIK_SITE_ID = '2'
+    PIWIK_DOMAIN_PATH = 'cso.dance/analytics/piwik'
 
     COMPRESS_OFFLINE = True
 
-    SOCIAL_AUTH_FACEBOOK_KEY = '1522982181246896'
-    SOCIAL_AUTH_FACEBOOK_SECRET = 'cf50b5154294cda7bd6e1a43f8a4104f'
-    # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
+    SOCIAL_AUTH_FACEBOOK_KEY = os.environ['SOCIAL_AUTH_FACEBOOK_KEY']  # '1522387657973015'
+    SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['SOCIAL_AUTH_FACEBOOK_SECRET']  # '8d2a32053ea6d493b2c3130d20137178'
 
-    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+    ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS']
+    SECRET_KEY = os.environ['SECRET_KEY']
+
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
     LOGGING = Base.LOGGING
     LOGGING['handlers'] = {
@@ -291,14 +293,8 @@ class Sandbox(Base):
     LOGGING['loggers']['']['handlers'] = ['console']
 
 
-class Live(Base):
-    PIWIK_SITE_ID = '2'
-    PIWIK_DOMAIN_PATH = 'cso.dance/analytics/piwik'
+class Sandbox(Live):
+    PIWIK_SITE_ID = '4'
+    PIWIK_DOMAIN_PATH = 'sandbox.cso.dance/analytics/piwik'
 
-    COMPRESS_OFFLINE = True
-
-    SOCIAL_AUTH_FACEBOOK_KEY = '1522387657973015'
-    SOCIAL_AUTH_FACEBOOK_SECRET = '8d2a32053ea6d493b2c3130d20137178'
-    # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
-
-    LOGGING = Sandbox.LOGGING
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
