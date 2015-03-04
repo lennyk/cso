@@ -10,3 +10,4 @@ django-bootstrap3==5.0.3
 django-columns==0.1.0
 gunicorn==19.2.1
 psycopg2
+-e git://github.com/hayds/dj-static#egg=dj-static
