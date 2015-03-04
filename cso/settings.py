@@ -40,7 +40,6 @@ class Base(Configuration):
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        'djangobower.finders.BowerFinder',
         'compressor.finders.CompressorFinder',
     )
 
@@ -241,10 +240,7 @@ class Base(Configuration):
         'compressor',
         'columns',
         'bootstrap3',
-        'djangobower',
     )
-
-    BOWER_COMPONENTS_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'components/'))
 
     COMPRESS_PRECOMPILERS = (
         ('text/x-sass', 'django_libsass.SassCompiler'),
