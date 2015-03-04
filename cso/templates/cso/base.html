@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
-{% load compress %}
 {% load static from staticfiles %}
 {% load socialaccount %}
 {% load bootstrap3 %}
 {% load analytics %}
 <head lang="en">
 {% block css %}
-{% compress css %}
 <link rel="stylesheet" type="text/x-sass" href="{% static 'vendor.sass' %}" />
 <link rel="stylesheet" type="text/x-sass" href="{% static 'base.sass' %}" />
-{% endcompress %}
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,500,300,700|Crimson+Text:400,600,700">
 {{ form.media.css }}
 {% endblock %}
@@ -73,12 +70,10 @@
 {% endblock %}
 
 {% block javascript %}
-{% compress js %}
 <script src="{% static 'jquery.js' %}" type="text/javascript" charset="utf-8"></script>
 <script src="{% static 'javascripts/bootstrap.js' %}" type="text/javascript" charset="utf-8"></script>
 <script src="{% static 'base.js' %}" type="text/javascript" charset="utf-8"></script>
 {% piwik_javascript %}
-{% endcompress %}
 {{ form.media.js }}
 {% endblock %}
 </body>

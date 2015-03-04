@@ -40,7 +40,6 @@ class Base(Configuration):
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        'compressor.finders.CompressorFinder',
     )
 
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -239,14 +238,8 @@ class Base(Configuration):
     # --------------------------------------------------
 
     INSTALLED_APPS += (
-        'compressor',
         'columns',
         'bootstrap3',
-    )
-
-    COMPRESS_PRECOMPILERS = (
-        ('text/x-sass', 'django_libsass.SassCompiler'),
-        ('text/x-scss', 'django_libsass.SassCompiler'),
     )
 
     # django messages w/ bootstrap
@@ -271,8 +264,6 @@ class Live(Base):
 
     PIWIK_SITE_ID = '2'
     PIWIK_DOMAIN_PATH = 'cso.dance/analytics/piwik'
-
-    COMPRESS_OFFLINE = True
 
     SOCIAL_AUTH_FACEBOOK_KEY = os.environ['SOCIAL_AUTH_FACEBOOK_KEY']  # '1522387657973015'
     SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['SOCIAL_AUTH_FACEBOOK_SECRET']  # '8d2a32053ea6d493b2c3130d20137178'
