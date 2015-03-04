@@ -248,6 +248,7 @@ class Base(Configuration):
         ('text/x-sass', 'django_libsass.SassCompiler'),
         ('text/x-scss', 'django_libsass.SassCompiler'),
     )
+    COMPRESS_OUTPUT_DIR = ''
 
     # django messages w/ bootstrap
     from django.contrib import messages
