@@ -273,6 +273,14 @@ class Sandbox(Base):
     # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
 
     LOGGING = Base.LOGGING
+    LOGGING['handlers'] = {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+            'filters': ['require_debug_false'],
+        }
+    }
     LOGGING['loggers']['cso']['handlers'] = ['console']
     LOGGING['loggers']['events']['handlers'] = ['console']
     LOGGING['loggers']['registration']['handlers'] = ['console']
