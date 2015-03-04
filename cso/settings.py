@@ -1,4 +1,5 @@
 import os
+
 from configurations import Configuration
 
 
@@ -271,6 +272,14 @@ class Sandbox(Base):
     SOCIAL_AUTH_FACEBOOK_SECRET = 'cf50b5154294cda7bd6e1a43f8a4104f'
     # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
 
+    LOGGING = Base.LOGGING
+    LOGGING['loggers']['cso']['handlers'] = ['console']
+    LOGGING['loggers']['events']['handlers'] = ['console']
+    LOGGING['loggers']['registration']['handlers'] = ['console']
+    LOGGING['loggers']['django']['handlers'] = ['console']
+    LOGGING['loggers']['django.db']['handlers'] = ['console']
+    LOGGING['loggers']['']['handlers'] = ['console']
+
 
 class Live(Base):
     PIWIK_SITE_ID = '2'
@@ -281,3 +290,5 @@ class Live(Base):
     SOCIAL_AUTH_FACEBOOK_KEY = '1522387657973015'
     SOCIAL_AUTH_FACEBOOK_SECRET = '8d2a32053ea6d493b2c3130d20137178'
     # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
+
+    LOGGING = Sandbox.LOGGING
