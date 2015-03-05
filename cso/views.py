@@ -29,11 +29,14 @@ def home_page(request):
     }
     ticket_public_sale['days_until'] = (ticket_public_sale.get('date').date() - now.date()).days
 
+    ticket_sales_are_open = ticket_college_presale.get('date') < now or ticket_public_sale.get('date') < now
+
     return render(request, 'cso/home.html', {'user': request.user,
                                              'participations': participations,
                                              'active_dates': active_dates,
                                              'ticket_college_presale': ticket_college_presale,
                                              'ticket_public_sale': ticket_public_sale,
+                                             'ticket_sales_are_open': ticket_sales_are_open,
                                              'now': now
                                              })
 
