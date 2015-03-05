@@ -280,6 +280,12 @@ class Live(Base):
     ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'] if 'ALLOWED_HOSTS' in os.environ else None
     SECRET_KEY = os.environ['SECRET_KEY'] if 'SECRET_KEY' in os.environ else None
 
+    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME'] if 'SENDGRID_USERNAME' in os.environ else None
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD'] if 'SENDGRID_PASSWORD' in os.environ else None
+
     LOGGING = Base.LOGGING
     LOGGING['handlers'] = {
         'console': {
