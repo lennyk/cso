@@ -256,9 +256,6 @@ class Base(Configuration):
 class Dev(Base):
     DEBUG = True
 
-    SOCIAL_AUTH_FACEBOOK_KEY = '1522981811246933'
-    SOCIAL_AUTH_FACEBOOK_SECRET = 'aed08816076d87b3c0ce13d8f3906fd1'
-
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -273,9 +270,6 @@ class Live(Base):
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 
     COMPRESS_OFFLINE = True
-
-    SOCIAL_AUTH_FACEBOOK_KEY = os.environ['SOCIAL_AUTH_FACEBOOK_KEY'] if 'SOCIAL_AUTH_FACEBOOK_KEY' in os.environ else None
-    SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['SOCIAL_AUTH_FACEBOOK_SECRET'] if 'SOCIAL_AUTH_FACEBOOK_SECRET' in os.environ else None
 
     ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'] if 'ALLOWED_HOSTS' in os.environ else None
     SECRET_KEY = os.environ['SECRET_KEY'] if 'SECRET_KEY' in os.environ else None
