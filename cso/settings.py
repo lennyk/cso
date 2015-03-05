@@ -268,7 +268,9 @@ class Live(Base):
     DATABASES = {'default': dj_database_url.config()}
 
     PIWIK_SITE_ID = '2'
-    PIWIK_DOMAIN_PATH = 'cso.dance/analytics/piwik'
+    PIWIK_DOMAIN_PATH = 'analytics.latindancealliance.com/piwik'
+
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 
     COMPRESS_OFFLINE = True
 
@@ -279,8 +281,6 @@ class Live(Base):
 
     ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'] if 'ALLOWED_HOSTS' in os.environ else None
     SECRET_KEY = os.environ['SECRET_KEY'] if 'SECRET_KEY' in os.environ else None
-
-    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
     LOGGING = Base.LOGGING
     LOGGING['handlers'] = {
@@ -301,6 +301,3 @@ class Live(Base):
 
 class Sandbox(Live):
     PIWIK_SITE_ID = '4'
-    PIWIK_DOMAIN_PATH = 'sandbox.cso.dance/analytics/piwik'
-
-    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
