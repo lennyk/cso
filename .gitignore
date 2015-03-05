@@ -6,3 +6,4 @@ __pycache__
 /static/
 /bower_components/
 /node_modules/
+/src/
