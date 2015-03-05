@@ -1,605 +1,707 @@
 [
   {
-    "model": "events.college",
     "pk": 4,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "CPSalsa",
-      "description": "",
-      "college_name": "Cal Poly San Luis Obispo",
+      "state": "CA",
       "city": "San Luis Obispo",
-      "state": "CA"
+      "latin_dance_organization_name": "CPSalsa",
+      "college_name": "Cal Poly San Luis Obispo",
+      "description": ""
     }
   },
   {
-    "model": "events.college",
     "pk": 5,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Cal Poly Pomona Salsa Dance Team",
-      "description": "Cal Poly Pomona Salsa Dance Team consists of 5 couples and focuses on LA style salsa.",
-      "college_name": "Cal Poly Pomona",
+      "state": "CA",
       "city": "Pomona",
-      "state": "CA"
+      "latin_dance_organization_name": "Cal Poly Pomona Salsa Dance Team",
+      "college_name": "Cal Poly Pomona",
+      "description": "Cal Poly Pomona Salsa Dance Team consists of 5 couples and focuses on LA style salsa."
     }
   },
   {
-    "model": "events.college",
     "pk": 6,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Fresno State Salsa Club",
-      "description": "Fresno State Salsa Club provides swing and salsa dancing. Beginner lessons from 7-8 and followed by social dancing. Free to everyone. Salsa and swing dancing switch off every month.",
-      "college_name": "California State University, Fresno",
+      "state": "CA",
       "city": "Fresno",
-      "state": "CA"
+      "latin_dance_organization_name": "Fresno State Salsa Club",
+      "college_name": "California State University, Fresno",
+      "description": "Fresno State Salsa Club provides swing and salsa dancing. Beginner lessons from 7-8 and followed by social dancing. Free to everyone. Salsa and swing dancing switch off every month."
     }
   },
   {
-    "model": "events.college",
     "pk": 7,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Cal State Fullerton Salsa Club",
-      "description": "Music and dance can lift the spirits, help build stronger communities, and promote understanding and tolerance. Through music and dance, we want to invigorate and inspire those interested in salsa.",
-      "college_name": "California State University, Fullerton",
+      "state": "CA",
       "city": "Fullerton",
-      "state": "CA"
+      "latin_dance_organization_name": "Cal State Fullerton Salsa Club",
+      "college_name": "California State University, Fullerton",
+      "description": "Music and dance can lift the spirits, help build stronger communities, and promote understanding and tolerance. Through music and dance, we want to invigorate and inspire those interested in salsa."
     }
   },
   {
-    "model": "events.college",
     "pk": 8,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "CSULB Salsa",
-      "description": "",
-      "college_name": "California State University, Long Beach",
+      "state": "CA",
       "city": "Long Beach",
-      "state": "CA"
+      "latin_dance_organization_name": "CSULB Salsa",
+      "college_name": "California State University, Long Beach",
+      "description": ""
     }
   },
   {
-    "model": "events.college",
     "pk": 9,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "CSUN Salsa Libre",
-      "description": "Salsa Libre was founded in 2008 and since then our purpose has been to encourage CSUN students to pursue and reach out to others through salsa dancing and enrich their lives. In addition, the club strives to form a community of salsa dancers who participate in dance lessons but also learn the artistic aspect of salsa dancing. Salsa Libre includes a performance team and a competition team. The performance team merges salsa with other types of dances, such as hip-hop, jazz, tango, and bachata. The competition team is geared toward competing in college salsa competitions. The competition team is comprised of students who pursue a higher level of performance, showmanship and competitiveness.",
-      "college_name": "California State University, Northridge",
+      "state": "CA",
       "city": "Northridge",
-      "state": "CA"
+      "latin_dance_organization_name": "CSUN Salsa Libre",
+      "college_name": "California State University, Northridge",
+      "description": "Salsa Libre was founded in 2008 and since then our purpose has been to encourage CSUN students to pursue and reach out to others through salsa dancing and enrich their lives. In addition, the club strives to form a community of salsa dancers who participate in dance lessons but also learn the artistic aspect of salsa dancing. Salsa Libre includes a performance team and a competition team. The performance team merges salsa with other types of dances, such as hip-hop, jazz, tango, and bachata. The competition team is geared toward competing in college salsa competitions. The competition team is comprised of students who pursue a higher level of performance, showmanship and competitiveness."
     }
   },
   {
-    "model": "events.college",
     "pk": 10,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Salsa Loca",
-      "description": "Salsa Loca is a student run organization whose purpose is to create a friendly, fun and welcoming environment for people to learn to dance and meet new people!",
-      "college_name": "California State University, Sacramento",
+      "state": "CA",
       "city": "Sacramento",
-      "state": "CA"
+      "latin_dance_organization_name": "Salsa Loca",
+      "college_name": "California State University, Sacramento",
+      "description": "Salsa Loca is a student run organization whose purpose is to create a friendly, fun and welcoming environment for people to learn to dance and meet new people!"
     }
   },
   {
-    "model": "events.college",
     "pk": 11,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "El Co Salseros",
-      "description": "",
-      "college_name": "El Camino College",
+      "state": "CA",
       "city": "Torrance",
-      "state": "CA"
+      "latin_dance_organization_name": "El Co Salseros",
+      "college_name": "El Camino College",
+      "description": "Salsa Society is for everyone! Dance salsa? Never danced salsa? Come on by with or without a partner, and we'll help you get on your feet. Whether you're a student, alumni, staff member, or just visiting, we promise you'll have fun."
     }
   },
   {
-    "model": "events.college",
     "pk": 12,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Spartan Mambo",
-      "description": "Spartan Mambo is the performance salsa team at San Jose State University. Our purpose is to enrich the lives of SJSU students and members of the community through performance salsa dance.",
-      "college_name": "San Jose State University",
+      "state": "CA",
       "city": "San Jose",
-      "state": "CA"
+      "latin_dance_organization_name": "Spartan Mambo",
+      "college_name": "San Jose State University",
+      "description": "Spartan Mambo is the performance salsa team at San Jose State University. Our purpose is to enrich the lives of SJSU students and members of the community through performance salsa dance."
     }
   },
   {
-    "model": "events.college",
     "pk": 13,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Salsa Clara",
-      "description": "Salsa Clara is a salsa dancing performance team at Santa Clara University. Each year, we work on perfecting one amateur routine to perform on campus and in the surrounding salsa community during the spring quarter (March-June). What is unique about Salsa Clara is that we invite students to try-out for our team even if they don't have any previous dance experience.",
-      "college_name": "Santa Clara University",
+      "state": "CA",
       "city": "Santa Clara",
-      "state": "CA"
+      "latin_dance_organization_name": "Salsa Clara",
+      "college_name": "Santa Clara University",
+      "description": "Salsa Clara is a salsa dancing performance team at Santa Clara University. Each year, we work on perfecting one amateur routine to perform on campus and in the surrounding salsa community during the spring quarter (March-June). What is unique about Salsa Clara is that we invite students to try-out for our team even if they don't have any previous dance experience."
     }
   },
   {
-    "model": "events.college",
     "pk": 14,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Salsa Society at UCLA",
-      "description": "Salsa Society is for everyone! Dance salsa? Never danced salsa? Come on by with or without a partner, and we'll help you get on your feet. Whether you're a student, alumni, staff member, or just visiting, we promise you'll have fun.",
-      "college_name": "University of California, Los Angeles",
+      "state": "CA",
       "city": "Brentwood",
-      "state": "CA"
+      "latin_dance_organization_name": "Salsa Society at UCLA",
+      "college_name": "University of California, Los Angeles",
+      "description": "Salsa Society is for everyone! Dance salsa? Never danced salsa? Come on by with or without a partner, and we'll help you get on your feet. Whether you're a student, alumni, staff member, or just visiting, we promise you'll have fun."
     }
   },
   {
-    "model": "events.college",
     "pk": 15,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "UCR Salsa Club",
-      "description": "",
-      "college_name": "University of California, Riverside",
+      "state": "CA",
       "city": "Riverside",
-      "state": "CA"
+      "latin_dance_organization_name": "The Salsa Club at UCR & Salsiente Performance Team",
+      "college_name": "University of California, Riverside",
+      "description": "As a club we hold regular weekly meetings and dance workshops on campus to provide instruction and introduce salsa, bachata, kizomba, and other related dance styles open to all UCR students - no prior experience or dance partner required! As a performance team we perform both on and off campus locally to spread our love of dance both to students and the local community. Overall we aim to provide an environment where dance can be learned and practiced, a social network that focuses on dancing events and activities, and a portal for students / dancers with similar interests to meet and interact."
     }
   },
   {
-    "model": "events.college",
     "pk": 16,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Cotillion Dance Club: Strictly Social",
-      "description": "The Cotillion Dance Club is a student organization at UCSB that seeks to preserve ballroom, Latin and swing dancing traditions in an environment conducive to enjoyment & education.",
-      "college_name": "University of California, Santa Barbara",
+      "state": "CA",
       "city": "Santa Barbara",
-      "state": "CA"
+      "latin_dance_organization_name": "Cotillion Dance Club: Strictly Social",
+      "college_name": "University of California, Santa Barbara",
+      "description": "The Cotillion Dance Club is a student organization at UCSB that seeks to preserve ballroom, Latin and swing dancing traditions in an environment conducive to enjoyment & education."
     }
   },
   {
-    "model": "events.college",
     "pk": 17,
+    "model": "events.college",
     "fields": {
+      "state": "CA",
+      "city": "Los Angeles",
       "latin_dance_organization_name": "Break On 2",
-      "description": "Break on 2 is USC's premier Latin dance team and club with an emphasis on LA style salsa technique and choreography. Our mission is to strengthen a team of 60 highly committed students in various fields of Latin dance (sometimes fused with non-Latin dance forms, such as hip-hop and contemporary) both in the social dancing arena as well as for our April 25th showcase. Our salsa socials are the largest monthly socials in the college latin dance community with over 400 in attendance every last Friday of the month. Come join us and you\u2019ll see why they call our salsa nights the hottest college socials around.",
       "college_name": "University of Southern California",
-      "city": "Los Angeles",
-      "state": "CA"
+      "description": "Break on 2 is USC's premier Latin dance team and club with an emphasis on LA style salsa technique and choreography. Our mission is to strengthen a team of 60 highly committed students in various fields of Latin dance (sometimes fused with non-Latin dance forms, such as hip-hop and contemporary) both in the social dancing arena as well as for our May 1st showcase. Our salsa socials are the largest monthly socials in the college latin dance community with over 400 in attendance every last Friday of the month. Come join us and you\u2019ll see why they call our salsa nights the hottest college socials around."
     }
   },
   {
-    "model": "events.college",
     "pk": 18,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Salsa Addicts",
-      "description": "",
-      "college_name": "Claremont Colleges",
+      "state": "CA",
       "city": "Claremont",
-      "state": "CA"
+      "latin_dance_organization_name": "Salsa Addicts",
+      "college_name": "Claremont Colleges",
+      "description": ""
     }
   },
   {
-    "model": "events.college",
     "pk": 19,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "LMU Salsa Club",
-      "description": "",
-      "college_name": "Loyola Marymount University",
+      "state": "CA",
       "city": "Los Angeles",
-      "state": "CA"
+      "latin_dance_organization_name": "LMU Salsa Club",
+      "college_name": "Loyola Marymount University",
+      "description": ""
     }
   },
   {
-    "model": "events.college",
     "pk": 20,
+    "model": "events.college",
     "fields": {
-      "latin_dance_organization_name": "Sabrosura Latin Dance Troupe",
-      "description": "",
-      "college_name": "Santa Cruz",
+      "state": "CA",
       "city": "Santa Cruz",
-      "state": "CA"
+      "latin_dance_organization_name": "Sabrosura",
+      "college_name": "University of California, Santa Cruz",
+      "description": "Established in 2002, SABROSURA is a Latin American dance troupe at University of California, Santa Cruz. Our mission is to spread the Latin American and Caribbean culture/rituals through the art of dance. It is a student run organization, which means you know that those who run it love it because it's extra work added onto their classes/work. We choreograph our own routines, so everything that is seen is put together by us. We also put together our own music mixes that we perform to. We perform around the UCSC campus and outside to our Santa Cruz community by popular demand, performing and bringing people of latin american culture together through dance."
     }
   },
   {
+    "pk": 21,
     "model": "events.college",
-    "pk": 21,
     "fields": {
-      "latin_dance_organization_name": "Candela Salsa Club",
-      "description": "",
-      "college_name": "Pasadena City College",
+      "state": "CA",
       "city": "Pasadena",
-      "state": "CA"
+      "latin_dance_organization_name": "Candela Salsa Club",
+      "college_name": "Pasadena City College",
+      "description": ""
     }
   },
   {
-    "model": "events.collegeurl",
-    "pk": 6,
-    "fields": {
-      "college": 17,
-      "url": "http://www.facebook.com/BreakOn2",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 7,
-    "fields": {
-      "college": 17,
-      "url": "http://breakon2.com/",
-      "url_type": "website"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 8,
-    "fields": {
-      "college": 4,
-      "url": "http://www.cpsalsa.com/",
-      "url_type": "website"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 9,
-    "fields": {
-      "college": 5,
-      "url": "http://www.facebook.com/groups/133696676766781",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 10,
-    "fields": {
-      "college": 6,
-      "url": "http://www.facebook.com/groups/58410806136",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 11,
-    "fields": {
-      "college": 7,
-      "url": "http://www.csufsalsaclub.com/",
-      "url_type": "website"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 12,
-    "fields": {
-      "college": 7,
-      "url": "http://www.facebook.com/CSUFSalsa",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 13,
-    "fields": {
-      "college": 9,
-      "url": "http://www.facebook.com/Csunsalsalibre1",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 14,
-    "fields": {
-      "college": 10,
-      "url": "http://sacstatesalsa.com/",
-      "url_type": "website"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 15,
-    "fields": {
-      "college": 11,
-      "url": "http://www.facebook.com/groups/104209089611364",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 16,
-    "fields": {
-      "college": 21,
-      "url": "http://www.facebook.com/groups/pcccandelasalsaclub",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 17,
-    "fields": {
-      "college": 12,
-      "url": "http://www.spartanmambo.com/",
-      "url_type": "website"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 18,
-    "fields": {
-      "college": 12,
-      "url": "http://www.facebook.com/spartanmambo",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 19,
-    "fields": {
-      "college": 13,
-      "url": "http://www.facebook.com/SalsaClara",
-      "url_type": "website"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 20,
-    "fields": {
-      "college": 13,
-      "url": "http://www.youtube.com/user/SCUSalsaClara",
-      "url_type": "youtube"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 21,
-    "fields": {
-      "college": 17,
-      "url": "http://www.youtube.com/user/uscbreakon2",
-      "url_type": "youtube"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 22,
-    "fields": {
-      "college": 14,
-      "url": "http://www.facebook.com/groups/Salsasocietatucla",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
     "pk": 23,
+    "model": "events.college",
     "fields": {
-      "college": 15,
-      "url": "http://www.facebook.com/pages/The-Salsa-Club-at-UCR/42733570912",
-      "url_type": "facebook"
+      "state": "CA",
+      "city": "San Diego, CA",
+      "latin_dance_organization_name": "SDSU Salsa Club",
+      "college_name": "San Diego State University",
+      "description": "Founded in the Fall of 2012, the Salsa Club at San Diego State University is a student run organization that seeks to foster a latin dance community on campus. We welcome dancers of all levels and our classes offer a fun and social environment in which to learn."
     }
   },
   {
-    "model": "events.collegeurl",
     "pk": 24,
+    "model": "events.college",
     "fields": {
-      "college": 16,
-      "url": "http://cotillionatucsb.com/",
-      "url_type": "website"
+      "state": "CA",
+      "city": "San Bernardino",
+      "latin_dance_organization_name": "CSUSB Salchata Club",
+      "college_name": "California State University, San Bernardino",
+      "description": ""
     }
   },
   {
-    "model": "events.collegeurl",
     "pk": 25,
+    "model": "events.college",
     "fields": {
-      "college": 18,
-      "url": "http://www.facebook.com/SalsaAddictsattheClaremontColleges",
-      "url_type": "facebook"
+      "state": "CA",
+      "city": "Whittier",
+      "latin_dance_organization_name": "Latin Dance at Whittier College",
+      "college_name": "Whittier College",
+      "description": "Latin dance allows students to explore various cultural dances including but not limited to latin. All styles of dance are welcome! Latin Dance is a free space for every culture to share their dance styles and learn choreography by local studios or the club choreographer."
     }
   },
   {
-    "model": "events.collegeurl",
-    "pk": 26,
-    "fields": {
-      "college": 20,
-      "url": "http://www.facebook.com/groups/2355313919",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 27,
-    "fields": {
-      "college": 8,
-      "url": "http://www.facebook.com/groups/csulbsalsaclub",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegeurl",
-    "pk": 28,
-    "fields": {
-      "college": 19,
-      "url": "http://www.facebook.com/lmu.salsa",
-      "url_type": "facebook"
-    }
-  },
-  {
-    "model": "events.collegecsoparticipation",
-    "pk": 4,
-    "fields": {
-      "college": 4,
-      "attending": true,
-      "performing": false,
-      "cso_year": 2015,
-      "competing": false
-    }
-  },
-  {
-    "model": "events.collegecsoparticipation",
-    "pk": 5,
-    "fields": {
-      "college": 5,
-      "attending": true,
-      "performing": false,
-      "cso_year": 2015,
-      "competing": false
-    }
-  },
-  {
-    "model": "events.collegecsoparticipation",
     "pk": 6,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 6,
-      "attending": false,
-      "performing": false,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://www.facebook.com/BreakOn2",
+      "url_type": "facebook",
+      "college": 17
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 7,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 7,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": true
+      "url": "http://breakon2.com/",
+      "url_type": "website",
+      "college": 17
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 8,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 8,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://www.cpsalsa.com/",
+      "url_type": "website",
+      "college": 4
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 9,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 9,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": true
+      "url": "http://www.facebook.com/groups/133696676766781",
+      "url_type": "facebook",
+      "college": 5
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 10,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 10,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://www.facebook.com/groups/58410806136",
+      "url_type": "facebook",
+      "college": 6
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 11,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 11,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://www.csufsalsaclub.com/",
+      "url_type": "website",
+      "college": 7
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 12,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 21,
-      "attending": true,
-      "performing": false,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://www.facebook.com/CSUFSalsa",
+      "url_type": "facebook",
+      "college": 7
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 13,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 12,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": true
+      "url": "http://www.facebook.com/Csunsalsalibre1",
+      "url_type": "facebook",
+      "college": 9
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 14,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 13,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://sacstatesalsa.com/",
+      "url_type": "website",
+      "college": 10
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 15,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 14,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": true
+      "url": "http://www.facebook.com/groups/104209089611364",
+      "url_type": "facebook",
+      "college": 11
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 16,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 15,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://www.facebook.com/groups/pcccandelasalsaclub",
+      "url_type": "facebook",
+      "college": 21
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 17,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 16,
-      "attending": true,
-      "performing": false,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://www.spartanmambo.com/",
+      "url_type": "website",
+      "college": 12
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 18,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 17,
-      "attending": true,
-      "performing": true,
-      "cso_year": 2015,
-      "competing": true
+      "url": "http://www.facebook.com/spartanmambo",
+      "url_type": "facebook",
+      "college": 12
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 19,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 18,
-      "attending": true,
-      "performing": false,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://www.facebook.com/SalsaClara",
+      "url_type": "facebook",
+      "college": 13
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 20,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 19,
-      "attending": true,
-      "performing": false,
-      "cso_year": 2015,
-      "competing": false
+      "url": "http://www.youtube.com/user/SCUSalsaClara",
+      "url_type": "youtube",
+      "college": 13
     }
   },
   {
-    "model": "events.collegecsoparticipation",
     "pk": 21,
+    "model": "events.collegeurl",
     "fields": {
-      "college": 20,
-      "attending": false,
-      "performing": false,
+      "url": "http://www.youtube.com/user/uscbreakon2",
+      "url_type": "youtube",
+      "college": 17
+    }
+  },
+  {
+    "pk": 22,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.facebook.com/groups/Salsasocietatucla",
+      "url_type": "facebook",
+      "college": 14
+    }
+  },
+  {
+    "pk": 23,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.facebook.com/pages/The-Salsa-Club-at-UCR/42733570912",
+      "url_type": "facebook",
+      "college": 15
+    }
+  },
+  {
+    "pk": 24,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://cotillionatucsb.com/",
+      "url_type": "website",
+      "college": 16
+    }
+  },
+  {
+    "pk": 25,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.facebook.com/SalsaAddictsattheClaremontColleges",
+      "url_type": "facebook",
+      "college": 18
+    }
+  },
+  {
+    "pk": 26,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.facebook.com/groups/2355313919",
+      "url_type": "facebook",
+      "college": 20
+    }
+  },
+  {
+    "pk": 27,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.facebook.com/groups/csulbsalsaclub",
+      "url_type": "facebook",
+      "college": 8
+    }
+  },
+  {
+    "pk": 28,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.facebook.com/lmu.salsa",
+      "url_type": "facebook",
+      "college": 19
+    }
+  },
+  {
+    "pk": 30,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.youtube.com/user/ucscsabrosura",
+      "url_type": "youtube",
+      "college": 20
+    }
+  },
+  {
+    "pk": 31,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.facebook.com/groups/sdsusalsaclub",
+      "url_type": "facebook",
+      "college": 23
+    }
+  },
+  {
+    "pk": 32,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.facebook.com/CPSalsa",
+      "url_type": "facebook",
+      "college": 4
+    }
+  },
+  {
+    "pk": 33,
+    "model": "events.collegeurl",
+    "fields": {
+      "url": "http://www.facebook.com/groups/429760110395600",
+      "url_type": "facebook",
+      "college": 24
+    }
+  },
+  {
+    "pk": 4,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
       "cso_year": 2015,
-      "competing": false
+      "college": 4,
+      "performing": false
+    }
+  },
+  {
+    "pk": 5,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 5,
+      "performing": false
+    }
+  },
+  {
+    "pk": 6,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": false,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 6,
+      "performing": false
+    }
+  },
+  {
+    "pk": 7,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": true,
+      "cso_year": 2015,
+      "college": 7,
+      "performing": true
+    }
+  },
+  {
+    "pk": 8,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 8,
+      "performing": true
+    }
+  },
+  {
+    "pk": 9,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": true,
+      "cso_year": 2015,
+      "college": 9,
+      "performing": true
+    }
+  },
+  {
+    "pk": 10,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 10,
+      "performing": true
+    }
+  },
+  {
+    "pk": 11,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 11,
+      "performing": true
+    }
+  },
+  {
+    "pk": 12,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 21,
+      "performing": false
+    }
+  },
+  {
+    "pk": 13,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": true,
+      "cso_year": 2015,
+      "college": 12,
+      "performing": true
+    }
+  },
+  {
+    "pk": 14,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 13,
+      "performing": true
+    }
+  },
+  {
+    "pk": 15,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": true,
+      "cso_year": 2015,
+      "college": 14,
+      "performing": true
+    }
+  },
+  {
+    "pk": 16,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 15,
+      "performing": true
+    }
+  },
+  {
+    "pk": 17,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 16,
+      "performing": false
+    }
+  },
+  {
+    "pk": 18,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": true,
+      "cso_year": 2015,
+      "college": 17,
+      "performing": true
+    }
+  },
+  {
+    "pk": 19,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 18,
+      "performing": false
+    }
+  },
+  {
+    "pk": 20,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 19,
+      "performing": false
+    }
+  },
+  {
+    "pk": 21,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 20,
+      "performing": false
+    }
+  },
+  {
+    "pk": 22,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 23,
+      "performing": false
+    }
+  },
+  {
+    "pk": 23,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 24,
+      "performing": false
+    }
+  },
+  {
+    "pk": 24,
+    "model": "events.collegecsoparticipation",
+    "fields": {
+      "attending": true,
+      "competing": false,
+      "cso_year": 2015,
+      "college": 25,
+      "performing": false
     }
   }
 ]
