@@ -274,9 +274,7 @@ class Live(Base):
 
     COMPRESS_OFFLINE = True
 
-    # '1522387657973015'
     SOCIAL_AUTH_FACEBOOK_KEY = os.environ['SOCIAL_AUTH_FACEBOOK_KEY'] if 'SOCIAL_AUTH_FACEBOOK_KEY' in os.environ else None
-    # '8d2a32053ea6d493b2c3130d20137178'
     SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['SOCIAL_AUTH_FACEBOOK_SECRET'] if 'SOCIAL_AUTH_FACEBOOK_SECRET' in os.environ else None
 
     ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'] if 'ALLOWED_HOSTS' in os.environ else None
