@@ -2,7 +2,7 @@
   {
     "model": "events.date",
     "fields": {
-      "date": "2015-03-06",
+      "date": "2015-03-08",
       "title": "College Ticket Presales Open",
       "is_active": true,
       "time": "20:00:00"
@@ -12,7 +12,7 @@
   {
     "model": "events.date",
     "fields": {
-      "date": "2015-03-13",
+      "date": "2015-03-15",
       "title": "Public Ticket Sales Open",
       "is_active": true,
       "time": "20:00:00"
