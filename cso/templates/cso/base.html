@@ -68,6 +68,13 @@
         </span>
     </div>
     </noscript>
+    <div class="alert alert-warning">
+        <span>
+            We apologize for the delay in opening ticket sales. We're working hard to have it ready for you and we appreciate your
+            enthusiasm! We'll have student ticket sales up and ready for registration on
+            <strong>{{ ticket_college_presale.date|date:"l, F jS" }} at {{ ticket_college_presale.date|date:"g:i A" }}</strong>.
+        </span>
+    </div>
     {% bootstrap_messages %}
 
     {% block content %}{% endblock %}
