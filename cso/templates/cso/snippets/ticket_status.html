@@ -18,7 +18,7 @@
         on {{ ticket_college_presale.date|date:"F jS, Y"}}
     {% endif %}
 {% elif ticket_public_sale.date > now %}
-    <a href="#tickets">College ticket presales</a><br />
+    <strong><a href="#tickets">College ticket presales</a></strong><br />
     are open now!
 {% endif %}
 </p>
@@ -38,7 +38,7 @@
         on {{ ticket_public_sale.date|date:"F jS, Y"}}
     {% endif %}
 {% else %}
-    <a href="#tickets">Public ticket sales</a><br />
+    <strong><a href="#tickets">Public ticket sales</a></strong><br />
     are open now!
 {% endif %}
 </p>
