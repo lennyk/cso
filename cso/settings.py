@@ -86,6 +86,7 @@ class Base(Configuration):
         'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'sslify.middleware.SSLifyMiddleware',
     )
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -104,6 +105,8 @@ class Base(Configuration):
             'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
         }
     }
+
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     # --------------------------------------------------
     # logging
@@ -256,6 +259,8 @@ class Base(Configuration):
 class Dev(Base):
     DEBUG = True
 
+    SSLIFY_DISABLE = True
+
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -299,3 +304,5 @@ class Live(Base):
 
 class Sandbox(Live):
     PIWIK_SITE_ID = '4'
+
+    SSLIFY_DISABLE = True
