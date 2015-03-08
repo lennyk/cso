@@ -1,4 +1,6 @@
 {% extends "account/base.html" %}
+{% load static %}
+{% load compress %}
 {% load socialaccount %}
 {% load bootstrap3 %}
 
@@ -16,7 +18,26 @@
 
 {% endblock %}
 
+{% block css %}
+{{ block.super }}
+{% compress css %}
+<link rel="stylesheet" type="text/x-sass" href="{% static 'login.sass' %}" />
+{% endcompress %}
+{% endblock %}
+
 {% block javascript %}
 {{ block.super }}
 {% providers_media_js %}
+<script type="text/javascript">
+    $(function () {
+        $('#email_login_select').on('click', function () {
+            $('#email_signup_form').hide();
+            $('#email_login_form').show();
+        });
+        $('#email_signup_select').on('click', function () {
+            $('#email_login_form').hide();
+            $('#email_signup_form').show();
+        });
+    });
+</script>
 {% endblock %}

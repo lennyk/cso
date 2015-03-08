@@ -14,7 +14,6 @@ class HomePageUp(FunctionalTest):
         pages = ['Home', 'Event Information', 'Colleges', 'About']
         nav_links = self.browser.find_elements_by_css_selector('ul.nav > li > a')
         for page in pages:
-            print(['a link: {}'.format(nav_link.text) for nav_link in nav_links])
             self.assertIn(page.lower(), [nav_link.text.lower() for nav_link in nav_links])
 
         # Juan can click the navigation link labeled Event Information

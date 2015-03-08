@@ -4,6 +4,7 @@ import sys
 from allauth.socialaccount.models import SocialToken
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.http import urlencode
+from django.core import management
 from selenium.webdriver.support.ui import Select
 
 from .base import FunctionalTest
@@ -45,6 +46,10 @@ SUPERUSER_TEST_PASSWORD = 'djJits6uT9vYvL'
 
 
 class UserRegistration(FunctionalTest):
+    def setUp(self):
+        super().setUp()
+        management.call_command('loaddata', 'fixtures/test/college_ticket_presales_open.json')
+
     def login_with_facebook(self, email, password):
         # User goes to the CSO homepage
         self.browser.get(self.server_url)
