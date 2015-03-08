@@ -1,6 +1,7 @@
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import sys
 import os
+
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from django.core import management
 
@@ -40,3 +41,10 @@ class FunctionalTest(StaticLiveServerTestCase):
 
     def switch_to_newest_window(self):
         self.browser.switch_to.window(self.browser.window_handles[-1])
+
+    def assert_text_in_page(self, text, case_insensitive=False):
+        body_text = self.browser.find_element_by_tag_name('body').text
+        if case_insensitive:
+            text = text.lower()
+            body_text = body_text.lower()
+        self.assertTrue(text in body_text)

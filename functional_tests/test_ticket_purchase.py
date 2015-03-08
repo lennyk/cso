@@ -3,7 +3,7 @@ from django.core import management
 from .base import FunctionalTest
 
 
-class UserRegistration(FunctionalTest):
+class TicketPurchase(FunctionalTest):
 
     RANDY_EMAIL = 'randy@example.com'
     RANDY_EDU_EMAIL = 'randy@example.edu'
@@ -30,8 +30,7 @@ class UserRegistration(FunctionalTest):
         self.browser.find_element_by_id('email_login_button').click()
 
         # User is now on the Registration page
-        body_text = self.browser.find_element_by_tag_name('body').text
-        self.assertTrue('Registration Details' in body_text)
+        self.assert_text_in_page('Registration Details')
 
     def login_as_randy(self):
         self.login_with_email(self.RANDY_EMAIL, self.RANDY_PASSWORD)
@@ -64,8 +63,11 @@ class UserRegistration(FunctionalTest):
 
         # Randy submits the form and and he is now on the Registration page
         self.browser.find_element_by_id('email_login_button').click()
-        body_text = self.browser.find_element_by_tag_name('body').text
-        self.assertTrue('Registration Details' in body_text)
+        self.assert_text_in_page('Registration Details')
 
     def test_registered_user_can_purchase_ticket(self):
+        # Randy logs in
         self.login_as_randy()
+
+        # Randy sees a message indicating he does not have a ticket purchased and he can buy one
+        self.assert_text_in_page('ticket sales are open! purchase one by clicking purchase ticket below', case_insensitive=True)

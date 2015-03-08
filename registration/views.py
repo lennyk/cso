@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.forms.models import model_to_dict
+
 from .forms import RegistrationForm
-from .models import Registration, CollegeVerificationMessage
+from .models import Registration
+from django.contrib import messages
 
 
 @login_required
@@ -30,4 +31,6 @@ def registration_update(request):
 
 @login_required
 def registration_home(request):
+    messages.add_message(request, messages.SUCCESS,
+                         'Student ticket sales are open! Purchase your ticket by clicking Purchase Ticket below.')
     return render(request, 'registration/home.html')
