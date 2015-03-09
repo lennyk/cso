@@ -21,6 +21,12 @@ if [ -f bin/install_nodejs ]; then
     fi
 fi
 
+if [ -f bin/run_migrate ]; then
+    echo "-----> Running run_migrate"
+    chmod +x bin/run_migrate
+    bin/run_migrate
+fi
+
 if [ -f bin/run_fixtures ]; then
     echo "-----> Running run_fixtures"
     chmod +x bin/run_fixtures
