@@ -163,7 +163,7 @@ class Registration(models.Model):
                 return
             if not TicketSales.student_ticket_sale_is_open():
                 self.__send_notification_message(request,
-                                                 'Student ticket sales are not open yet. They will open at {}. '
+                                                 'Student ticket sales are not open yet. They will open on {}. '
                                                  'See you then!'.format(TicketSales.student_ticket_sale_datetime_human()))
                 return
             if not TicketSales.public_ticket_sale_is_open():
@@ -177,7 +177,7 @@ class Registration(models.Model):
 
             if not TicketSales.public_ticket_sale_is_open():
                 self.__send_notification_message(request,
-                                                 'Public ticket sales are not open yet. They will open at {}. '
+                                                 'Public ticket sales are not open yet. They will open on {}. '
                                                  'See you then!'.format(TicketSales.public_ticket_sale_datetime_human()))
                 return
 
