@@ -1,6 +1,50 @@
+from datetime import datetime
+
 from django.db import models
 from django.utils.text import slugify
 from django.core.urlresolvers import reverse
+from django.utils.dateformat import DateFormat
+
+
+class TicketSales(object):
+
+    @classmethod
+    def student_ticket_sale_datetime(cls):
+        return datetime.combine(Date.objects.get(id=1).date, Date.objects.get(id=1).time)
+
+    @classmethod
+    def public_ticket_sale_datetime(cls):
+        return datetime.combine(Date.objects.get(id=2).date, Date.objects.get(id=2).time)
+
+    @classmethod
+    def student_ticket_sale_datetime_human(cls):
+        date = DateFormat(cls.student_ticket_sale_datetime())
+        return date.format('l, F jS') + ' at ' + date.format('g:i A')
+
+    @classmethod
+    def public_ticket_sale_datetime_human(cls):
+        date = DateFormat(cls.public_ticket_sale_datetime())
+        return date.format('l, F jS') + ' at ' + date.format('g:i A')
+
+    @classmethod
+    def student_ticket_sale_is_open(cls):
+        return cls.student_ticket_sale_datetime() < datetime.now()
+
+    @classmethod
+    def public_ticket_sale_is_open(cls):
+        return cls.public_ticket_sale_datetime() < datetime.now()
+
+    @classmethod
+    def days_until_student_ticket_sale(cls):
+        if cls.student_ticket_sale_is_open():
+            return 0
+        return (cls.student_ticket_sale_datetime().date() - datetime.now().date()).days
+
+    @classmethod
+    def days_until_public_ticket_sale(cls):
+        if cls.public_ticket_sale_is_open():
+            return 0
+        return (cls.public_ticket_sale_datetime().date() - datetime.now().date()).days
 
 
 class Date(models.Model):

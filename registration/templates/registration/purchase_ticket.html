@@ -1,0 +1,100 @@
+{% extends "registration/base.html" %}
+{% load bootstrap3 %}
+{% load compress %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    {% compress js %}
+        <script type="text/javascript">
+            Stripe.setPublishableKey('{{ publishable_key }}');
+
+            var stripeResponseHandler = function (status, response) {
+                var $form = $('#checkout-form');
+
+                if (response.error) {
+                    // Show the errors on the form
+                    $form.find('.payment-errors').text(response.error.message);
+                    $form.find('.payment-errors').addClass('alert');
+                    $form.find('.payment-errors').addClass('alert-error');
+                    $form.find('button').prop('disabled', false);
+                } else {
+                    // token contains id, last4, and card type
+                    var token = response.id;
+                    // Insert the token into the form so it gets submitted to the server
+                    $form.append($('<input type="hidden" name="stripe_token" />').val(token));
+                    // and re-submit
+                    $form.get(0).submit();
+                }
+            };
+
+            jQuery(function ($) {
+                $('#checkout-form').submit(function (e) {
+                    var $form = $(this);
+
+                    // Disable the submit button to prevent repeated clicks
+                    $form.find('button').prop('disabled', true);
+
+                    Stripe.createToken($form, stripeResponseHandler);
+
+                    // Prevent the form from submitting with the default action
+                    return false;
+                });
+            });
+        </script>
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <h2>Purchase Your 2015 CSO Ticket</h2>
+    <p>Enter your credit card details. You will be charged $25. This process is secure.</p>
+    <div class="row">
+        <div class="col-md-8 col-md-push-2">
+            <p>
+            <i class="fa fa-cc-visa fa-4x"></i>
+            <i class="fa fa-cc-mastercard fa-4x"></i>
+            <i class="fa fa-cc-amex fa-4x"></i>
+            <i class="fa fa-cc-discover fa-4x"></i>
+            </p>
+        </div>
+    </div>
+    <form method="post" id="checkout-form" class="form-horizontal">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="name">Name</label>
+
+            <div class="col-sm-4 controls">
+                <input type="text" id="name" class="form-control" data-stripe="name"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="card">Card</label>
+
+            <div class="col-sm-4 controls">
+                <input type="text" id="card" class="form-control" data-stripe="number"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="">Expiration (MM/YYYY)</label>
+
+            <div class="col-sm-2 col-xs-6">
+                <input type="text" id="month" size="2" data-stripe="exp-month" class="form-control"/>
+            </div>
+            <div class="col-sm-2 col-xs-6">
+                <input type="text" id="year" size="4" data-stripe="exp-year" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="cvc">CVC</label>
+
+            <div class="col-sm-4 controls">
+                <input type="text" id="cvc" size="4" class="form-control" data-stripe="cvc"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-push-2 col-sm-4 controls">
+                <input type="submit" id="submit_button" value="Submit" class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+{% endblock %}

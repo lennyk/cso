@@ -1,7 +1,6 @@
 import os
 
 from configurations import Configuration
-
 import dj_database_url
 
 
@@ -65,6 +64,7 @@ class Base(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
+        'debug_toolbar',
     )
 
     # cso apps
@@ -79,6 +79,7 @@ class Base(Configuration):
     )
 
     MIDDLEWARE_CLASSES = (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -199,6 +200,13 @@ class Base(Configuration):
             },
         }
     }
+
+    # --------------------------------------------------
+    # stripe
+    # --------------------------------------------------
+
+    STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_RD2zQX55ntmRV0O4FvnSyZ0M')
+    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_vPjofGnYgo95XmxmI1ZwMvEs')
 
     # --------------------------------------------------
     # allauth

@@ -42,9 +42,7 @@
                 <li><a href="{% url 'home' %}#event" data-target="#event">Event Information</a></li>
                 <li><a href="{% url 'home' %}#colleges" data-target="#colleges">Colleges</a></li>
                 <li><a href="{% url 'home' %}#about" data-target="#about">About</a></li>
-                {% if ticket_sales_are_open %}
                 <li><a href="{% url 'registration_home' %}">Registration</a></li>
-                {% endif %}
                 {% if user and not user.is_anonymous %}
                 <li><a href="{% url 'account_logout' %}" id="logout-link">Logout</a></li>
                 {% endif %}

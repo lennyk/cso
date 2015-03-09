@@ -16,10 +16,15 @@
                     {% endfor %}
                     {% for boolean_detail in user.registration.registration_boolean_details %}
                         <dt>{{ boolean_detail.0 }}:</dt>
-                        <dd>{% if boolean_detail.1 %}<i class="fa fa-check-circle text-success"></i>{% else %}<i class="fa fa-ban text-danger"></i>{% endif %}</dd>
+                        <dd>
+                            {% if boolean_detail.1 %}<i class="fa fa-check-circle text-success"></i> (by {{ user.registration.college_verification_type}})
+                            {% else %}<i class="fa fa-ban text-danger"></i>
+                            {% endif %}
+                        </dd>
                     {% endfor %}
                     </dl>
                 </div>
+                <!--
                 <div class="panel-heading">
                     <h3 class="panel-title">
 {#                        <a data-toggle="collapse" href="#collapseEmails">Emails</a>#}
@@ -30,6 +35,7 @@
                     {% include "registration/snippets/user_emails_table.html" %}
                     {% include "registration/snippets/email_reverification_form.html" %}
                 </div>
+                -->
                 <div class="panel-footer text-right">
                     {% url 'registration_update' as update_url %}
                     {% bootstrap_button 'Update' button_type='button' button_class='btn-primary' size='sm' href=update_url %}
@@ -42,13 +48,26 @@
                     <h3 class="panel-title">Ticket Details</h3>
                 </div>
                 <div class="panel-body">
-                    You haven't purchased a ticket.
+                    {% if registration.has_ticket %}
+                        <i class="fa fa-check-circle text-success"></i>
+                        You've purchased your ticket! See you at the CSO!
+                    {% elif registration.can_buy_ticket %}
+                        <i class="fa fa-ban text-danger"></i>
+                        You haven't purchased a ticket yet. Buy it now!
+                    {% endif %}
                 </div>
                 <div class="panel-footer text-right">
-                    {% bootstrap_button 'Refund Ticket' button_type='button' button_class='btn-default' size='sm' href='#' %}
-                    {% bootstrap_button 'Purchase Ticket' button_type='button' button_class='btn-primary' size='sm' href='#' %}
+                    {% if registration.can_refund_ticket %}
+                    {% url 'refund_ticket' as refund_ticket_url %}
+                    {% bootstrap_button 'Refund Ticket' button_type='button' button_class='btn-default' size='sm' href=refund_ticket_url %}
+                    {% endif %}
+                    {% if registration.can_buy_ticket %}
+                    {% url 'purchase_ticket' as purchase_ticket_url %}
+                    {% bootstrap_button 'Purchase Ticket' button_type='button' button_class='btn-primary' size='sm' href=purchase_ticket_url %}
+                    {% endif %}
                 </div>
             </div>
+            <!--
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Shirt Details</h3>
@@ -61,6 +80,7 @@
                     {% bootstrap_button 'Order Shirts' button_type='button' button_class='btn-primary' size='sm' href='#' %}
                 </div>
             </div>
+            -->
         </div>
     </div>
 {% endblock %}

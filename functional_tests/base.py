@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
@@ -7,6 +8,13 @@ from django.core import management
 
 
 class FunctionalTest(StaticLiveServerTestCase):
+    RANDY_FIRST_NAME = 'Randy'
+    RANDY_LAST_NAME = 'Bachatero'
+    RANDY_FULL_NAME = RANDY_FIRST_NAME + ' ' + RANDY_LAST_NAME
+    RANDY_EMAIL = 'randy@example.com'
+    RANDY_EDU_EMAIL = 'randy@example.edu'
+    RANDY_PASSWORD = 'password'
+
     @classmethod
     def setUpClass(cls):
         for arg in sys.argv:
@@ -26,7 +34,8 @@ class FunctionalTest(StaticLiveServerTestCase):
         management.call_command('loaddata', 'fixtures/initial_data-{}.json'.format(os.getenv('DJANGO_CONFIGURATION').lower()))
         management.call_command('loaddata', 'fixtures/extras/colleges.json')
         management.call_command('loaddata', 'fixtures/extras/dates.json')
-        self.browser = webdriver.Firefox()
+        # self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(3)
 
     def tearDown(self):
@@ -48,3 +57,29 @@ class FunctionalTest(StaticLiveServerTestCase):
             text = text.lower()
             body_text = body_text.lower()
         self.assertTrue(text in body_text)
+
+    class wait_for_page_load(object):
+
+        def __init__(self, browser):
+            self.browser = browser
+
+        def __enter__(self):
+            self.old_page = self.browser.find_element_by_tag_name('html')
+
+        def page_has_loaded(self):
+            new_page = self.browser.find_element_by_tag_name('html')
+            return new_page.id != self.old_page.id
+
+        def __exit__(self, *_):
+            self.wait_for(self.page_has_loaded)
+
+        def wait_for(self, condition_function):
+            start_time = time.time()
+            while time.time() < start_time + 3:
+                if condition_function():
+                    return True
+                else:
+                    time.sleep(0.1)
+            raise Exception(
+                'Timeout waiting for {}'.format(condition_function.__name__)
+            )

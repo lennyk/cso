@@ -1,12 +1,12 @@
 import os
 import sys
 
-from allauth.socialaccount.models import SocialToken
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.http import urlencode
 from django.core import management
 from selenium.webdriver.support.ui import Select
 
+from allauth.socialaccount.models import SocialToken
 from .base import FunctionalTest
 from cso.models import CSOUser
 
@@ -48,6 +48,7 @@ SUPERUSER_TEST_PASSWORD = 'djJits6uT9vYvL'
 class UserRegistration(FunctionalTest):
     def setUp(self):
         super().setUp()
+        management.call_command('loaddata', 'fixtures/test/users/randy.json')
         management.call_command('loaddata', 'fixtures/test/college_ticket_presales_open.json')
 
     def login_with_facebook(self, email, password):
@@ -185,3 +186,34 @@ class UserRegistration(FunctionalTest):
         #
         # # Richard sees the Event Management index
         # self.assertIn('Django administration', self.browser.title)
+
+    def test_login_with_email(self):
+
+        # Randy goes to the CSO homepage
+        self.browser.get(self.server_url)
+
+        # Randy sees a Registration link and clicks it
+        self.click_link_assert_new_page('Registration')
+
+        signup_button = self.browser.find_element_by_id('email_signup_button')
+        login_button = self.browser.find_element_by_id('email_login_button')
+
+        # Randy sees a Sign Up with email button but doesn't see a Login with email button
+        self.assertTrue(signup_button.is_displayed())
+        self.assertFalse(login_button.is_displayed())
+
+        # Randy clicks the login with email toggle radio button
+        self.browser.find_element_by_id('email_login_select').click()
+
+        # Randy sees the Sign Up with email button has gone away and the Login with email button is visible
+        self.assertFalse(signup_button.is_displayed())
+        self.assertTrue(login_button.is_displayed())
+
+        # Randy inputs his email and password
+        self.browser.find_element_by_id('id_login').send_keys(self.RANDY_EMAIL)
+        self.browser.find_element_by_id('id_password').send_keys(self.RANDY_PASSWORD)
+
+        # Randy submits the form and and he is now on the Registration page
+        self.browser.find_element_by_id('email_login_button').click()
+
+        self.assert_text_in_page('Registration Details')

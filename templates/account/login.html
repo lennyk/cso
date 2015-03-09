@@ -39,5 +39,13 @@
             $('#email_signup_form').show();
         });
     });
+    $(document).ready(function () {
+        if ($('#email_login_select').is(':checked')) {
+            $('#email_login_form').show();
+        }
+        if ($('#email_signup_select').is(':checked')) {
+            $('#email_signup_form').show();
+        }
+    });
 </script>
 {% endblock %}

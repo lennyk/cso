@@ -17,11 +17,13 @@
         <form method="post" class="form-horizontal registration-form" role="form">
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' %}
+            <!--
             <div class="row" id="existing-user-emails">
                 <div class="col-md-6 col-md-offset-2">
                     {% include "registration/snippets/user_emails_table.html" %}
                 </div>
             </div>
+            -->
             {% buttons layout='horizontal' %}
                 {% block form_buttons %}
                 <button type="submit" class="btn btn-primary">Submit</button>
