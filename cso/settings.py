@@ -281,7 +281,7 @@ class Live(Base):
     PIWIK_SITE_ID = '2'
     PIWIK_DOMAIN_PATH = 'www.cso.dance/analytics'
 
-    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
     COMPRESS_OFFLINE = True
 
