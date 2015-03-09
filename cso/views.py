@@ -10,7 +10,7 @@ def home_page(request):
     ticket_sale_delay_message = (
         'We apologize for the delay in opening ticket sales. '
         'We\'re working hard to have it ready for you and we appreciate your enthusiasm! '
-        'We\'ll have student ticket sales up and ready for registration on <strong>{}</strong>.'
+        'Student ticket sales will go up on <strong>{}</strong>.'
     )
 
     participations = CollegeCSOParticipation.objects.filter(cso_year='2015', attending=True)
