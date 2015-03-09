@@ -42,7 +42,7 @@
                 <li><a href="{% url 'home' %}#event" data-target="#event">Event Information</a></li>
                 <li><a href="{% url 'home' %}#colleges" data-target="#colleges">Colleges</a></li>
                 <li><a href="{% url 'home' %}#about" data-target="#about">About</a></li>
-                <li><a href="{% url 'registration_home' %}">Registration</a></li>
+                <li{% if '/registration/' in request.path %} class="active"{% endif %}><a href="{% url 'registration_home' %}">Registration</a></li>
                 {% if user and not user.is_anonymous %}
                 <li><a href="{% url 'account_logout' %}" id="logout-link">Logout</a></li>
                 {% endif %}
