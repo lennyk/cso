@@ -1,4 +1,4 @@
-Django==1.7.1
+Django==1.7.5
 django-sslify==0.2.5
 dj-database-url==0.3.0
 stripe==1.21.0
