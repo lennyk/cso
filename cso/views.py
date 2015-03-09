@@ -2,8 +2,13 @@ from datetime import datetime
 
 from django.shortcuts import render
 from django.contrib import messages
+from revproxy.views import ProxyView
 
 from events.models import CollegeCSOParticipation, Date, TicketSales
+
+
+class AnalyticsProxyView(ProxyView):
+    upstream = 'http://analytics.latindancealliance.com/piwik/'
 
 
 def home_page(request):

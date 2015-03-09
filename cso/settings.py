@@ -65,6 +65,7 @@ class Base(Configuration):
         'django.contrib.staticfiles',
         'django.contrib.sites',
         'debug_toolbar',
+        'revproxy',
     )
 
     # cso apps
@@ -278,7 +279,7 @@ class Live(Base):
     DATABASES = {'default': dj_database_url.config()}
 
     PIWIK_SITE_ID = '2'
-    PIWIK_DOMAIN_PATH = 'analytics.latindancealliance.com/piwik'
+    PIWIK_DOMAIN_PATH = 'www.cso.dance/analytics'
 
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 

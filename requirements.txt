@@ -13,3 +13,4 @@ gunicorn==19.2.1
 psycopg2
 -e git://github.com/hayds/dj-static#egg=dj-static
 django-debug-toolbar
+django-revproxy==0.9.0
