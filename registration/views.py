@@ -85,7 +85,7 @@ class PurchaseTicketView(StripeMixin, FormView):
         customer.sources.create(source=form.cleaned_data['stripe_token'])
 
         charge = stripe.Charge.create(
-            amount=2500,
+            amount=2800,
             currency='usd',
             customer=customer,
             description='Collegiate Salsa Open 2015 full pass for {}'.format(self.request.user),
