@@ -315,3 +315,5 @@ class Sandbox(Live):
     PIWIK_SITE_ID = '4'
 
     SSLIFY_DISABLE = True
+
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
