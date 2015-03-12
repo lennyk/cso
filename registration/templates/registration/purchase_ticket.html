@@ -12,6 +12,9 @@
             var $form = $('#checkout-form');
 
             if (response.error) {
+                // re-enable the submit button
+                $form.find('#submit_button').prop('disabled', false);
+
                 // Show the errors on the form
                 $form.find('.payment-errors').text(response.error.message);
                 $form.find('.payment-errors').addClass('alert');
