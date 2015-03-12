@@ -1,54 +1,24 @@
 {% extends "registration/base.html" %}
 {% load bootstrap3 %}
 {% load compress %}
+{% load static %}
 
 {% block javascript %}
-    {{ block.super }}
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script type="text/javascript">
-        Stripe.setPublishableKey('{{ publishable_key }}');
-
-        var stripeResponseHandler = function (status, response) {
-            var $form = $('#checkout-form');
-
-            if (response.error) {
-                // re-enable the submit button
-                $form.find('#submit_button').prop('disabled', false);
-
-                // Show the errors on the form
-                $form.find('.payment-errors').text(response.error.message);
-                $form.find('.payment-errors').addClass('alert');
-                $form.find('.payment-errors').addClass('alert-error');
-                $form.find('button').prop('disabled', false);
-            } else {
-                // token contains id, last4, and card type
-                var token = response.id;
-                // Insert the token into the form so it gets submitted to the server
-                $form.append($('<input type="hidden" name="stripe_token" />').val(token));
-                // and re-submit
-                $form.get(0).submit();
-            }
-        };
-
-        jQuery(function ($) {
-            $('#checkout-form').submit(function (e) {
-                var $form = $(this);
-
-                // Disable the submit button to prevent repeated clicks
-                $form.find('#submit_button').prop('disabled', true);
-
-                Stripe.createToken($form, stripeResponseHandler);
-
-                // Prevent the form from submitting with the default action
-                return false;
-            });
-        });
-    </script>
+{{ block.super }}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    Stripe.setPublishableKey('{{ publishable_key }}');
+</script>
+{% compress js %}
+<script type="text/javascript" src="{% static 'payment-form.js' %}"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block content %}
     <h2>Purchase Your 2015 CSO Ticket</h2>
+
     <p>Enter your credit card details. You will be charged $28. This process is secure.</p>
+
     <div class="row">
         <div class="col-md-8 col-md-push-2">
             <p>
@@ -59,42 +29,50 @@
             </p>
         </div>
     </div>
-    <form method="post" id="checkout-form" class="form-horizontal">
+
+    <form id="cso-ticket-form" class="form-horizontal" method="post">
         {% csrf_token %}
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="name">Name</label>
 
-            <div class="col-sm-4 controls">
-                <input type="text" id="name" class="form-control" data-stripe="name"/>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="name">Card Holder's Name</label>
+            <div class="col-sm-4"><input type="text" id="name" class="form-control" data-stripe="name"/></div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="card">Card Number</label>
+            <div class="col-sm-4"><input type="text" id="card" class="form-control" data-stripe="number"/></div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="">Card Expiry Date</label>
+            <div class="col-sm-4 form-inline">
+                <select name="select2" id="month" data-stripe="exp-month" class="card-expiry-month stripe-sensitive required form-control">
+                    <option value="01" selected="selected">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <span> / </span>
+                <select name="select2" id="year" data-stripe="exp-year" class="card-expiry-year stripe-sensitive required form-control"></select>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="card">Card</label>
 
-            <div class="col-sm-4 controls">
-                <input type="text" id="card" class="form-control" data-stripe="number"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="">Expiration (MM/YYYY)</label>
-
-            <div class="col-sm-2 col-xs-6">
-                <input type="text" id="month" size="2" data-stripe="exp-month" class="form-control"/>
-            </div>
-            <div class="col-sm-2 col-xs-6">
-                <input type="text" id="year" size="4" data-stripe="exp-year" class="form-control"/>
-            </div>
-        </div>
         <div class="form-group">
             <label class="col-sm-2 control-label" for="cvc">CVC</label>
-
-            <div class="col-sm-4 controls">
-                <input type="text" id="cvc" size="4" class="form-control" data-stripe="cvc"/>
-            </div>
+            <div class="col-md-4"><input type="text" id="cvc" size="4" class="form-control" data-stripe="cvc"/></div>
         </div>
+
         <div class="form-group">
             <div class="col-md-push-2 col-sm-4 controls">
-                <input type="submit" id="submit_button" value="Submit" class="btn btn-primary"/>
+                <input type="submit" value="Pay Now" class="btn btn-primary"/>
             </div>
         </div>
     </form>
