@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib import messages
 import stripe
 from django.conf import settings
-
 from allauth.account.models import EmailAddress
 
 from cso.models import CSOUser
@@ -13,6 +12,9 @@ from .utils import email_is_academic
 class SavedCustomer(models.Model):
     user = models.OneToOneField(CSOUser, blank=False, null=False)
     stripe_id = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return '{} - {}'.format(self.user.email, self.stripe_id)
 
 
 class Registration(models.Model):
@@ -190,6 +192,9 @@ class Registration(models.Model):
 class Ticket(models.Model):
     registration = models.OneToOneField(Registration, blank=False, null=False)
     charge_id = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return '{} - {}'.format(self.registration.user.email, self.registration.user.get_full_name())
 
 
 class CollegeVerificationMessage(models.Model):
