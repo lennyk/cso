@@ -10,6 +10,7 @@
     Stripe.setPublishableKey('{{ publishable_key }}');
 </script>
 {% compress js %}
+<script type="text/javascript" src="{% static 'jquery.payment.js' %}"></script>
 <script type="text/javascript" src="{% static 'payment-form.js' %}"></script>
 {% endcompress %}
 {% endblock %}
@@ -20,59 +21,52 @@
     <p>Enter your credit card details. You will be charged $28. This process is secure.</p>
 
     <div class="row">
-        <div class="col-md-8 col-md-push-2">
-            <p>
-            <i class="fa fa-cc-visa fa-4x"></i>
-            <i class="fa fa-cc-mastercard fa-4x"></i>
-            <i class="fa fa-cc-amex fa-4x"></i>
-            <i class="fa fa-cc-discover fa-4x"></i>
-            </p>
-        </div>
+
     </div>
 
-    <form id="cso-ticket-form" class="form-horizontal" method="post">
+    <form id="cso-ticket-form" class="form-horizontal" method="post" autocomplete="on" novalidate>
         {% csrf_token %}
 
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="name">Card Holder's Name</label>
-            <div class="col-sm-4"><input type="text" id="name" class="form-control" data-stripe="name"/></div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="card">Card Number</label>
-            <div class="col-sm-4"><input type="text" id="card" class="form-control" data-stripe="number"/></div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="">Card Expiry Date</label>
-            <div class="col-sm-4 form-inline">
-                <select name="select2" id="month" data-stripe="exp-month" class="card-expiry-month stripe-sensitive required form-control">
-                    <option value="01" selected="selected">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
-                <span> / </span>
-                <select name="select2" id="year" data-stripe="exp-year" class="card-expiry-year stripe-sensitive required form-control"></select>
+            <label class="col-sm-2 control-label" for="cc-name">Card Holder's Name</label>
+            <div class="col-sm-4">
+                <input id="cc-name" type="text" class="form-control" data-stripe="name" autocomplete="cc-name" required/>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="cvc">CVC</label>
-            <div class="col-md-4"><input type="text" id="cvc" size="4" class="form-control" data-stripe="cvc"/></div>
+            <label class="col-sm-2 control-label" for="cc-number">Card Number</label>
+            <div class="col-sm-4">
+                <input id="cc-number" type="tel" class="form-control cc-number" data-stripe="number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" required/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div id="cc-icons" class="col-md-8 col-md-push-2">
+                <i class="fa fa-cc-visa fa-2x"></i>
+                <i class="fa fa-cc-mastercard fa-2x"></i>
+                <i class="fa fa-cc-amex fa-2x"></i>
+                <i class="fa fa-cc-discover fa-2x"></i>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="cc-exp">Card Expiry Date</label>
+            <div class="col-sm-2">
+                <input id="cc-exp" type="tel" class="form-control cc-exp" autocomplete="cc-exp" placeholder="•• / ••" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="cc-cvc">CVC</label>
+            <div class="col-md-2">
+                <input id="cc-cvc" type="tel" class="form-control cc-cvc" data-stripe="cvc" autocomplete="off" placeholder="•••" required/>
+            </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-push-2 col-sm-4 controls">
-                <input type="submit" value="Pay Now" class="btn btn-primary"/>
+                <input id="cc-submit" type="submit" class="btn btn-primary" value="Pay Now"/>
             </div>
         </div>
     </form>

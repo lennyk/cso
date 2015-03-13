@@ -34,6 +34,7 @@ class Base(Configuration):
         os.path.abspath(os.path.join(BASE_DIR, './bower_components/bootstrap-social')),
         os.path.abspath(os.path.join(BASE_DIR, './bower_components/font-awesome')),
         os.path.abspath(os.path.join(BASE_DIR, './bower_components/jquery/dist')),
+        os.path.abspath(os.path.join(BASE_DIR, './bower_components/jquery.payment/lib')),
     )
 
     STATICFILES_FINDERS = (

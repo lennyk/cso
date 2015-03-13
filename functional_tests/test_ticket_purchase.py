@@ -1,7 +1,6 @@
 from datetime import date
 
 from django.core import management
-from selenium.webdriver.support.ui import Select
 
 from .base import FunctionalTest
 
@@ -46,11 +45,10 @@ class TicketPurchase(FunctionalTest):
         self.assert_text_in_page('Enter your credit card details.')
 
         # Randy puts in his deets
-        self.browser.find_element_by_id('name').send_keys(self.RANDY_FULL_NAME)
-        self.browser.find_element_by_id('card').send_keys('4242424242424242')
-        Select(self.browser.find_element_by_id('month')).select_by_visible_text('01')
-        Select(self.browser.find_element_by_id('year')).select_by_visible_text(str(date.today().year + 1))
-        self.browser.find_element_by_id('cvc').send_keys('111')
+        self.browser.find_element_by_id('cc-name').send_keys(self.RANDY_FULL_NAME)
+        self.browser.find_element_by_id('cc-number').send_keys('4242424242424242')
+        self.browser.find_element_by_id('cc-exp').send_keys('01' + str(date.today().year + 1))
+        self.browser.find_element_by_id('cc-cvc').send_keys('111')
 
         # Randy clicks the magic button
         with self.wait_for_page_load(self.browser):
