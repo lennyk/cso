@@ -1,0 +1,43 @@
+[
+  {
+    "model": "cso.csouser",
+    "pk": 26,
+    "fields": {
+      "is_superuser": false,
+      "username": "bobby",
+      "password": "pbkdf2_sha256$15000$cMjsOEYGSUJP$2oDvJF15LopoSwZJ6iIK4l4279aqROsYCdLiGYFdVQs=",
+      "last_login": "2015-04-11T19:26:20.795Z",
+      "groups": [],
+      "last_name": "Salsero",
+      "email": "bobby@example.com",
+      "date_joined": "2015-04-11T19:26:12.269Z",
+      "user_permissions": [],
+      "is_staff": false,
+      "is_active": true,
+      "first_name": "Bobby"
+    }
+  },
+  {
+    "model": "registration.registration",
+    "pk": 23,
+    "fields": {
+      "college_affiliated": false,
+      "partner_type": "LD",
+      "college_group": null,
+      "college_verification_type": null,
+      "first_name": "Bobby",
+      "last_name": "Salsero",
+      "user": 26
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 34,
+    "fields": {
+      "verified": true,
+      "email": "bobby@example.com",
+      "user": 26,
+      "primary": true
+    }
+  }
+]

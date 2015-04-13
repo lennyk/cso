@@ -5,8 +5,8 @@ from django.core.exceptions import ImproperlyConfigured
 from django.utils.http import urlencode
 from django.core import management
 from selenium.webdriver.support.ui import Select
-
 from allauth.socialaccount.models import SocialToken
+
 from .base import FunctionalTest
 from cso.models import CSOUser
 
@@ -76,11 +76,6 @@ class UserRegistration(FunctionalTest):
     def register_new_login(self, dance_orientation='Lead'):
         Select(self.browser.find_element_by_id('id_partner_type')).select_by_visible_text(dance_orientation)
         self.browser.find_element_by_css_selector('form#signup_form button[type="submit"]').click()
-
-    def logout(self):
-        self.browser.find_element_by_link_text('Logout').click()
-        self.assertNotIn('Logout', self.browser.find_element_by_id('cso-navbar').text)
-        self.assertIn('You have signed out.', self.browser.find_element_by_tag_name('body').text)
 
     def logout_of_facebook(self, email):
         user = CSOUser.objects.filter(email=email)[0]

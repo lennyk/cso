@@ -14,6 +14,8 @@ class FunctionalTest(StaticLiveServerTestCase):
     RANDY_EMAIL = 'randy@example.com'
     RANDY_EDU_EMAIL = 'randy@example.edu'
     RANDY_PASSWORD = 'password'
+    BOBBY_EMAIL = 'bobby@example.com'
+    BOBBY_PASSWORD = 'password'
 
     @classmethod
     def setUpClass(cls):
@@ -83,3 +85,8 @@ class FunctionalTest(StaticLiveServerTestCase):
             raise Exception(
                 'Timeout waiting for {}'.format(condition_function.__name__)
             )
+
+    def logout(self):
+        self.browser.find_element_by_link_text('Logout').click()
+        self.assertNotIn('Logout', self.browser.find_element_by_id('cso-navbar').text)
+        self.assertIn('You have signed out.', self.browser.find_element_by_tag_name('body').text)
