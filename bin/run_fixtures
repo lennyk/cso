@@ -11,7 +11,7 @@ MANAGE_FILE=${MANAGE_FILE:2}
 DJANGO_ENV=$(echo $DJANGO_CONFIGURATION | tr '[:upper:]' '[:lower:]')
 
 echo "-----> Loading Fixtures"
-python $MANAGE_FILE loaddata fixtures/common/*.json fixtures/extras/*.json fixtures/initial_data-${DJANGO_ENV}.json  2>&1 | indent
+python $MANAGE_FILE loaddata fixtures/initial_data-${DJANGO_ENV}.json 2>&1 | indent
 
 
 echo
