@@ -34,8 +34,8 @@ class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self):
         management.call_command('loaddata', 'fixtures/common/sites.json')
         management.call_command('loaddata', 'fixtures/initial_data-{}.json'.format(os.getenv('DJANGO_CONFIGURATION').lower()))
-        management.call_command('loaddata', 'fixtures/extras/colleges.json')
-        management.call_command('loaddata', 'fixtures/extras/dates.json')
+        management.call_command('loaddata', 'fixtures/common/colleges.json')
+        management.call_command('loaddata', 'fixtures/common/dates.json')
         # self.browser = webdriver.Firefox()
         self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(3)

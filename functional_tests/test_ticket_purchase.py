@@ -38,6 +38,10 @@ class TicketPurchase(FunctionalTest):
         self.login_with_email(self.BOBBY_EMAIL, self.BOBBY_PASSWORD)
 
     def test_registered_user_can_purchase_ticket(self):
+        # Randy sees a countdown showing tickets are available
+        self.browser.get(self.server_url)
+        self.assert_text_in_page('Tickets Remaining')
+
         # Randy logs in
         self.login_as_randy()
 

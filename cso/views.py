@@ -5,6 +5,7 @@ from django.contrib import messages
 from revproxy.views import ProxyView
 
 from events.models import CollegeCSOParticipation, Date, TicketSales
+from registration.models import Ticket
 
 
 class AnalyticsProxyView(ProxyView):
@@ -34,6 +35,13 @@ def home_page(request):
 
     ticket_sales_are_open = TicketSales.public_ticket_sale_is_open() or TicketSales.student_ticket_sale_is_open()
 
+    MAX_TICKETS_SOLD = 500
+    BULK_SALES = 120
+    MAGIC_DIVISOR = 2.5
+
+    ticket_web_sales = Ticket.objects.all().count()
+    tickets_remaining = max([int((MAX_TICKETS_SOLD - BULK_SALES - ticket_web_sales) / MAGIC_DIVISOR), 0])
+
     if not ticket_sales_are_open:
         messages.add_message(request, messages.WARNING, ticket_sale_delay_message.format(TicketSales.student_ticket_sale_datetime_human()))
     return render(request, 'cso/home.html', {
@@ -43,7 +51,8 @@ def home_page(request):
         'ticket_college_presale': ticket_college_presale,
         'ticket_public_sale': ticket_public_sale,
         'ticket_sales_are_open': ticket_sales_are_open,
-        'now': datetime.now()
+        'now': datetime.now(),
+        'tickets_remaining': tickets_remaining,
     })
 
 
