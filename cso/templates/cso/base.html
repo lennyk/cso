@@ -2,8 +2,7 @@
 <html>
 {% load compress %}
 {% load static from staticfiles %}
-{# TODO: registration #}
-{#{% load socialaccount %}#}
+{% load socialaccount %}
 {% load bootstrap3 %}
 {% load analytics %}
 <head lang="en">
@@ -36,25 +35,21 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-{# TODO: registration#}
-{#        <form method="post" action="{% url 'account_logout' %}">{% csrf_token %}#}
+        <form method="post" action="{% url 'account_logout' %}">{% csrf_token %}
         <div id="cso-navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'home' %}#home" data-target="#home">Home</a></li>
                 <li><a href="{% url 'home' %}#event" data-target="#event">Event Information</a></li>
                 <li><a href="{% url 'home' %}#colleges" data-target="#colleges">Colleges</a></li>
-{# TODO: registration#}
-{#                <li><a href="{% url 'registration_home' %}">Registration</a></li>#}
                 <li><a href="{% url 'home' %}#about" data-target="#about">About</a></li>
+                <li{% if '/registration/' in request.path %} class="active"{% endif %}><a href="{% url 'registration_home' %}">Registration</a></li>
                 {% if user and not user.is_anonymous %}
-{# TODO: registration#}
-{#                <li><a href="{% url 'account_logout' %}" id="logout-link">Logout</a></li>#}
+                <li><a href="{% url 'account_logout' %}" id="logout-link">Logout</a></li>
                 {% endif %}
 
             </ul>
         </div>
-{# TODO: registration#}
-{#        </form>#}
+        </form>
     </div>
 </div>
 

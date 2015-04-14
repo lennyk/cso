@@ -1,0 +1,12 @@
+[
+  {
+    "model": "events.date",
+    "fields": {
+      "date": "2011-07-31",
+      "title": "Public Ticket Sales Open",
+      "is_active": true,
+      "time": "20:00:00"
+    },
+    "pk": 2
+  }
+]

@@ -1,0 +1,72 @@
+{% extends "registration/base.html" %}
+{% load bootstrap3 %}
+{% load compress %}
+{% load static %}
+
+{% block javascript %}
+{{ block.super }}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    Stripe.setPublishableKey('{{ publishable_key }}');
+</script>
+{% compress js %}
+<script type="text/javascript" src="{% static 'jquery.payment.js' %}"></script>
+<script type="text/javascript" src="{% static 'payment-form.js' %}"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <h2>Purchase Your 2015 CSO Ticket</h2>
+
+    <p>Enter your credit card details. You will be charged $28. This process is secure.</p>
+
+    <div class="row">
+
+    </div>
+
+    <form id="cso-ticket-form" class="form-horizontal" method="post" autocomplete="on" novalidate>
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="cc-name">Card Holder's Name</label>
+            <div class="col-sm-4">
+                <input id="cc-name" type="text" class="form-control" data-stripe="name" autocomplete="cc-name" required/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="cc-number">Card Number</label>
+            <div class="col-sm-4">
+                <input id="cc-number" type="tel" class="form-control cc-number" data-stripe="number" autocomplete="cc-number" placeholder="•••• •••• •••• ••••" required/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div id="cc-icons" class="col-sm-8 col-sm-push-2">
+                <i class="fa fa-cc-visa fa-2x"></i>
+                <i class="fa fa-cc-mastercard fa-2x"></i>
+                <i class="fa fa-cc-amex fa-2x"></i>
+                <i class="fa fa-cc-discover fa-2x"></i>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="cc-exp">Card Expiry Date</label>
+            <div class="col-sm-2">
+                <input id="cc-exp" type="tel" class="form-control cc-exp" autocomplete="cc-exp" placeholder="•• / ••" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="cc-cvc">CVC</label>
+            <div class="col-sm-2">
+                <input id="cc-cvc" type="tel" class="form-control cc-cvc" data-stripe="cvc" autocomplete="off" placeholder="•••" required/>
+            </div>
+        </div>
+
+
+        <div class="col-sm-push-2 col-sm-4">
+            <button id="cc-submit" type="submit" class="btn bg-primary">Pay Now</button>
+        </div>
+    </form>
+{% endblock %}

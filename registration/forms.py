@@ -1,8 +1,12 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email, MinLengthValidator
-from .models import Registration, CollegeVerificationMessage
+from django.contrib import messages
+
 from allauth.account.models import EmailAddress
+from allauth.account.adapter import get_adapter
+
+from .models import Registration, CollegeVerificationMessage
 
 
 def validate_edu_email(email):
@@ -10,15 +14,22 @@ def validate_edu_email(email):
         raise ValidationError('%s is not a .edu email address.' % email)
 
 
-def validate_unique_email(email):
-    if EmailAddress.objects.filter(email=email).exists():
+def validate_unique_email(email, registration):
+    if EmailAddress.objects.filter(
+            email=email).exists() and (
+                not hasattr(registration, 'user') or not EmailAddress.objects.filter(email=email, user=registration.user).exists()):
         raise ValidationError('The email address %s is already registered.', email)
 
 
 class NotBlankValidator(MinLengthValidator):
     message = "This field cannot be blank."
 
+
 validate_not_blank = NotBlankValidator(1)
+
+
+class StripeForm(forms.Form):
+    stripe_token = forms.CharField()
 
 
 class RegistrationForm(forms.ModelForm):
@@ -28,10 +39,11 @@ class RegistrationForm(forms.ModelForm):
     def __init__(self, *args, edu_email=None, verification_message=None, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
         # overriding here to allow initializing non-model fields
-        if edu_email:
-            self.fields['edu_email'].initial = edu_email
-        if verification_message:
-            self.fields['verification_message'].initial = verification_message
+        if hasattr(self.instance, 'user'):
+            if self.instance.user.registration.has_edu_email():
+                self.fields['edu_email'].initial = self.instance.user.registration.edu_email().email
+            if self.instance.user.registration.college_verification_message:
+                self.fields['verification_message'].initial = self.instance.user.registration.college_verification_message
 
     class Meta:
         model = Registration
@@ -58,12 +70,13 @@ class RegistrationForm(forms.ModelForm):
 
     def save(self, commit=True):
         # save the Registration
-        super(RegistrationForm, self).save()
+        self.instance = super(RegistrationForm, self).save()
 
         # add/update/delete data relating to non-Registration models in this form
         if self.instance.college_affiliated:
             if self.instance.college_verification_type == 'email':
-                EmailAddress.objects.create(user=self.instance.user, email=self.cleaned_data['edu_email']).save()
+                if not EmailAddress.objects.filter(email=self.cleaned_data['edu_email']).exists():
+                    EmailAddress.objects.create(user=self.instance.user, email=self.cleaned_data['edu_email']).save()
                 # if message exists for this user, delete it
                 CollegeVerificationMessage.objects.filter(registration=self.instance).delete()
             if self.instance.college_verification_type == 'message':
@@ -81,13 +94,27 @@ class RegistrationForm(forms.ModelForm):
         reg.partner_type = self.cleaned_data['partner_type']
         reg.college_affiliated = self.cleaned_data['college_affiliated']
         reg.college_group = self.cleaned_data['college_group']
+        reg.college_verification_type = self.cleaned_data['college_verification_type']
         reg.save()
-        # TODO: make something smarter like this work
-        # self.instance.user = user
-        # self.cleaned_data['user'] = user
-        # RegistrationForm(self).save()
-        # RegistrationForm(self).clean()
-        # super(RegistrationForm, self).save()
+
+        if reg.college_verification_type == 'email':
+            if not EmailAddress.objects.filter(email=self.cleaned_data['edu_email']).exists():
+                EmailAddress.objects.create(user=reg.user, email=self.cleaned_data['edu_email']).save()
+                reg.edu_email().send_confirmation(request)
+                get_adapter().add_message(
+                    request,
+                    messages.INFO,
+                    'account/messages/'
+                    'email_confirmation_sent.txt',
+                    {'email': reg.edu_email().email}
+                )
+
+            # if message exists for this user, delete it
+            CollegeVerificationMessage.objects.filter(registration=reg).delete()
+        if reg.college_verification_type == 'message':
+            message, created = CollegeVerificationMessage.objects.get_or_create(registration=reg)
+            message.message = self.cleaned_data['verification_message']
+            message.save()
 
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
@@ -122,7 +149,7 @@ class RegistrationForm(forms.ModelForm):
                 try:
                     validate_email(edu_email)
                     validate_edu_email(edu_email)
-                    validate_unique_email(edu_email)
+                    validate_unique_email(edu_email, self.instance)
                 except ValidationError as e:
                     self.add_error('edu_email', e)
             else:

@@ -1,5 +1,7 @@
 import os
+
 from configurations import Configuration
+import dj_database_url
 
 
 class Base(Configuration):
@@ -26,12 +28,13 @@ class Base(Configuration):
     )
 
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     STATICFILES_DIRS = (
-        os.path.abspath(os.path.join(BASE_DIR, '../bower_components/bootstrap-sass-official/assets')),
-        os.path.abspath(os.path.join(BASE_DIR, '../bower_components/bootstrap-social')),
-        os.path.abspath(os.path.join(BASE_DIR, '../bower_components/font-awesome')),
-        os.path.abspath(os.path.join(BASE_DIR, '../bower_components/jquery/dist')),
+        os.path.abspath(os.path.join(BASE_DIR, './bower_components/bootstrap-sass-official/assets')),
+        os.path.abspath(os.path.join(BASE_DIR, './bower_components/bootstrap-social')),
+        os.path.abspath(os.path.join(BASE_DIR, './bower_components/font-awesome')),
+        os.path.abspath(os.path.join(BASE_DIR, './bower_components/jquery/dist')),
+        os.path.abspath(os.path.join(BASE_DIR, './bower_components/jquery.payment/lib')),
     )
 
     STATICFILES_FINDERS = (
@@ -41,7 +44,7 @@ class Base(Configuration):
     )
 
     MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
+    MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, './media'))
 
     ROOT_URLCONF = 'cso.urls'
 
@@ -62,14 +65,15 @@ class Base(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.sites',
+        'debug_toolbar',
+        'revproxy',
     )
 
     # cso apps
     INSTALLED_APPS += (
         'cso',
         'events',
-        # TODO: registration
-        # 'registration',
+        'registration',
     )
 
     AUTHENTICATION_BACKENDS = (
@@ -77,6 +81,7 @@ class Base(Configuration):
     )
 
     MIDDLEWARE_CLASSES = (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -84,6 +89,7 @@ class Base(Configuration):
         'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'sslify.middleware.SSLifyMiddleware',
     )
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -102,6 +108,8 @@ class Base(Configuration):
             'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
         }
     }
+
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     # --------------------------------------------------
     # logging
@@ -196,11 +204,16 @@ class Base(Configuration):
     }
 
     # --------------------------------------------------
+    # stripe
+    # --------------------------------------------------
+
+    STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_RD2zQX55ntmRV0O4FvnSyZ0M')
+    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_vPjofGnYgo95XmxmI1ZwMvEs')
+
+    # --------------------------------------------------
     # allauth
     # --------------------------------------------------
 
-    # TODO: registration
-    """
     INSTALLED_APPS += (
         'allauth',
         'allauth.account',
@@ -231,7 +244,6 @@ class Base(Configuration):
     SOCIALACCOUNT_EMAIL_VERIFICATION = None
     SOCIALACCOUNT_PROVIDERS = {'facebook': {'METHOD': 'oauth2', 'VERIFIED_EMAIL': True}}
     SOCIALACCOUNT_ADAPTER = 'cso.adapter.CSOSocialAccountAdapter'
-    """
 
     # --------------------------------------------------
     # front end
@@ -257,31 +269,52 @@ class Base(Configuration):
 class Dev(Base):
     DEBUG = True
 
-    SOCIAL_AUTH_FACEBOOK_KEY = '1522981811246933'
-    SOCIAL_AUTH_FACEBOOK_SECRET = 'aed08816076d87b3c0ce13d8f3906fd1'
+    SSLIFY_DISABLE = True
 
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
 
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-class Sandbox(Base):
-    PIWIK_SITE_ID = '4'
-    PIWIK_DOMAIN_PATH = 'sandbox.cso.dance/analytics/piwik'
-
-    COMPRESS_OFFLINE = True
-
-    SOCIAL_AUTH_FACEBOOK_KEY = '1522982181246896'
-    SOCIAL_AUTH_FACEBOOK_SECRET = 'cf50b5154294cda7bd6e1a43f8a4104f'
-    # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
-
-
 class Live(Base):
+    DATABASES = {'default': dj_database_url.config()}
+
     PIWIK_SITE_ID = '2'
-    PIWIK_DOMAIN_PATH = 'cso.dance/analytics/piwik'
+    PIWIK_DOMAIN_PATH = 'www.cso.dance/analytics'
+
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
     COMPRESS_OFFLINE = True
 
-    SOCIAL_AUTH_FACEBOOK_KEY = '1522387657973015'
-    SOCIAL_AUTH_FACEBOOK_SECRET = '8d2a32053ea6d493b2c3130d20137178'
-    # from instance_settings import ALLOWED_HOSTS, SECRET_KEY
+    ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'] if 'ALLOWED_HOSTS' in os.environ else None
+    SECRET_KEY = os.environ['SECRET_KEY'] if 'SECRET_KEY' in os.environ else None
+
+    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME'] if 'SENDGRID_USERNAME' in os.environ else None
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD'] if 'SENDGRID_PASSWORD' in os.environ else None
+
+    LOGGING = Base.LOGGING
+    LOGGING['handlers'] = {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+            'filters': ['require_debug_false'],
+        }
+    }
+    LOGGING['loggers']['cso']['handlers'] = ['console']
+    LOGGING['loggers']['events']['handlers'] = ['console']
+    LOGGING['loggers']['registration']['handlers'] = ['console']
+    LOGGING['loggers']['django']['handlers'] = ['console']
+    LOGGING['loggers']['django.db']['handlers'] = ['console']
+    LOGGING['loggers']['']['handlers'] = ['console']
+
+
+class Sandbox(Live):
+    PIWIK_SITE_ID = '4'
+
+    SSLIFY_DISABLE = True
+
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
