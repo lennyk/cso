@@ -1,3 +1,4 @@
+{% load static from staticfiles %}
 <h1 class="page-header">Event Information</h1>
 
 {% include "events/snippets/dates.html" %}
@@ -9,7 +10,8 @@
 <p>Tickets are non-transferable but we offer free no-questions-asked <strong>refunds</strong> until April 18th. If you need to refund your ticket just go back to the registration page and complete your refund online.</p>
 
 <h2 id="competition" class="anchor">The Competition</h2>
-<p>The rules and structure of the competition are being decided collaboratively by all the colleges with input and voting from each school. When finalized, the rules and structure will be posted publicly here.</p>
+<p>The rules and structure of the competition have been decided collaboratively by all the colleges with input and voting from each school.</p>
+<p>View the full <a href="{% static '2015CompetitionAndPerformanceTeamRules.pdf' %}" target="_blank">2015 Competition and Performance Team Rules</a>.</p>
 
 {#<h2 id="schedule" class="anchor">Event Schedule</h2>#}
 {#<dl class="dl-horizontal">#}
