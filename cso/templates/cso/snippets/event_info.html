@@ -1,41 +1,18 @@
 {% load static from staticfiles %}
 <h1 class="page-header">Event Information</h1>
 
-{% include "events/snippets/dates.html" %}
+<img class="img-responsive center-block" src="{% static 'event_schedule.jpg' %}"/>
 
-<h2 id="tickets" class="anchor">Ticket Sales</h2>
-<p>While the CSO is open to the public, the focus of the event is to support the college dance community. Due to our limited venue size tickets will sell out. To ensure college clubs and teams are able to buy tickets we are having a <strong>college ticket presale</strong>. Students and active members of clubs and teams will be able to purchase their tickets early during this presale. Shortly thereafter we will open <strong>public ticket sales</strong>.</p>
-<p>CSO ticket sales are online only, no door sales.</p>
-<p>We will be selling inexpensive competition and performance <strong>spectator tickets</strong> at the door geared toward friends and family, but if you plan to attend workshops and the all-night social dancing you must purchase a regular ticket online.</p>
-<p>Tickets are non-transferable but we offer free no-questions-asked <strong>refunds</strong> until April 18th. If you need to refund your ticket just go back to the registration page and complete your refund online.</p>
+<h2 id="tickets" class="anchor">Tickets</h2>
+<p><strong>Full passes</strong> including workshops, performances, competition, and social dancing are <strong>$28</strong>. Full passes are only available online only. No full passes will be sold at the event.</p>
+<p>Full passes are non-transferable but we offer free no-questions-asked <strong>refunds</strong> until April 18th. If you need to refund your ticket just go back to the registration page and complete your refund online.</p>
+<p><strong>Spectator tickets</strong>, allowing friends and family to attend the performances and competition are <strong>$8</strong>. Spectator tickets will only be available at the event. Cash sales only. If you plan to attend workshops and the all-night social dancing you must purchase a regular ticket online. Spectators will only be allowed to attend the event from 8:30pm - 10:00pm. Children 6 and under can may enter for free.</p>
 
 <h2 id="competition" class="anchor">The Competition</h2>
 <p>The rules and structure of the competition have been decided collaboratively by all the colleges with input and voting from each school.</p>
 <p>View the full <a href="{% static '2015CompetitionAndPerformanceTeamRules.pdf' %}" target="_blank">2015 Competition and Performance Team Rules</a>.</p>
 
-{#<h2 id="schedule" class="anchor">Event Schedule</h2>#}
-{#<dl class="dl-horizontal">#}
-{#    <dt>12pm - 4pm</dt>#}
-{#    <dd>#}
-{#        <h4 class="schedule-heading">Tech Rehearsal & Team Check-in</h4>#}
-{#        <p>Each performance and competition team will receive a 10 minute tech rehearsal at the venue. The tech rehearsal schedule will be very strict to accommodate everyone. Teams should be on time or unfortunately forfeit their tech rehearsal.</p>#}
-{#    </dd>#}
-{#    <dt>6:30pm - 8pm</dt>#}
-{#    <dd>#}
-{#        <h4 class="schedule-heading">Performances</h4>#}
-{#        <p>Come support your friends and family during the performance segment of the CSO. Chair seating will be provided on a first-come first-served basis so arrive early to get your spot!</p>#}
-{#    </dd>#}
-{#    <dt>8pm - 9pm</dt>#}
-{#    <dd>#}
-{#        <h4 class="schedule-heading">The Competition</h4>#}
-{#        <p>The moment we've been waiting for all year begins at 8pm. Cheer on the competitors as they compete for the 2015 CSO Championship title.</p>#}
-{#    </dd>#}
-{#    <dt>9:30pm - 4:00am</dt>#}
-{#    <dd>#}
-{#        <h4 class="schedule-heading">Social Dancing</h4>#}
-{#        <p>Get ready for the biggest college salsa social of your life, bro. Snacks, water, and vendors will be available all night. Winners of the competition will be announced when the clock strikes 12.</p>#}
-{#    </dd>#}
-{#</dl>#}
+{% include "events/snippets/dates.html" %}
 
 <h2 id="location" class="anchor">Event Location</h2>
 <p>The 2015 CSO will be held at Fat Eye Studios about 10 minutes away from downtown Los Angeles. Parking is available on-site.</p>
