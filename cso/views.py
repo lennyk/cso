@@ -37,10 +37,10 @@ def home_page(request):
 
     MAX_TICKETS_SOLD = 500
     BULK_SALES = 120
-    MAGIC_DIVISOR = 2.5
+    MAGIC_DIVISOR = 3
 
     ticket_web_sales = Ticket.objects.all().count()
-    tickets_remaining = max([int((MAX_TICKETS_SOLD - BULK_SALES - ticket_web_sales) / MAGIC_DIVISOR), 0])
+    tickets_remaining = max([int((MAX_TICKETS_SOLD - BULK_SALES - ticket_web_sales) / MAGIC_DIVISOR), 7])
 
     if not ticket_sales_are_open:
         messages.add_message(request, messages.WARNING, ticket_sale_delay_message.format(TicketSales.student_ticket_sale_datetime_human()))
