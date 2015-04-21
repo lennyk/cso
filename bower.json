@@ -13,6 +13,7 @@
     "bootstrap-sass-official": "~3.3.1",
     "font-awesome": "~4.2.0",
     "bootstrap-social": "~4.8.0",
-    "jquery.payment": "~1.2.2"
+    "jquery.payment": "~1.2.2",
+    "lightbox2": "~2.7.1"
   }
 }

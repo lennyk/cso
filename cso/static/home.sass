@@ -39,6 +39,7 @@ html, body, .parallax
 section
   min-height: 100%
   position: relative
+  padding-bottom: $full-navbar-height
 
   // enable css parallax effect on medium size and up
   @media (min-width: $screen-md-min)
@@ -48,7 +49,6 @@ section
   @media (min-width: $screen-sm-min)
     // vertical padding to complement the horizontal margin around containers on small size and up
     padding-top: $full-navbar-height
-    padding-bottom: $full-navbar-height
 
     > .container:last-of-type
       -webkit-border-radius: 12px
@@ -97,6 +97,9 @@ section
 
   &#event
     @include section-background('/static/social_dance_1.jpg', 0.8)
+
+  &#instructors-djs
+    background-color: #b9def0
 
   &#colleges
     @include section-background('/static/woodfloor.jpg', 0.5)

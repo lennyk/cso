@@ -6,6 +6,7 @@
 {{ block.super }}
 {% compress css %}
 <link rel="stylesheet" type="text/x-sass" href="{% static 'home.sass' %}" />
+<link rel="stylesheet" href="{% static 'css/lightbox.css'%}" />
 {% endcompress %}
 {% endblock %}
 
@@ -13,6 +14,7 @@
 {{ block.super }}
 {% compress js %}
 <script src="{% static 'home.js' %}" type="text/javascript" charset="utf-8"></script>
+<script src="{% static 'js/lightbox.js' %}" type="text/javascript" charset="utf-8"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -28,6 +30,12 @@
 <section id="event">
 <div class="container">
 {% include "cso/snippets/event_info.html" %}
+</div>
+</section>
+
+<section id="instructors-djs">
+<div class="container">
+{% include "events/snippets/instructors_djs.html" %}
 </div>
 </section>
 

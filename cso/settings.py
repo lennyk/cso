@@ -35,6 +35,7 @@ class Base(Configuration):
         os.path.abspath(os.path.join(BASE_DIR, './bower_components/font-awesome')),
         os.path.abspath(os.path.join(BASE_DIR, './bower_components/jquery/dist')),
         os.path.abspath(os.path.join(BASE_DIR, './bower_components/jquery.payment/lib')),
+        os.path.abspath(os.path.join(BASE_DIR, './bower_components/lightbox2')),
     )
 
     STATICFILES_FINDERS = (
