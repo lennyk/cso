@@ -35,12 +35,10 @@ def home_page(request):
 
     ticket_sales_are_open = TicketSales.public_ticket_sale_is_open() or TicketSales.student_ticket_sale_is_open()
 
-    MAX_TICKETS_SOLD = 500
-    BULK_SALES = 120
-    MAGIC_DIVISOR = 3
+    MAX_TICKETS_SOLD = 236
 
     ticket_web_sales = Ticket.objects.all().count()
-    tickets_remaining = max([int((MAX_TICKETS_SOLD - BULK_SALES - ticket_web_sales) / MAGIC_DIVISOR), 7])
+    tickets_remaining = max([MAX_TICKETS_SOLD - ticket_web_sales, 7])
 
     if not ticket_sales_are_open:
         messages.add_message(request, messages.WARNING, ticket_sale_delay_message.format(TicketSales.student_ticket_sale_datetime_human()))
