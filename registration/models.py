@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.contrib import messages
 import stripe
@@ -132,8 +134,7 @@ class Registration(models.Model):
         return False
 
     def can_refund_ticket(self):
-        # TODO: extend this to allow for a cutoff time
-        return self.has_ticket()
+        return self.has_ticket() and datetime.today().date() < TicketSales.ticket_refunds_close()
 
     def refund_ticket(self):
         stripe.api_key = settings.STRIPE_SECRET_KEY

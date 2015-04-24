@@ -17,6 +17,10 @@ class TicketSales(object):
         return datetime.combine(Date.objects.get(id=2).date, Date.objects.get(id=2).time)
 
     @classmethod
+    def ticket_refunds_close(cls):
+        return Date.objects.get(id=4).date
+
+    @classmethod
     def student_ticket_sale_datetime_human(cls):
         date = DateFormat(cls.student_ticket_sale_datetime())
         return date.format('l, F jS') + ' at ' + date.format('g:i A')
